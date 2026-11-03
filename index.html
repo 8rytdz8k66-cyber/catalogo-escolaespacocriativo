@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo Escola Espaço Criativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cores do logo: marinho de fundo + letras em arco-íris */
+  --marinho:#0d0f74;
+  --marinho-2:#1b1f8f;
+  --vermelho:#e53b2c;
+  --laranja:#f7941d;
+  --amarelo:#ffc928;
+  --verde:#2e9e47;
+  --azul:#2a9be0;
+  --lilas:#7a68c4;
+  --papel:#f7f8ff;
+  --branco:#ffffff;
+  --tinta:#1d1f4a;
+  --cinza:#5f6386;
+  --linha:#e1e3f2;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --script:"Caveat","Brush Script MT",cursive;
+  /* Layout: coluna única pensada para celular, seções numeradas pelo menu */
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px;border-radius:10px}
+img{max-width:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0;color:var(--marinho)}
+h2{font-size:clamp(28px,6vw,38px)}
+h3{font-size:21px}
+p{margin:0 0 14px}
+.nota{color:var(--cinza);font-size:15px}
+.arco{height:8px;background:linear-gradient(90deg,var(--vermelho) 0 16.6%,var(--laranja) 0 33.3%,var(--amarelo) 0 50%,var(--verde) 0 66.6%,var(--azul) 0 83.3%,var(--lilas) 0)}
+
+/* Cabeçalho de seção */
+.cab{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.num{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:22px;background:var(--c)}
+.cab small{display:block;font-family:var(--display);font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.06em;font-size:13px}
+section{padding:48px 0;scroll-margin-top:58px}
+section.claro{background:var(--branco)}
+
+/* Capa */
+.capa{background:var(--marinho);color:#fff;text-align:center;position:relative;overflow:hidden;padding:34px 0 40px}
+.capa .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.bolinhas{position:absolute;inset:0;pointer-events:none}
+.bolinhas i{position:absolute;border-radius:50%}
+.bolinhas b{position:absolute;font-size:28px;line-height:1}
+.logo{width:min(230px,58vw);border-radius:50%;border:6px solid #fff;box-shadow:0 0 0 6px var(--amarelo),0 14px 30px rgba(0,0,0,.35)}
+.capa h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.slogan{font-family:var(--script);font-size:clamp(32px,8vw,44px);line-height:1.1;margin:22px 0 6px}
+.slogan span{color:var(--amarelo)}
+.capa .sub{color:#cfd2ff;max-width:32em;margin:0 0 22px}
+.botoes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:17px;padding:11px 20px;border-radius:14px;border:0;cursor:pointer}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.zap{background:#25a244;color:#fff}
+.btn.branco{background:#fff;color:var(--marinho)}
+.btn.marinho{background:var(--marinho);color:#fff}
+
+/* Menu */
+.menu{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--linha)}
+.menu-in{max-width:880px;margin:0 auto;padding:9px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.menu-in::-webkit-scrollbar{display:none}
+.menu a{flex:none;text-decoration:none;font-family:var(--display);font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;color:#fff;background:var(--c)}
+
+/* 1 Quem somos */
+.bolas{display:flex;flex-wrap:wrap;justify-content:center;gap:26px 18px}
+.bola{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;width:156px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.circ{width:128px;height:128px;border-radius:50%;border:6px solid var(--c);overflow:hidden;box-shadow:0 8px 20px rgba(13,15,116,.15);transition:transform .15s;background:var(--marinho)}
+.circ img{width:100%;height:100%;object-fit:cover;display:block}
+.bola:hover .circ{transform:scale(1.05)}
+.bola b{font-family:var(--display);font-size:18px;line-height:1.15;color:var(--marinho);margin-top:8px}
+.bola .cargo{font-size:14px;color:var(--cinza);line-height:1.3}
+.bola .ler{margin-top:6px;font-family:var(--display);font-weight:700;font-size:14px;color:#fff;background:var(--c);padding:3px 12px;border-radius:999px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:6px}
+.chips span{font-size:12px;font-weight:700;background:#f0f1ff;color:var(--marinho);border-radius:999px;padding:2px 9px}
+
+/* Números */
+.numeros{background:var(--marinho);padding:28px 0}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.nums b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(36px,9vw,54px);line-height:1}
+.nums span{color:#cfd2ff;font-weight:700;font-size:15px}
+
+/* 2 História */
+.tempo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tempo li{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:12px 14px;border-radius:16px;background:var(--papel);border-left:7px solid var(--c)}
+.tempo .q{font-family:var(--display);font-weight:800;font-size:19px;color:var(--marinho);font-variant-numeric:tabular-nums}
+.tempo b{display:block;font-family:var(--display);font-size:18px;color:var(--marinho)}
+@media (max-width:480px){.tempo li{grid-template-columns:1fr;gap:0}}
+.sub-h{margin:34px 0 12px}
+.caixa{border:2px solid var(--c);border-radius:20px;background:#fff;margin-top:12px;overflow:hidden}
+.caixa summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:center;padding:12px 14px}
+.caixa summary::-webkit-details-marker{display:none}
+.caixa summary img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid var(--c);flex:none}
+.aspas{flex:none;width:52px;height:52px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-size:40px;line-height:1;padding-top:14px}
+.caixa summary b{display:block;font-family:var(--display);font-size:18px;color:var(--marinho);line-height:1.15}
+.caixa summary small{color:var(--cinza);font-size:14px}
+.caixa summary::after{content:"+";margin-left:auto;font-family:var(--display);font-weight:800;font-size:28px;color:var(--c);flex:none}
+.caixa[open] summary::after{content:"–"}
+.foto-relato{display:block;width:160px;height:160px;border-radius:50%;object-fit:cover;border:6px solid;margin:8px auto 16px}
+.caixa summary img{width:60px;height:60px}
+.caixa .txt{padding:2px 18px 18px;max-width:65ch}
+.txt h3{color:var(--verde);margin:22px 0 8px;font-size:19px}
+
+/* 3 Valores da escola */
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.mini{background:#fff;border-radius:20px;padding:18px;border-top:7px solid var(--c);box-shadow:0 4px 14px rgba(13,15,116,.06)}
+.mini h3{font-size:19px;margin-bottom:6px}
+.mini p{font-size:15.5px;margin:0}
+.citacao{margin:20px 0 0;padding:22px 24px;background:var(--marinho);color:#fff;border-radius:22px}
+.citacao p{font-family:var(--script);font-size:30px;line-height:1.2;margin:0 0 8px}
+.citacao cite{font-style:normal;font-weight:700;color:var(--amarelo);font-size:15px}
+
+/* 4 Vídeo */
+.video{display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#fff3d6,#e4f3fc);border-radius:24px;padding:22px}
+.play{flex:none;width:86px;height:86px;border-radius:50%;background:var(--vermelho);display:grid;place-items:center;box-shadow:0 8px 20px rgba(229,59,44,.35)}
+.play svg{width:34px;height:34px;margin-left:5px}
+.video h3{font-size:24px}
+.video p{color:var(--cinza);margin:6px 0 12px}
+@media (max-width:480px){.video{flex-direction:column;align-items:flex-start}}
+
+.video-box{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:22px;align-items:center;background:linear-gradient(135deg,#fff3d6,#e4f3fc);border-radius:24px;padding:18px}
+.video-box video{width:100%;aspect-ratio:9/16;border-radius:18px;background:#000;display:block;box-shadow:0 10px 24px rgba(13,15,116,.2)}
+.video-box h3{font-size:24px}
+.video-box p{color:var(--cinza);margin:6px 0 12px}
+@media (max-width:560px){.video-box{grid-template-columns:1fr}.video-box video{max-width:320px;margin:0 auto}}
+/* 5 Valores */
+.abas{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#eef0ff;padding:6px;border-radius:18px;margin-bottom:18px}
+.aba{border:0;cursor:pointer;font:inherit;font-family:var(--display);font-weight:700;font-size:16px;line-height:1.15;padding:10px;border-radius:13px;background:transparent;color:var(--marinho)}
+.aba small{display:block;font-family:var(--body);font-weight:600;font-size:12px;opacity:.8}
+.aba[aria-selected="true"]{background:var(--c);color:#fff}
+.painel[hidden]{display:none}
+.faixa{border-radius:20px;padding:16px 18px;color:#fff;background:var(--c);margin-bottom:14px}
+.faixa b{display:block;font-family:var(--display);font-size:23px;line-height:1.1}
+.faixa span{font-size:14px;opacity:.92}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:#fff;border-radius:20px;padding:16px 18px;box-shadow:0 4px 14px rgba(13,15,116,.06)}
+.etq{display:inline-block;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--c);padding:3px 12px;border-radius:999px;margin-bottom:8px}
+.tab{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tab td{padding:7px 0;border-bottom:1px dotted var(--linha);vertical-align:top}
+.tab tr:last-child td{border-bottom:0}
+.tab td:last-child{text-align:right;font-weight:800;white-space:nowrap;padding-left:10px}
+.tab small{display:block;color:var(--cinza);font-weight:600;font-size:13px}
+.tab.grande td:last-child{font-family:var(--display);font-size:21px}
+.g{font-family:var(--display);font-weight:700;color:var(--cinza);font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin:12px 0 0}
+.turma{padding:10px 0;border-bottom:1px dotted var(--linha)}
+.turma:last-child{border-bottom:0}
+.turma h4{margin:0 0 4px;font-family:var(--display);font-size:18px;color:var(--marinho)}
+.turma h4 small{font-family:var(--body);font-weight:600;color:var(--cinza);font-size:13px;margin-left:4px}
+.linha{display:flex;justify-content:space-between;gap:10px;font-size:15.5px;font-variant-numeric:tabular-nums}
+.linha span{color:var(--cinza)}
+.linha b.d{color:var(--vermelho)}
+.selos{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.selos span{font-weight:700;font-size:14.5px;padding:7px 14px;border-radius:999px;background:#fff;border:2px solid var(--c);color:var(--tinta)}
+.docs{margin:0;padding-left:20px;font-size:15.5px}.docs li{margin:3px 0}
+
+.faixa.com-logo{display:flex;align-items:center;gap:14px}
+.faixa.com-logo img{width:76px;height:76px;flex:none;border-radius:50%;border:3px solid #fff;background:#fff}
+.unid-logo{width:84px;height:84px;border-radius:50%;border:3px solid #fff;background:#fff;display:block;margin-bottom:10px}
+.fz label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.fz input[type=text],.fz select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
+.fz input[type=text]:focus,.fz select:focus{border-color:var(--azul);outline:none}
+.fz-unid{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fz-unid legend{font-weight:700;font-size:15px;margin-bottom:6px;padding:0}
+.fz-unid label{margin:0;border:2px solid var(--linha);border-radius:14px;padding:10px 12px;cursor:pointer;font-family:var(--display);font-size:16px;color:var(--marinho);line-height:1.15;background:#fff}
+.fz-unid label small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--cinza)}
+.fz-unid label:has(input:checked){border-color:var(--verde);background:#e7f6ea}
+.fz-unid input{accent-color:var(--verde);margin-right:4px}
+.fz-dica{font-size:14px;color:var(--verde);font-weight:700;margin:6px 0 0}
+.fz-valor{margin-top:16px;background:#fff;border:2px solid var(--amarelo);border-radius:16px;padding:12px 14px}
+.fz-valor b{font-family:var(--display);color:var(--marinho);font-size:17px}
+.fz-valor ul{list-style:none;margin:6px 0 0;padding:0}
+.fz-valor li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-variant-numeric:tabular-nums}
+.fz-valor li strong{white-space:nowrap}
+.fz-desc{font-size:14px;color:var(--cinza);margin:6px 0 0}
+.fz-erro{color:var(--vermelho);font-weight:700;font-size:14px;margin:10px 0 0;min-height:1em}
+.fz-enviar{width:100%;justify-content:center;margin-top:8px}
+.fz-enviar[aria-disabled="true"]{opacity:.55}
+.me-slogan{font-family:var(--display);font-weight:700;font-size:19px;color:var(--marinho);margin:4px 0 10px;text-align:center}
+.difs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.difs span{background:#fff;border-left:6px solid var(--c);border-radius:12px;padding:9px 12px;font-weight:700;font-size:14.5px;line-height:1.25}
+.ig{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;color:#fff;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.ig svg{width:26px;height:26px}
+.carrossel{overflow:hidden;margin:0 -18px 22px;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.trilho{display:flex;gap:14px;width:max-content;padding:4px 18px;animation:passa 30s linear infinite}
+.carrossel:hover .trilho{animation-play-state:paused}
+@keyframes passa{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.trilho{animation:none}.carrossel{overflow-x:auto}}
+.coment{margin:0;width:270px;flex:none;background:var(--papel);border-radius:18px;padding:14px 16px;border-top:6px solid var(--amarelo)}
+.coment blockquote{margin:6px 0 8px;font-size:15.5px}
+.coment figcaption{font-weight:700;font-size:14px;color:var(--marinho)}
+.mini-est{color:var(--amarelo);letter-spacing:2px}
+.avaliar{background:linear-gradient(135deg,#fff6db,#eef0ff);border-radius:22px;padding:18px}
+.avaliar h3{font-size:22px}
+.avaliar label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.avaliar input,.avaliar select,.avaliar textarea{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
+.av-campos{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+@media (max-width:480px){.av-campos{grid-template-columns:1fr}}
+.estrelas{display:flex;gap:4px;margin-top:6px}
+.estrelas button{background:none;border:0;cursor:pointer;font-size:38px;line-height:1;color:#d5d7e8;padding:0 2px}
+.estrelas button.on{color:var(--amarelo)}
+#av-enviar[aria-disabled="true"]{opacity:.55}
+/* 6 Unidades e contato */
+.contato{background:var(--marinho);color:#fff}
+.contato h2,.contato h3{color:#fff}
+.unids{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.unid{background:var(--marinho-2);border-radius:20px;padding:18px;border-top:7px solid var(--c)}
+.unid p{color:#cfd2ff;font-size:15px;margin:4px 0 12px}
+.unid .botoes{justify-content:flex-start}
+.unid .btn{font-size:15px;padding:9px 14px}
+.unid .btn.branco{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.fim{font-family:var(--script);font-size:34px;color:var(--amarelo);text-align:center;margin:30px 0 0}
+footer{background:var(--marinho);color:#9da1e0;text-align:center;font-size:13px;padding:0 0 26px}
+
+/* Janela das biografias */
+dialog{border:0;padding:0;border-radius:24px;width:min(660px,94vw);max-height:88vh;background:var(--papel);color:var(--tinta);box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+dialog[open]{display:flex;flex-direction:column}
+dialog::backdrop{background:rgba(13,15,116,.55)}
+.jtopo{display:flex;gap:14px;align-items:center;padding:16px 18px;background:var(--marinho);color:#fff}
+.jtopo img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:4px solid var(--amarelo);flex:none}
+.jtopo h2{color:#fff;font-size:21px}
+.jtopo p{margin:2px 0 0;font-size:13.5px;color:#cfd2ff;line-height:1.35}
+.fechar{margin-left:auto;align-self:flex-start;background:rgba(255,255,255,.15);color:#fff;border:0;width:40px;height:40px;border-radius:50%;font-size:26px;line-height:1;cursor:pointer;flex:none}
+.jcorpo{overflow-y:auto;padding:20px 22px 26px}
+.jcorpo .form{background:#fff;border-left:6px solid var(--azul);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:15.5px}
+.jcorpo .citacao p{font-size:27px}
+</style>
+</head>
+<body>
+
+<header class="capa">
+  <div class="bolinhas" aria-hidden="true">
+    <i style="width:90px;height:90px;background:var(--vermelho);left:-34px;top:38px"></i>
+    <i style="width:120px;height:120px;background:var(--verde);right:-52px;top:-34px"></i>
+    <i style="width:44px;height:44px;background:var(--amarelo);left:9%;bottom:70px"></i>
+    <i style="width:30px;height:30px;background:var(--azul);right:12%;top:46%"></i>
+    <i style="width:62px;height:62px;background:var(--laranja);right:5%;bottom:30px"></i>
+    <i style="width:22px;height:22px;background:var(--lilas);left:24%;top:14%"></i>
+    <b style="left:8%;top:34%;color:var(--amarelo)">★</b>
+    <b style="right:21%;top:9%;color:#ff9a8f">★</b>
+    <b style="right:8%;top:62%;color:#7fd38f">★</b>
+  </div>
+  <div class="wrap">
+    <img class="logo" src="img/logo.png" alt="Logo Espaço Criativo Escola e Creche">
+    <h1>Escola Espaço Criativo</h1>
+    <p class="slogan">Sua história também pode <span>começar aqui!</span></p>
+    <p class="sub">Duas unidades em Fortaleza: Parque Santa Maria, do berçário ao 9º ano, e Messejana (Colégio Maria de Fátima), do berçário ao 5º ano.</p>
+    <div class="botoes">
+      <a class="btn branco" href="#valores">Ver turmas e valores</a>
+      <button type="button" class="btn zap" data-form="">Quero matricular meu filho</button>
+    </div>
+  </div>
+</header>
+<div class="arco" aria-hidden="true"></div>
+
+<nav class="menu" aria-label="Partes do catálogo">
+  <div class="menu-in">
+    <a href="#quem-somos" style="--c:var(--vermelho)">1 Quem somos</a>
+    <a href="#historia" style="--c:var(--laranja)">2 História</a>
+    <a href="#jeito" style="--c:var(--verde)">3 Nosso jeito</a>
+    <a href="#video" style="--c:var(--azul)">4 Vídeo</a>
+    <a href="#avaliacoes" style="--c:var(--amarelo);color:var(--marinho)">★ Avaliações</a>
+    <a href="#valores" style="--c:var(--lilas)">5 Turmas e valores</a>
+    <a href="#contato" style="--c:var(--marinho)">6 Contato</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="quem-somos" class="claro" style="--c:var(--vermelho)">
+  <div class="wrap">
+    <div class="cab"><span class="num">1</span><div><small>Quem somos</small><h2>Quem faz a Espaço Criativo</h2></div></div>
+    <p class="nota" style="text-align:center">Toque em uma foto para ler a biografia.</p>
+    <div class="bolas">
+      <button type="button" class="bola" style="--c:var(--vermelho)" data-bio="bio-elienice" data-foto="img/elienice-rosto.jpg">
+        <span class="circ"><img src="img/elienice-rosto.jpg" alt=""></span>
+        <b>Elienice Lima Nobre</b>
+        <span class="cargo">Fundadora e coordenadora geral da escola</span>
+        <span class="chips"><span>Pedagogia</span><span>Psicopedagogia</span><span>Gestão Escolar</span><span>Gestão de Pessoas</span></span>
+        <span class="ler">Ler biografia</span>
+      </button>
+      <button type="button" class="bola" style="--c:var(--verde)" data-bio="bio-evanisse" data-foto="img/evanisse-rosto.jpg">
+        <span class="circ"><img src="img/evanisse-rosto.jpg" alt=""></span>
+        <b>Evanisse Lima Nobre</b>
+        <span class="cargo">Coordenadora geral da creche</span>
+        <span class="chips"><span>Letras</span><span>Psicologia</span><span>Neuropsicologia</span></span>
+        <span class="ler">Ler biografia</span>
+      </button>
+      <button type="button" class="bola" style="--c:var(--amarelo)" data-bio="bio-escola" data-foto="img/logo.png">
+        <span class="circ"><img src="img/logo.png" alt=""></span>
+        <b>Escola Espaço Criativo</b>
+        <span class="cargo">Desde 2002</span>
+        <span class="ler" style="color:var(--marinho)">Ler a história</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="numeros" aria-label="A escola em números">
+  <div class="wrap nums">
+    <div><b style="color:var(--amarelo)">23</b><span>anos de história</span></div>
+    <div><b style="color:#7fd38f">+700</b><span>crianças</span></div>
+    <div><b style="color:#ff9a8f">2</b><span>unidades</span></div>
+  </div>
+</section>
+
+<section id="historia" style="--c:var(--laranja)">
+  <div class="wrap">
+    <div class="cab"><span class="num">2</span><div><small>Nossa história</small><h2>Uma escola que cresceu junto com os alunos</h2></div></div>
+    <ol class="tempo">
+      <li style="--c:var(--vermelho)"><span class="q">2002</span><div><b>Nasce a Espaço Criativo</b>Na casa da fundadora, na Rua Jorge da Veiga, nº 595, com quatro salas e 67 alunos.</div></li>
+      <li style="--c:var(--laranja)"><span class="q">2003–2004</span><div><b>Chega o Fundamental I</b>As turmas abrem uma a uma, acompanhando os alunos.</div></li>
+      <li style="--c:var(--amarelo)"><span class="q">2010</span><div><b>Fundamental II e creche</b>Começa o 6º ano e a creche abre as portas.</div></li>
+      <li style="--c:var(--verde)"><span class="q">Depois</span><div><b>Tempo integral</b>Criado para as famílias do bairro que precisavam desse apoio.</div></li>
+      <li style="--c:var(--azul)"><span class="q">2018–2019</span><div><b>Escola ampliada</b>Compra do terreno vizinho, com prédios para o Fundamental II e a creche.</div></li>
+      <li style="--c:var(--lilas)"><span class="q">2020</span><div><b>Pandemia</b>O momento mais difícil, superado com união, fé e resiliência.</div></li>
+      <li style="--c:var(--marinho)"><span class="q">2024–2025</span><div><b>Unidade Messejana</b>A ideia de Evanisse vira a segunda unidade da escola.</div></li>
+    </ol>
+
+    <h3 class="sub-h">A história contada por elas</h3>
+    <p class="nota">Toque para abrir cada relato completo.</p>
+    <details class="caixa" style="--c:var(--verde)">
+      <summary><img src="img/evanisse-relato.jpg" alt="Evanisse Lima Nobre"><span><b>Como tudo começou</b><small>Relato de Evanisse Lima Nobre</small></span></summary>
+      <div class="txt"><img class="foto-relato" src="img/evanisse-relato.jpg" alt="Evanisse Lima Nobre" style="border-color:var(--verde)"><p>A história da Escola Espaço Criativo começou em 2002. Elienice Lima Nobre trabalhava em outra instituição de ensino e percebeu ali uma necessidade. Dessa experiência nasceu o desejo de criar um espaço educacional próprio. O nome Espaço Criativo já estava nos planos desde o início e logo passou a representar a identidade da instituição. Nos primeiros anos, a imagem da escola foi inspirada nas formiguinhas da turma do Smilingüido, personagens que transmitem valores cristãos.</p>
+    <p>A primeira sede ficava na Rua Jorge da Veiga, nº 595, na própria residência da fundadora, que foi adaptada para receber os primeiros alunos. Começamos com quatro salas de aula, cerca de 60 alunos e uma equipe pequena: eu, Elienice, Dena, Silvely e uma amiga. Todas fazíamos de tudo. Recebíamos as crianças, organizávamos os espaços, cuidávamos da limpeza e das tarefas administrativas. O primeiro ano foi de muita construção e adaptação, sempre com dedicação e vontade de ver o projeto crescer.</p>
+    <p>Entre 2003 e 2004, passamos a oferecer o Ensino Fundamental I, primeiro com poucas turmas. A escola foi crescendo aos poucos e consolidou a Educação Infantil e o Fundamental I. Em 2010, começamos a implantar o Ensino Fundamental II, a partir do 6º ano. A cada ano uma série nova era aberta, até completarmos o ciclo. No mesmo período, demos início à creche, num prédio construído pela fundadora. A estrutura tinha duas salas e uma cozinha, adaptadas para receber as crianças.</p>
+    <p>Entre 2018 e 2019, fizemos um investimento importante: compramos o terreno vizinho, onde hoje ficam o prédio do Fundamental II e o da creche. Assim, os alunos passaram a ter um espaço mais adequado.</p>
+    <p>Pouco depois veio um dos momentos mais difíceis da nossa trajetória: a pandemia da Covid-19. Tivemos que fechar as portas de uma hora para outra, diante de muita incerteza sobre o futuro da educação e da própria escola. Com esforço, união e dedicação, atravessamos esse período e saímos ainda mais fortes.</p>
+    <p>Entre 2024 e 2025, começamos a planejar uma nova expansão. O projeto inicial era uma unidade no Eusébio, mas dificuldades com o terreno nos levaram a outro caminho: Messejana. A decisão foi rápida e abriu uma nova etapa na história da escola. Ela trouxe os desafios naturais de toda nova unidade, mas seguimos confiantes no potencial desse projeto.</p>
+    <p>Hoje, olhando para trás, vemos o quanto a Espaço Criativo cresceu. Começamos com quatro salas e cerca de 60 alunos. Hoje temos duas unidades, uma estrutura ampliada e atendemos do berçário ao 9º ano. Os desafios continuam, e reinventar-se faz parte do caminho. O que nos move é o amor pelo que fazemos, o compromisso com a educação e a vontade de ver a escola crescer cada vez mais.</p>
+    <p class="fecho">A história da Espaço Criativo é feita de trabalho, superação e, acima de tudo, de pessoas que acreditaram em um sonho e seguem trabalhando para torná-lo realidade.</p></div>
+    </details>
+    <details class="caixa" style="--c:var(--vermelho)">
+      <summary><img src="img/elienice-relato.jpg" alt="Elienice Lima Nobre"><span><b>Uma escola que cresceu junto com os alunos</b><small>Relato de Elienice Lima Nobre</small></span></summary>
+      <div class="txt"><img class="foto-relato" src="img/elienice-relato.jpg" alt="Elienice Lima Nobre" style="border-color:var(--vermelho)"><p>No início, a escola contava com cinco professoras, duas delas minhas irmãs, que me ajudaram muito nessa fase. Como eu já era conhecida como professora no bairro, a escola foi conquistando a confiança das famílias e, logo no primeiro ano, chegamos a 67 alunos matriculados.</p>
+    <p>O Ensino Fundamental I chegou com o crescimento da escola. Naquela época, a alfabetização fazia parte da Educação Infantil, e não do 1º ano, como acontece hoje. Por isso, abrimos primeiro a antiga primeira série, que hoje corresponde ao 2º ano. A cada ano, nossos alunos avançavam de série, e nós abríamos a turma seguinte para acompanhá-los.</p>
+    <p>O Ensino Fundamental II chegou da mesma forma. Foram os próprios alunos da escola que, ao avançar de série, permitiram a abertura de novas turmas. A escola cresceu junto com eles.</p>
+    <h3>A chegada do tempo integral</h3>
+    <p>Por muito tempo, o tempo integral foi uma realidade apenas das escolas dos bairros mais conhecidos de Fortaleza. Um dia, recebi um pai que não tinha com quem deixar o filho e me pediu que pensasse em oferecer o tempo integral. A partir dessa conversa, decidi abrir a modalidade no ano seguinte, para atender àquela família e a tantas outras que precisavam desse apoio.</p>
+    <h3>A unidade Messejana</h3>
+    <p>A ideia de abrir a unidade Messejana partiu da minha irmã, Evanisse Nobre. Eu abracei a ideia e, hoje, estamos lá.</p></div>
+    </details>
+  </div>
+</section>
+
+<section id="jeito" class="claro" style="--c:var(--verde)">
+  <div class="wrap">
+    <div class="cab"><span class="num">3</span><div><small>Nosso jeito</small><h2>As conquistas que não cabem em números</h2></div></div>
+    <div class="cards3">
+      <div class="mini" style="--c:var(--azul)"><h3>Cada criança no seu tempo</h3><p>Do aluno com dificuldade de aprendizagem à criança atípica, cada um é acompanhado com acolhimento e respeito ao seu ritmo.</p></div>
+      <div class="mini" style="--c:var(--laranja)"><h3>O aluno que virou professor</h3><p>Um aluno do 9º ano quase desistiu de estudar. Uma educadora conversou com ele e o incentivou a continuar. Hoje ele é professor de Educação Física na própria escola.</p></div>
+      <div class="mini" style="--c:var(--lilas)"><h3>Família de verdade</h3><p>Uma escola conduzida por duas irmãs, presente no dia a dia e parceira das famílias no desenvolvimento de cada criança.</p></div>
+    </div>
+    <blockquote class="citacao">
+      <p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p>
+      <cite>Elienice Lima Nobre, fundadora</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="video" style="--c:var(--azul)">
+  <div class="wrap">
+    <div class="cab"><span class="num">4</span><div><small>Vídeo</small><h2>Conheça a escola em vídeo</h2></div></div>
+    <div class="video-box">
+      <video controls playsinline preload="metadata" poster="img/video-capa.jpg">
+        <source src="img/video-escola.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Uma conversa sobre a Espaço Criativo</h3>
+        <p>Aperte o play para assistir aqui mesmo. O vídeo tem cerca de 9 minutos.</p>
+        <a class="btn marinho" href="https://www.instagram.com/reel/DCl7bcJOU_U/" target="_blank" rel="noopener">Ver também no Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacoes" class="claro" style="--c:var(--amarelo)">
+  <div class="wrap">
+    <div class="cab"><span class="num" style="color:var(--marinho)">★</span><div><small style="color:var(--laranja)">Avaliações</small><h2>O que os pais dizem</h2></div></div>
+
+    <div class="carrossel" id="carrossel" hidden aria-live="polite">
+      <div class="trilho" id="trilho"></div>
+    </div>
+    <p class="nota" id="sem-coment">Em breve, os comentários das famílias aparecem aqui.</p>
+    <a class="btn marinho" href="#avaliar">★ Deixe sua avaliação</a>
+
+  </div>
+</section>
+
+<section id="valores" class="claro" style="--c:var(--lilas)">
+  <div class="wrap">
+    <div class="cab"><span class="num">5</span><div><small>Turmas e valores</small><h2>Investimento na educação</h2></div></div>
+    <p class="nota">Cada unidade tem seus próprios valores. Escolha a unidade:</p>
+    <div class="abas" role="tablist">
+      <button type="button" class="aba" role="tab" id="t-sm" aria-controls="p-sm" aria-selected="true" style="--c:var(--verde)">Parque Santa Maria<small>Berçário ao 9º ano</small></button>
+      <button type="button" class="aba" role="tab" id="t-me" aria-controls="p-me" aria-selected="false" style="--c:var(--azul)">Messejana<small>Colégio Maria de Fátima · Berçário ao 5º ano</small></button>
+    </div>
+
+    <div class="painel" id="p-sm" role="tabpanel" aria-labelledby="t-sm" style="--c:var(--verde)">
+      <div class="faixa com-logo"><img src="img/logo.png" alt="Logo da unidade Parque Santa Maria"><div><b>Unidade Parque Santa Maria</b><span>Berçário ao 9º ano · WhatsApp (85) 99407-1372</span></div></div>
+      <div class="grade">
+        <div class="card" style="--c:var(--vermelho)"><span class="etq">Mensalidade</span>
+          <table class="tab grande"><tr><td>Educação Infantil</td><td>R$ 449,00</td></tr><tr><td>Fundamental I</td><td>R$ 471,00</td></tr><tr><td>Fundamental II</td><td>R$ 493,00</td></tr></table>
+        </div>
+        <div class="card" style="--c:var(--verde)"><span class="etq">Berçário e integral</span>
+          <table class="tab">
+            <tr><td>Berçário integral<small>7h às 18h</small></td><td>R$ 1.220,00</td></tr>
+            <tr><td>Berçário meio período<small>7h às 12h ou 13h às 18h</small></td><td>R$ 720,00</td></tr>
+            <tr><td>Contraturno escolar</td><td>R$ 1.030,00</td></tr>
+            <tr><td>Diária integral</td><td>R$ 120,00</td></tr>
+            <tr><td>Diária meio período</td><td>R$ 70,00</td></tr>
+          </table>
+        </div>
+        <div class="card" style="--c:var(--azul)"><span class="etq">Material didático</span>
+          <table class="tab">
+            <tr><td>Infantil I</td><td>R$ 299,00</td></tr><tr><td>Infantil II</td><td>R$ 439,00</td></tr><tr><td>Infantil III</td><td>R$ 637,89</td></tr><tr><td>Infantil IV</td><td>R$ 659,89</td></tr><tr><td>Infantil V</td><td>R$ 802,89</td></tr>
+            <tr><td>1º ano</td><td>R$ 1.187,88</td></tr><tr><td>2º ano</td><td>R$ 1.301,88</td></tr><tr><td>3º ano</td><td>R$ 1.366,80</td></tr><tr><td>4º ano</td><td>R$ 1.426,80</td></tr><tr><td>5º ano</td><td>R$ 1.486,80</td></tr><tr><td>6º ao 9º ano</td><td>R$ 1.928,40</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="sm">Pedir matrícula no Santa Maria</button></div>
+      <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
+    </div>
+
+    <div class="painel" id="p-me" role="tabpanel" aria-labelledby="t-me" style="--c:var(--azul)" hidden>
+      <div class="faixa com-logo"><img src="img/logo-messejana.png" alt="Logo da unidade Messejana"><div><b>Unidade Messejana · Colégio Maria de Fátima</b><span>Berçário ao 5º ano · Matrículas 2027 · Rua Santa Efigênia, 300 · WhatsApp (85) 97400-7393</span></div></div>
+      <p class="me-slogan">Educação que desenvolve <span style="color:var(--verde)">mente</span>, <span style="color:var(--laranja)">coração</span> e <span style="color:var(--azul)">conexões</span> para a vida.</p>
+      <div class="difs">
+        <span style="--c:var(--azul)">Acolhimento que abraça</span>
+        <span style="--c:var(--vermelho)">Desenvolvimento socioemocional</span>
+        <span style="--c:var(--laranja)">Parceria com as famílias</span>
+        <span style="--c:var(--verde)">Inglês integrado na prática</span>
+      </div>
+      <div class="grade">
+        <div class="card" style="--c:var(--azul)"><span class="etq">Mensalidade 2027</span>
+          <p class="nota" style="margin:0 0 4px">Matrícula em novembro: mensalidade com 10% de desconto. Em dezembro: 5%.</p>
+          <div class="turma"><h4>Berçário <small>integral, 7h às 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.575,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.662,50</b></div></div>
+          <div class="turma"><h4>Berçário <small>integral, 7h às 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.710,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.805,00</b></div></div>
+          <div class="turma"><h4>Berçário <small>meio período</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 810,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 855,00</b></div></div>
+        </div>
+        <div class="card" style="--c:var(--laranja)"><span class="etq">Infantil, Fundamental e integral</span>
+          <div class="turma"><h4>Educação Infantil <small>Infantil I ao V · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 650,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 585,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 617,50</b></div></div>
+          <div class="turma"><h4>Fundamental I <small>1º ao 5º ano · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 675,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 712,50</b></div></div>
+          <div class="turma"><h4>Tempo integral <small>tarde, até as 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 940,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 846,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 893,00</b></div></div>
+          <div class="turma"><h4>Tempo integral <small>tarde, até as 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.050,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 945,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 997,50</b></div></div>
+        </div>
+        <div class="card" style="--c:var(--verde)"><span class="etq">Material didático</span>
+          <table class="tab">
+            <tr><td>Infantil I</td><td>R$ 299,00</td></tr><tr><td>Infantil II</td><td>R$ 439,00</td></tr><tr><td>Infantil III</td><td>R$ 775,00</td></tr><tr><td>Infantil IV</td><td>R$ 790,00</td></tr><tr><td>Infantil V</td><td>R$ 850,00</td></tr>
+            <tr><td>1º ano</td><td>R$ 1.450,00</td></tr><tr><td>2º ano</td><td>R$ 1.500,00</td></tr><tr><td>3º ano</td><td>R$ 1.550,00</td></tr><tr><td>4º ano</td><td>R$ 1.600,00</td></tr><tr><td>5º ano</td><td>R$ 1.750,00</td></tr>
+          </table>
+        </div>
+        <div class="card" style="--c:var(--lilas)"><span class="etq">Contraturno e diárias</span>
+          <table class="tab">
+            <tr><td>Contraturno escolar</td><td>R$ 940,00</td></tr>
+            <tr><td>Diária integral</td><td>R$ 110,00</td></tr>
+            <tr><td>Diária meio período</td><td>R$ 80,00</td></tr>
+            <tr><td>Agenda digital</td><td>R$ 60,00</td></tr>
+          </table>
+        </div>
+        <div class="card" style="--c:var(--vermelho)"><span class="etq">Documentos · novos alunos</span>
+          <ul class="docs"><li>4 fotos 3x4 atualizadas</li><li>1 pasta escolar</li><li>Cópia do registro da criança</li><li>Cópia do RG e CPF dos responsáveis</li><li>Cópia do comprovante de residência atual</li><li>Cópia do cartão de vacina atualizado</li><li>Declaração da escola anterior com a série e a quitação das mensalidades</li></ul>
+        </div>
+        <div class="card" style="--c:var(--verde)"><span class="etq">Documentos · veteranos</span>
+          <ul class="docs"><li>Contrato de Prestação de Serviços 2027</li><li>Atualização da ficha cadastral</li><li>Pagamento da matrícula</li></ul>
+        </div>
+      </div>
+      <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="me">Pedir matrícula em Messejana</button></div>
+      <div class="selos" style="--c:var(--azul)"><span>Desconto pagando até o dia 05: R$ 20,00</span><span>Irmãos: R$ 10,00 de desconto</span><span>Indique um amigo: 10% de desconto</span><span>Fardamento, livros e agenda à venda na escola</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliar" class="claro" style="--c:var(--amarelo)">
+  <div class="wrap">
+    <div class="avaliar">
+      <h3>Avalie a Espaço Criativo</h3>
+      <p class="nota">Sua opinião vai direto para o WhatsApp da escola.</p>
+      <div class="estrelas" role="radiogroup" aria-label="Nota de 1 a 5">
+        <button type="button" role="radio" aria-checked="false" data-n="1" aria-label="1 estrela">★</button><button type="button" role="radio" aria-checked="false" data-n="2" aria-label="2 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="3" aria-label="3 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="4" aria-label="4 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="5" aria-label="5 estrelas">★</button>
+      </div>
+      <div class="av-campos">
+        <div><label for="av-nome">Seu nome</label><input id="av-nome" type="text" placeholder="Ex.: Ana, mãe do João"></div>
+        <div><label for="av-unid">Unidade</label><select id="av-unid"><option value="">Escolha</option><option value="sm">Parque Santa Maria</option><option value="me">Messejana</option></select></div>
+      </div>
+      <label for="av-txt">Seu comentário</label>
+      <textarea id="av-txt" rows="3" placeholder="Conte como é a experiência da sua família com a escola"></textarea>
+      <p class="fz-erro" id="av-erro" role="alert"></p>
+      <a class="btn zap" id="av-enviar" href="#" target="_blank" rel="noopener" aria-disabled="true" style="width:100%;justify-content:center">Enviar avaliação</a>
+    </div>
+  </div>
+</section>
+<div class="arco" aria-hidden="true"></div>
+<section id="contato" class="contato">
+  <div class="wrap">
+    <div class="cab" style="--c:var(--amarelo)"><span class="num" style="color:var(--marinho)">6</span><div><small>Contato</small><h2>Venha conhecer a Espaço Criativo</h2></div></div>
+    <div class="unids">
+      <div class="unid" style="--c:var(--verde)">
+        <img class="unid-logo" src="img/logo.png" alt="Logo da unidade Parque Santa Maria">
+        <h3>Parque Santa Maria</h3>
+        <p>Berçário ao 9º ano · WhatsApp (85) 99407-1372</p>
+        <div class="botoes">
+          <button type="button" class="btn zap" data-form="sm"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</button>
+          <a class="btn branco" href="https://maps.google.com/?q=-3.858689,-38.501865" target="_blank" rel="noopener">📍 Mapa</a>
+          <a class="ig" href="https://www.instagram.com/criativoespaco_sm/" target="_blank" rel="noopener" aria-label="Instagram da unidade Parque Santa Maria"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="unid" style="--c:var(--azul)">
+        <img class="unid-logo" src="img/logo-messejana.png" alt="Logo da unidade Messejana">
+        <h3>Messejana · Colégio Maria de Fátima</h3>
+        <p>Berçário ao 5º ano · Rua Santa Efigênia, 300 · WhatsApp (85) 97400-7393</p>
+        <div class="botoes">
+          <button type="button" class="btn zap" data-form="me"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</button>
+          <a class="btn branco" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">📍 Mapa</a>
+          <a class="ig" href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener" aria-label="Instagram da unidade Messejana"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p class="nota" style="color:#cfd2ff;text-align:center;margin-top:18px">Site: <a href="https://www.escolaespacocriativo.com.br" target="_blank" rel="noopener">escolaespacocriativo.com.br</a></p>
+    <p class="fim">Mais que uma escola, um lugar para pertencer!</p>
+  </div>
+</section>
+</main>
+<footer>Escola Espaço Criativo · Escola e Creche · desde 2002</footer>
+
+<template id="bio-elienice">
+  <div class="form"><b>Formação:</b> Pedagogia, Psicopedagogia, Gestão Escolar e Gestão de Pessoas.</div>
+  <p>Elienice Lima Nobre é a fundadora da Escola Espaço Criativo. Pedagoga, com formação em Psicopedagogia, Gestão Escolar e Gestão de Pessoas, já era uma professora conhecida no bairro antes de ter a própria escola. Trabalhava em outra instituição de ensino quando percebeu uma necessidade e decidiu criar um espaço educacional do seu jeito.</p>
+  <p>Em 2002, adaptou a própria casa, na Rua Jorge da Veiga, nº 595, e abriu a escola com quatro salas, cinco professoras (duas delas suas irmãs) e 67 alunos logo no primeiro ano. A confiança que as famílias já tinham nela como professora fez a escola crescer rápido.</p>
+  <p>Ela foi abrindo as turmas junto com os alunos: primeiro o Fundamental I, depois o Fundamental II, uma série nova a cada ano, para que ninguém precisasse sair da escola. Também trouxe o tempo integral para o bairro, depois de ouvir um pai que não tinha com quem deixar o filho. Construiu o prédio onde a creche começou e, anos depois, investiu na compra do terreno vizinho para ampliar a escola.</p>
+  <p>Quando a irmã, Evanisse, sugeriu abrir uma unidade em Messejana, Elienice abraçou a ideia. Hoje a Espaço Criativo tem duas unidades e mais de 700 crianças.</p>
+  <p>Para ela, a escola é como um filho: ela gerou, acompanhou os primeiros passos e viu crescer. Continua presente todos os dias, no chão da escola, nas decisões e nas conquistas. Seu sonho é ver essa proposta de educação seguir viva e chegar a outras sedes.</p>
+  <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre</cite></blockquote>
+</template>
+
+<template id="bio-evanisse">
+  <div class="form" style="border-color:var(--verde)"><b>Formação:</b> Letras e Psicologia, com especialização em Neuropsicologia.</div>
+  <p>Evanisse Lima Nobre está na Espaço Criativo desde o primeiro dia. Formada em Letras e em Psicologia, e especialista em Neuropsicologia, une o olhar da educação ao cuidado com o desenvolvimento de cada criança.</p>
+  <p>Irmã da fundadora, fez parte da pequena equipe que abriu a escola em 2002, quando todas faziam de tudo: recebiam as crianças, organizavam as salas, cuidavam da limpeza e da parte administrativa.</p>
+  <p>Acompanhou de perto cada fase de crescimento da escola, da chegada do Fundamental I e II até a abertura da creche, em 2010. A creche começou pequena, com duas salas e uma cozinha adaptadas para receber as crianças. Hoje funciona em prédio próprio, construído no terreno vizinho que a escola comprou entre 2018 e 2019.</p>
+  <p>Viveu com a equipe um dos momentos mais difíceis da escola, a pandemia, quando as portas fecharam de uma hora para outra. Com união e dedicação, a escola atravessou esse período e saiu mais forte.</p>
+  <p>Foi de Evanisse a ideia de levar a Espaço Criativo para Messejana. O plano inicial era o Eusébio, mas, quando o terreno não deu certo, ela enxergou em Messejana uma nova oportunidade. A irmã abraçou a ideia e nasceu a segunda unidade.</p>
+  <p>Hoje é coordenadora geral da creche e sócia-proprietária. Para ela, o que move a escola é o amor pelo que faz, o compromisso com a educação e a vontade de ver a Espaço Criativo crescer cada vez mais.</p>
+</template>
+
+<template id="bio-escola">
+  <p>A Escola Espaço Criativo nasceu em 2002, numa casa adaptada na Rua Jorge da Veiga, nº 595, com quatro salas, uma equipe pequena e muita vontade de fazer dar certo. Nos primeiros anos, a imagem da escola foi inspirada nas formiguinhas da turma do Smilingüido, personagens que transmitem valores cristãos.</p>
+  <p>A escola cresceu junto com os alunos. Entre 2003 e 2004 chegou o Fundamental I. Em 2010 vieram o Fundamental II e a creche. Depois veio o tempo integral, pensado para as famílias do bairro que precisavam desse apoio. Entre 2018 e 2019, a compra do terreno vizinho deu espaço para os prédios do Fundamental II e da creche.</p>
+  <p>A pandemia foi o momento mais difícil da história da escola. Mesmo assim, a educação continuou, com trabalho, união, fé e resiliência.</p>
+  <p>Em 2024 e 2025, a Espaço Criativo chegou a Messejana. Hoje são duas unidades, mais de 700 crianças e atendimento do berçário ao 9º ano.</p>
+  <p>Ao longo desses anos, as maiores conquistas não cabem em números: o aluno que superou a dificuldade de aprendizagem, a criança atípica que avançou com acolhimento, o estudante que quase desistiu no 9º ano e voltou à escola como professor de Educação Física.</p>
+  <p style="font-family:var(--script);font-size:28px;color:var(--verde)">Mais que uma escola, um lugar para pertencer.</p>
+</template>
+
+<dialog id="janela" aria-labelledby="jnome">
+  <div class="jtopo">
+    <img id="jfoto" src="" alt="">
+    <div><h2 id="jnome"></h2><p id="jcargo"></p></div>
+    <button type="button" class="fechar" id="fechar" aria-label="Fechar">×</button>
+  </div>
+  <div class="jcorpo" id="jcorpo"></div>
+</dialog>
+
+<script>
+(function(){
+  var d=document.getElementById('janela');
+  document.querySelectorAll('[data-bio]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var c=document.getElementById('jcorpo'); c.innerHTML='';
+      c.appendChild(document.getElementById(btn.dataset.bio).content.cloneNode(true));
+      document.getElementById('jnome').textContent=btn.querySelector('b').textContent;
+      document.getElementById('jcargo').textContent=btn.querySelector('.cargo').textContent;
+      document.getElementById('jfoto').src=btn.dataset.foto;
+      if(d.showModal){d.showModal();} c.scrollTop=0;
+    });
+  });
+  document.getElementById('fechar').addEventListener('click',function(){d.close();});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  var abas=document.querySelectorAll('.aba');
+  abas.forEach(function(a){
+    a.addEventListener('click',function(){
+      abas.forEach(function(x){x.setAttribute('aria-selected','false');document.getElementById(x.getAttribute('aria-controls')).hidden=true;});
+      a.setAttribute('aria-selected','true');document.getElementById(a.getAttribute('aria-controls')).hidden=false;
+    });
+  });
+})();
+</script>
+<dialog id="formzap" aria-labelledby="fz-tit">
+  <div class="jtopo" style="background:#1f8f3c">
+    <div><h2 id="fz-tit">Fale com a escola pelo WhatsApp</h2><p>Preencha os dados e veja o valor da turma. A mensagem já vai pronta.</p></div>
+    <button type="button" class="fechar" data-fecha aria-label="Fechar">×</button>
+  </div>
+  <form class="jcorpo fz" id="fz" novalidate>
+    <fieldset class="fz-unid"><legend>Unidade</legend>
+      <label><input type="radio" name="unid" value="sm" id="fz-sm"> Parque Santa Maria<small>Berçário ao 9º ano</small></label>
+      <label><input type="radio" name="unid" value="me" id="fz-me"> Messejana<small>Berçário ao 5º ano</small></label>
+    </fieldset>
+    <label for="fz-resp">Nome do pai, mãe ou responsável</label>
+    <input id="fz-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+    <label for="fz-crianca">Nome da criança</label>
+    <input id="fz-crianca" type="text" placeholder="Ex.: Joãozinho">
+    <label for="fz-idade">Idade da criança</label>
+    <select id="fz-idade"><option value="">Escolha a idade</option></select>
+    <label for="fz-turma">Turma</label>
+    <select id="fz-turma"><option value="">Escolha a unidade primeiro</option></select>
+    <p class="fz-dica" id="fz-dica"></p>
+    <div id="fz-turno-box" hidden>
+      <label for="fz-turno">Horário do berçário</label>
+      <select id="fz-turno"></select>
+    </div>
+    <div id="fz-int-box" hidden>
+      <label for="fz-int">Tempo integral (opcional)</label>
+      <select id="fz-int"></select>
+    </div>
+    <div class="fz-valor" id="fz-valor" hidden></div>
+    <p class="fz-erro" id="fz-erro" role="alert"></p>
+    <a class="btn zap fz-enviar" id="fz-enviar" href="#" target="_blank" rel="noopener" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+      Enviar para o WhatsApp da escola
+    </a>
+    <p class="nota" style="margin-top:10px">Os valores são os do catálogo. A escola confirma a turma e os valores no atendimento.</p>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  var NUM={sm:'5585994071372',me:'5585974007393'};
+  var NOME={sm:'Parque Santa Maria',me:'Messejana (Colégio Maria de Fátima)'};
+  var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
+  var MAT_ME={'Infantil I':299,'Infantil II':439,'Infantil III':775,'Infantil IV':790,'Infantil V':850,'1º ano':1450,'2º ano':1500,'3º ano':1550,'4º ano':1600,'5º ano':1750};
+  var MAT={'Infantil I':299,'Infantil II':439,'Infantil III':637.89,'Infantil IV':659.89,'Infantil V':802.89,'1º ano':1187.88,'2º ano':1301.88,'3º ano':1366.80,'4º ano':1426.80,'5º ano':1486.80,'6º ano':1928.40,'7º ano':1928.40,'8º ano':1928.40,'9º ano':1928.40};
+  var TURMAS={
+    sm:['Berçário','Infantil I','Infantil II','Infantil III','Infantil IV','Infantil V','1º ano','2º ano','3º ano','4º ano','5º ano','6º ano','7º ano','8º ano','9º ano'],
+    me:['Berçário','Infantil I','Infantil II','Infantil III','Infantil IV','Infantil V','1º ano','2º ano','3º ano','4º ano','5º ano']
+  };
+  var IDADE2TURMA={0:'Berçário',1:'Infantil I',2:'Infantil II',3:'Infantil III',4:'Infantil IV',5:'Infantil V',6:'1º ano',7:'2º ano',8:'3º ano',9:'4º ano',10:'5º ano',11:'6º ano',12:'7º ano',13:'8º ano',14:'9º ano'};
+  var BERC={sm:[['Integral (7h às 18h)',1220],['Meio período (7h às 12h ou 13h às 18h)',720]],
+            me:[['Integral (7h às 17h)',1750],['Integral (7h às 18h)',1900],['Meio período (7h às 12h ou 13h às 18h)',900]]};
+  var INT={sm:[['Contraturno escolar',1030]],me:[['Tempo integral até as 17h',940],['Tempo integral até as 18h',1050]]};
+  function mensal(u,t){
+    if(/^Infantil/.test(t))return u==='sm'?449:650;
+    var n=parseInt(t,10);
+    if(n>=1&&n<=5)return u==='sm'?471:750;
+    if(n>=6)return 493;
+    return 0;
+  }
+  var d=document.getElementById('formzap'), $=function(id){return document.getElementById(id);};
+  var sel={idade:$('fz-idade'),turma:$('fz-turma'),turno:$('fz-turno'),int:$('fz-int')};
+  for(var i=0;i<=14;i++){var o=document.createElement('option');o.value=i;o.textContent=i===0?'Menos de 1 ano':(i+(i===1?' ano':' anos'));sel.idade.appendChild(o);}
+  function unid(){var r=document.querySelector('input[name=unid]:checked');return r?r.value:'';}
+  function enche(select,itens,vazio){select.innerHTML='';if(vazio){var o=document.createElement('option');o.value='';o.textContent=vazio;select.appendChild(o);}itens.forEach(function(it,k){var o=document.createElement('option');if(Array.isArray(it)){o.value=k;o.textContent=it[0]+' · '+brl(it[1]);}else{o.value=it;o.textContent=it;}select.appendChild(o);});}
+  function trocaUnidade(){
+    var u=unid(); var atual=sel.turma.value;
+    enche(sel.turma,u?TURMAS[u]:[],u?'Escolha a turma':'Escolha a unidade primeiro');
+    if(u&&TURMAS[u].indexOf(atual)>-1)sel.turma.value=atual;
+    if(u){enche(sel.turno,BERC[u]);enche(sel.int,INT[u],'Não, só meio período');}
+    sugere(false); atualiza();
+  }
+  function sugere(forca){
+    var u=unid(), id=sel.idade.value; var dica=$('fz-dica'); dica.textContent='';
+    if(id==='')return;
+    var t=IDADE2TURMA[id];
+    if(u==='me'&&parseInt(id,10)>10){dica.textContent='A unidade Messejana atende até o 5º ano. Para essa idade, escolha a unidade Parque Santa Maria.';return;}
+    if(u&&(forca||!sel.turma.value)){sel.turma.value=t;dica.textContent='Sugerimos a turma '+t+' pela idade. Você pode trocar se precisar.';}
+  }
+  function atualiza(){
+    var u=unid(), t=sel.turma.value, box=$('fz-valor'), linhas=[], msg=[];
+    var berc=t==='Berçário';
+    $('fz-turno-box').hidden=!(u&&berc);
+    $('fz-int-box').hidden=!(u&&t&&!berc&&(u==='sm'||mensal(u,t)));
+    if(u==='sm'&&t&&parseInt(t,10)>=6)$('fz-int-box').hidden=false;
+    var total=0;
+    if(u&&t){
+      if(berc){var b=BERC[u][sel.turno.value||0];linhas.push(['Berçário · '+b[0],b[1]]);total+=b[1];}
+      else{var m=mensal(u,t);linhas.push(['Mensalidade · '+t,m]);total+=m;}
+      if(!berc&&sel.int.value!==''){var it=INT[u][sel.int.value];linhas.push([it[0],it[1]]);total+=it[1];}
+    }
+    if(linhas.length){
+      var h='<b>Valor para '+(t)+' · '+(u==='sm'?'Santa Maria':'Messejana')+'</b><ul>';
+      linhas.forEach(function(l){h+='<li><span>'+l[0]+'</span><strong>'+brl(l[1])+'</strong></li>';});
+      h+='</ul>';
+      if(u==='me'){var base=linhas[0][1];h+='<p class="fz-desc">Matrícula em novembro: '+linhas[0][0].split(' · ')[0].toLowerCase()+' com 10% de desconto ('+brl(base*0.9)+'). Em dezembro: 5% ('+brl(base*0.95)+').</p>';}
+      var mt=u==='sm'?MAT[t]:MAT_ME[t]; if(mt){h+='<p class="fz-desc">Material didático do '+t+': '+brl(mt)+'.</p>';}
+      box.innerHTML=h;box.hidden=false;
+    }else{box.hidden=true;}
+    var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
+    var ok=u&&resp&&cri&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
+    var a=$('fz-enviar');
+    if(ok){
+      msg.push('Olá! Vim pelo catálogo da Escola Espaço Criativo e quero informações sobre matrícula.');
+      msg.push('');
+      msg.push('*Unidade:* '+NOME[u]);
+      msg.push('*Responsável:* '+resp);
+      msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
+      msg.push('*Turma:* '+t);
+      linhas.forEach(function(l){msg.push('*'+l[0]+':* '+brl(l[1]));});
+      a.href='https://wa.me/'+NUM[u]+'?text='+encodeURIComponent(msg.join('\n'));
+      a.setAttribute('aria-disabled','false');
+    }else{a.href='#';a.setAttribute('aria-disabled','true');}
+  }
+  $('fz-enviar').addEventListener('click',function(e){
+    if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
+    }else{$('fz-erro').textContent='';}
+  });
+  document.querySelectorAll('input[name=unid]').forEach(function(r){r.addEventListener('change',trocaUnidade);});
+  sel.idade.addEventListener('change',function(){sugere(true);atualiza();});
+  [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
+  [$('fz-resp'),$('fz-crianca')].forEach(function(x){x.addEventListener('input',atualiza);});
+  $('fz').addEventListener('submit',function(e){e.preventDefault();});
+  document.querySelectorAll('[data-form]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var u=b.dataset.form; if(u){$('fz-'+u).checked=true;} trocaUnidade(); $('fz-erro').textContent='';
+      if(d.showModal)d.showModal();
+    });
+  });
+  d.querySelector('[data-fecha]').addEventListener('click',function(){d.close();});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+})();
+</script>
+<script>
+(function(){
+  /* Comentários reais enviados pelas famílias. Para adicionar: {nome:"...", unidade:"...", nota:5, texto:"..."} */
+  var COMENTARIOS=[];
+  var trilho=document.getElementById('trilho');
+  if(COMENTARIOS.length){
+    document.getElementById('carrossel').hidden=false;document.getElementById('sem-coment').hidden=true;
+    var lista=COMENTARIOS.concat(COMENTARIOS);
+    lista.forEach(function(c,k){var d=document.createElement('figure');d.className='coment';if(k>=COMENTARIOS.length)d.setAttribute('aria-hidden','true');
+      d.innerHTML='<div class="mini-est">'+'★'.repeat(c.nota)+'</div><blockquote></blockquote><figcaption></figcaption>';
+      d.querySelector('blockquote').textContent='“'+c.texto+'”';d.querySelector('figcaption').textContent=c.nome+(c.unidade?' · '+c.unidade:'');trilho.appendChild(d);});
+    trilho.style.animationDuration=(COMENTARIOS.length*7)+'s';
+  }
+  var nota=0, NUM={sm:'5585994071372',me:'5585974007393'}, NOME={sm:'Parque Santa Maria',me:'Messejana'};
+  var bts=document.querySelectorAll('.estrelas button');
+  bts.forEach(function(b){b.addEventListener('click',function(){nota=+b.dataset.n;bts.forEach(function(x){var on=+x.dataset.n<=nota;x.classList.toggle('on',on);x.setAttribute('aria-checked',+x.dataset.n===nota?'true':'false');});monta();});});
+  var nome=document.getElementById('av-nome'),un=document.getElementById('av-unid'),txt=document.getElementById('av-txt'),a=document.getElementById('av-enviar');
+  function monta(){
+    var ok=nota&&nome.value.trim()&&un.value&&txt.value.trim();
+    if(ok){var m='Olá! Quero deixar minha avaliação da Escola Espaço Criativo.\n\n*Nota:* '+'★'.repeat(nota)+' ('+nota+' de 5)\n*Nome:* '+nome.value.trim()+'\n*Unidade:* '+NOME[un.value]+'\n*Comentário:* '+txt.value.trim();
+      a.href='https://wa.me/'+NUM[un.value]+'?text='+encodeURIComponent(m);a.setAttribute('aria-disabled','false');}
+    else{a.href='#';a.setAttribute('aria-disabled','true');}
+  }
+  [nome,un,txt].forEach(function(x){x.addEventListener('input',monta);x.addEventListener('change',monta);});
+  a.addEventListener('click',function(e){var er=document.getElementById('av-erro');
+    if(a.getAttribute('aria-disabled')==='true'){e.preventDefault();var f=[];if(!nota)f.push('a nota');if(!nome.value.trim())f.push('seu nome');if(!un.value)f.push('a unidade');if(!txt.value.trim())f.push('o comentário');er.textContent='Falta preencher: '+f.join(', ')+'.';}else{er.textContent='';}});
+})();
+</script>
+</body>
+</html>
