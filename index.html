@@ -212,6 +212,16 @@ section.claro{background:var(--branco)}
 .estrelas button{background:none;border:0;cursor:pointer;font-size:38px;line-height:1;color:#d5d7e8;padding:0 2px}
 .estrelas button.on{color:var(--amarelo)}
 #av-enviar[aria-disabled="true"]{opacity:.55}
+details.card.ver summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+details.card.ver summary::-webkit-details-marker{display:none}
+details.card.ver summary .etq{margin-bottom:0}
+.ver-btn{font-family:var(--display);font-weight:700;font-size:15px;color:var(--c);border:2px solid var(--c);border-radius:999px;padding:4px 14px;background:#fff}
+.ver-btn::after{content:" ▾"}
+details.card.ver[open] .ver-btn{color:#fff;background:var(--c)}
+details.card.ver[open] .ver-btn::after{content:" ▴"}
+details.card.ver[open] .ver-btn{font-size:0;padding:4px 10px}
+details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
+.ver-corpo{margin-top:10px}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -411,10 +421,10 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
     <div class="painel" id="p-sm" role="tabpanel" aria-labelledby="t-sm" style="--c:var(--verde)">
       <div class="faixa com-logo"><img src="img/logo.png" alt="Logo da unidade Parque Santa Maria"><div><b>Unidade Parque Santa Maria</b><span>Berçário ao 9º ano · WhatsApp (85) 99407-1372</span></div></div>
       <div class="grade">
-        <div class="card" style="--c:var(--vermelho)"><span class="etq">Mensalidade</span>
+        <details class="card ver" style="--c:var(--vermelho)"><summary><span class="etq">Mensalidade</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <table class="tab grande"><tr><td>Educação Infantil</td><td>R$ 449,00</td></tr><tr><td>Fundamental I</td><td>R$ 471,00</td></tr><tr><td>Fundamental II</td><td>R$ 493,00</td></tr></table>
-        </div>
-        <div class="card" style="--c:var(--verde)"><span class="etq">Berçário e integral</span>
+        </div></details>
+        <details class="card ver" style="--c:var(--verde)"><summary><span class="etq">Berçário e integral</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <table class="tab">
             <tr><td>Berçário integral<small>7h às 18h</small></td><td>R$ 1.220,00</td></tr>
             <tr><td>Berçário meio período<small>7h às 12h ou 13h às 18h</small></td><td>R$ 720,00</td></tr>
@@ -422,7 +432,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
             <tr><td>Diária integral</td><td>R$ 120,00</td></tr>
             <tr><td>Diária meio período</td><td>R$ 70,00</td></tr>
           </table>
-        </div>
+        </div></details>
         <div class="card" style="--c:var(--azul)"><span class="etq">Material didático</span>
           <table class="tab">
             <tr><td>Infantil I</td><td>R$ 299,00</td></tr><tr><td>Infantil II</td><td>R$ 439,00</td></tr><tr><td>Infantil III</td><td>R$ 637,89</td></tr><tr><td>Infantil IV</td><td>R$ 659,89</td></tr><tr><td>Infantil V</td><td>R$ 802,89</td></tr>
@@ -444,18 +454,18 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <span style="--c:var(--verde)">Inglês integrado na prática</span>
       </div>
       <div class="grade">
-        <div class="card" style="--c:var(--azul)"><span class="etq">Mensalidade 2027</span>
+        <details class="card ver" style="--c:var(--azul)"><summary><span class="etq">Mensalidade 2027</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <p class="nota" style="margin:0 0 4px">Matrícula em novembro: mensalidade com 10% de desconto. Em dezembro: 5%.</p>
           <div class="turma"><h4>Berçário <small>integral, 7h às 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.575,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.662,50</b></div></div>
           <div class="turma"><h4>Berçário <small>integral, 7h às 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.710,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.805,00</b></div></div>
           <div class="turma"><h4>Berçário <small>meio período</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 810,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 855,00</b></div></div>
-        </div>
-        <div class="card" style="--c:var(--laranja)"><span class="etq">Infantil, Fundamental e integral</span>
+        </div></details>
+        <details class="card ver" style="--c:var(--laranja)"><summary><span class="etq">Infantil, Fundamental e integral</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <div class="turma"><h4>Educação Infantil <small>Infantil I ao V · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 650,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 585,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 617,50</b></div></div>
           <div class="turma"><h4>Fundamental I <small>1º ao 5º ano · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 675,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 712,50</b></div></div>
           <div class="turma"><h4>Tempo integral <small>tarde, até as 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 940,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 846,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 893,00</b></div></div>
           <div class="turma"><h4>Tempo integral <small>tarde, até as 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.050,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 945,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 997,50</b></div></div>
-        </div>
+        </div></details>
         <div class="card" style="--c:var(--verde)"><span class="etq">Material didático</span>
           <table class="tab">
             <tr><td>Infantil I</td><td>R$ 299,00</td></tr><tr><td>Infantil II</td><td>R$ 439,00</td></tr><tr><td>Infantil III</td><td>R$ 775,00</td></tr><tr><td>Infantil IV</td><td>R$ 790,00</td></tr><tr><td>Infantil V</td><td>R$ 850,00</td></tr>
