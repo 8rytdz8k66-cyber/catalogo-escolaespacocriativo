@@ -254,6 +254,18 @@ details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .conheca.me{background:linear-gradient(135deg,#1777c4,var(--azul))}
 .conheca.me img{border-color:#fff;background:#fff}
 .conheca.me small{color:#fff3c4}
+.portao{background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 14px rgba(13,15,116,.08);border-top:7px solid var(--verde)}
+.portao h3{font-size:22px}
+.portao label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.portao input[type=text]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
+.portao input[type=text]:focus{border-color:var(--verde);outline:none}
+.pt-irmao{border:0;padding:0;margin:14px 0 0}
+.pt-irmao legend{font-weight:700;font-size:15px;padding:0;margin-bottom:6px}
+.pt-irmao label{display:inline-flex;align-items:center;gap:6px;margin:0 16px 0 0;font-weight:600;border:2px solid var(--linha);border-radius:12px;padding:8px 14px;background:#fff;cursor:pointer}
+.pt-irmao label:has(input:checked){border-color:var(--verde);background:#e7f6ea}
+.pt-irmao input{accent-color:var(--verde)}
+.pt-ola{background:#e7f6ea;border-left:6px solid var(--verde);border-radius:12px;padding:10px 14px;font-weight:700;color:var(--marinho)}
+#precos{scroll-margin-top:70px}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -412,10 +424,33 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
 <section id="valores" class="claro" style="--c:var(--lilas)">
   <div class="wrap">
     <div class="cab"><span class="num">5</span><div><small>Turmas e valores</small><h2>Investimento na educação</h2></div></div>
-    <p class="nota">Valores da unidade Parque Santa Maria. Para a unidade Messejana, fale com a escola pelo WhatsApp.</p>
+    <p class="nota">Valores da unidade Parque Santa Maria.</p>
     <div class="painel" id="p-sm" style="--c:var(--verde)">
       <div class="faixa com-logo"><img src="img/logo.png" alt="Logo da unidade Parque Santa Maria"><div><b>Unidade Parque Santa Maria</b><span>Berçário ao 9º ano · WhatsApp (85) 99407-1372</span></div></div>
-      <div class="grade">
+      <form class="portao" id="portao" novalidate>
+        <h3>Veja os valores</h3>
+        <p class="nota">Preencha os dados abaixo para ver as mensalidades e o material didático.</p>
+        <label for="pt-resp">Nome do pai, mãe ou responsável</label>
+        <input id="pt-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+        <label for="pt-cpf">CPF do responsável</label>
+        <input id="pt-cpf" type="text" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
+        <label for="pt-aluno">Nome do aluno</label>
+        <input id="pt-aluno" type="text" placeholder="Ex.: João">
+        <fieldset class="pt-irmao"><legend>Tem irmão estudando ou que vai estudar na escola?</legend>
+          <label><input type="radio" name="pt-irmao" value="sim"> Sim</label>
+          <label><input type="radio" name="pt-irmao" value="nao"> Não</label>
+        </fieldset>
+        <div id="pt-irmao-box" hidden>
+          <label for="pt-irmao-nome">Nome do irmão ou irmã</label>
+          <input id="pt-irmao-nome" type="text" placeholder="Ex.: Maria">
+        </div>
+        <p class="fz-erro" id="pt-erro" role="alert"></p>
+        <button type="submit" class="btn zap" style="width:100%;justify-content:center">Ver valores</button>
+        <p class="nota" style="margin-top:8px">Seus dados não ficam salvos no catálogo. Eles só vão para a escola se você enviar pelo WhatsApp.</p>
+      </form>
+      <div id="precos" hidden>
+        <p class="pt-ola" id="pt-ola"></p>
+        <div class="grade">
         <details class="card ver" style="--c:var(--vermelho)"><summary><span class="etq">Mensalidade</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <table class="tab grande"><tr><td>Educação Infantil</td><td>R$ 449,00</td></tr><tr><td>Fundamental I</td><td>R$ 471,00</td></tr><tr><td>Fundamental II</td><td>R$ 493,00</td></tr></table>
         </div></details>
@@ -437,6 +472,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       </div>
       <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="sm">Pedir matrícula no Santa Maria</button></div>
       <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
+      </div>
     </div>
 
     
@@ -607,6 +643,12 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   });
 })();
 </script>
+<script>
+function soDig(v){return (v||'').replace(/\D/g,'');}
+function mascara(v){v=soDig(v).slice(0,11);return v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');}
+function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return false;
+  for(var t=9;t<11;t++){var s=0;for(var i=0;i<t;i++)s+=+c[i]*(t+1-i);var d=(s*10)%11%10;if(d!==+c[t])return false;}return true;}
+</script>
 <dialog id="formzap" aria-labelledby="fz-tit">
   <div class="jtopo" style="background:#1f8f3c">
     <div><h2 id="fz-tit">Fale com a escola pelo WhatsApp</h2><p>Preencha os dados e veja o valor da turma. A mensagem já vai pronta.</p></div>
@@ -618,8 +660,13 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
     </fieldset>
     <label for="fz-resp">Nome do pai, mãe ou responsável</label>
     <input id="fz-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+    <label for="fz-cpf">CPF do responsável</label>
+    <input id="fz-cpf" type="text" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
     <label for="fz-crianca">Nome da criança</label>
     <input id="fz-crianca" type="text" placeholder="Ex.: Joãozinho">
+    <label for="fz-irmao">Tem irmão na escola?</label>
+    <select id="fz-irmao"><option value="">Escolha</option><option value="nao">Não</option><option value="sim">Sim</option></select>
+    <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do irmão ou irmã</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"></div>
     <label for="fz-idade">Idade da criança</label>
     <select id="fz-idade"><option value="">Escolha a idade</option></select>
     <label for="fz-turma">Turma</label>
@@ -696,22 +743,29 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       else{var m=mensal(u,t);linhas.push(['Mensalidade · '+t,m]);total+=m;}
       if(!berc&&sel.int.value!==''){var it=INT[u][sel.int.value];linhas.push([it[0],it[1]]);total+=it[1];}
     }
-    if(linhas.length){
+    var liberado=$('fz-resp').value.trim()&&cpfOk($('fz-cpf').value)&&$('fz-crianca').value.trim();
+    $('fz-irmao-box').hidden=$('fz-irmao').value!=='sim';
+    if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o CPF e o nome da criança para ver o valor.</p>';box.hidden=false;}
+    else if(linhas.length){
       var h='<b>Valor para '+(t)+' · '+(u==='sm'?'Santa Maria':'Messejana')+'</b><ul>';
       linhas.forEach(function(l){h+='<li><span>'+l[0]+'</span><strong>'+brl(l[1])+'</strong></li>';});
       h+='</ul>';
       if(u==='me'){var base=linhas[0][1];h+='<p class="fz-desc">Matrícula em novembro: '+linhas[0][0].split(' · ')[0].toLowerCase()+' com 10% de desconto ('+brl(base*0.9)+'). Em dezembro: 5% ('+brl(base*0.95)+').</p>';}
       var mt=u==='sm'?MAT[t]:MAT_ME[t]; if(mt){h+='<p class="fz-desc">Material didático do '+t+': '+brl(mt)+'.</p>';}
+      if($('fz-irmao').value==='sim'){h+='<p class="fz-desc" style="color:var(--verde);font-weight:700">Com irmão na escola: R$ 10,00 de desconto na mensalidade.</p>';}
       box.innerHTML=h;box.hidden=false;
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
-    var ok=u&&resp&&cri&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
+    var cpf=$('fz-cpf').value, irm=$('fz-irmao').value;
+    var ok=u&&resp&&cpfOk(cpf)&&cri&&irm&&(irm==='nao'||$('fz-irmao-nome').value.trim())&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
     var a=$('fz-enviar');
     if(ok){
       msg.push('Olá! Vim pelo catálogo da Escola Espaço Criativo e quero informações sobre matrícula.');
       msg.push('');
       msg.push('*Unidade:* '+NOME[u]);
       msg.push('*Responsável:* '+resp);
+      msg.push('*CPF do responsável:* '+cpf);
+      if(irm==='sim')msg.push('*Irmão na escola:* '+$('fz-irmao-nome').value.trim());
       msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
       msg.push('*Turma:* '+t);
       linhas.forEach(function(l){msg.push('*'+l[0]+':* '+brl(l[1]));});
@@ -721,18 +775,20 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!cpfOk($('fz-cpf').value))falta.push('um CPF válido');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem irmão');else if($('fz-irmao').value==='sim'&&!$('fz-irmao-nome').value.trim())falta.push('o nome do irmão');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
   document.querySelectorAll('input[name=unid]').forEach(function(r){r.addEventListener('change',trocaUnidade);});
   sel.idade.addEventListener('change',function(){sugere(true);atualiza();});
   [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
-  [$('fz-resp'),$('fz-crianca')].forEach(function(x){x.addEventListener('input',atualiza);});
+  [$('fz-resp'),$('fz-crianca'),$('fz-cpf'),$('fz-irmao-nome')].forEach(function(x){x.addEventListener('input',atualiza);});
+  $('fz-irmao').addEventListener('change',atualiza);
+  $('fz-cpf').addEventListener('input',function(){this.value=mascara(this.value);});
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      $('fz-sm').checked=true; trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-cpf').value=g.cpf;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';} trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
@@ -795,6 +851,33 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       document.getElementById('jfoto').src='img/logo-messejana.png';
       if(d.showModal){d.showModal();} c.scrollTop=0;
     });
+  });
+})();
+</script>
+<script>
+(function(){
+  var f=document.getElementById('portao'), $=function(i){return document.getElementById(i);};
+  $('pt-cpf').addEventListener('input',function(){this.value=mascara(this.value);});
+  document.querySelectorAll('input[name=pt-irmao]').forEach(function(r){r.addEventListener('change',function(){$('pt-irmao-box').hidden=r.value!=='sim'||!r.checked;});});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var resp=$('pt-resp').value.trim(), cpf=$('pt-cpf').value, aluno=$('pt-aluno').value.trim();
+    var irm=(document.querySelector('input[name=pt-irmao]:checked')||{}).value, irmNome=$('pt-irmao-nome').value.trim();
+    var falta=[];
+    if(!resp)falta.push('o nome do responsável');
+    if(!cpfOk(cpf))falta.push(soDig(cpf).length?'um CPF válido':'o CPF');
+    if(!aluno)falta.push('o nome do aluno');
+    if(!irm)falta.push('se tem irmão');
+    else if(irm==='sim'&&!irmNome)falta.push('o nome do irmão');
+    if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
+    $('pt-erro').textContent='';
+    window.__dadosPortao={resp:resp,cpf:cpf,aluno:aluno,irmao:irm,irmaoNome:irmNome};
+    var ola='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Parque Santa Maria.';
+    if(irm==='sim')ola+=' Como '+aluno+' tem irmão na escola, a mensalidade tem R$ 10,00 de desconto.';
+    $('pt-ola').textContent=ola;
+    f.hidden=true; $('precos').hidden=false;
+    $('precos').querySelectorAll('details.card.ver').forEach(function(d){d.open=true;});
+    $('precos').scrollIntoView({block:'start'});
   });
 })();
 </script>
