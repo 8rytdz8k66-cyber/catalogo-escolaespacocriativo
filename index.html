@@ -474,7 +474,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         </div></details>
       </div>
       <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="sm">Pedir matrícula no Santa Maria</button></div>
-      <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
+      <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos estudam juntos e economizam: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
       </div>
     </div>
 
@@ -753,7 +753,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       h+='</ul>';
       if(u==='me'){var base=linhas[0][1];h+='<p class="fz-desc">Matrícula em novembro: '+linhas[0][0].split(' · ')[0].toLowerCase()+' com 10% de desconto ('+brl(base*0.9)+'). Em dezembro: 5% ('+brl(base*0.95)+').</p>';}
       var mt=u==='sm'?MAT[t]:MAT_ME[t]; if(mt){h+='<p class="fz-desc">Material didático do '+t+': '+brl(mt)+'.</p>';}
-      if($('fz-irmao').value==='sim'){h+='<p class="fz-desc" style="color:var(--verde);font-weight:700">Com irmão na escola: R$ 10,00 de desconto na mensalidade.</p>';}
+      if($('fz-irmao').value==='sim'){h+='<p class="fz-desc" style="color:var(--verde);font-weight:700">Irmãos estudam juntos e economizam: R$ 10,00 de desconto na mensalidade.</p>';}
       box.innerHTML=h;box.hidden=false;
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
@@ -875,7 +875,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     $('pt-erro').textContent='';
     window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
     var ola='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Parque Santa Maria.';
-    if(irm==='sim')ola+=' Como '+aluno+' tem irmão na escola, a mensalidade tem R$ 10,00 de desconto.';
+    if(irm==='sim')ola+=' Irmãos estudam juntos e economizam: a mensalidade tem R$ 10,00 de desconto.';
     $('pt-ola').textContent=ola;
     f.hidden=true; $('precos').hidden=false;
     $('precos').querySelectorAll('details.card.ver').forEach(function(d){d.open=true;});
