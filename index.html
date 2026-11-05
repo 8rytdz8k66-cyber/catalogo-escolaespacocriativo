@@ -433,8 +433,8 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <p class="nota">Preencha os dados abaixo para ver as mensalidades e o material didático.</p>
         <label for="pt-resp">Nome do pai, mãe ou responsável</label>
         <input id="pt-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
-        <label for="pt-cpf">CPF do responsável</label>
-        <input id="pt-cpf" type="text" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
+        <label for="pt-zap">WhatsApp do responsável</label>
+        <input id="pt-zap" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
         <label for="pt-aluno">Nome do aluno</label>
         <input id="pt-aluno" type="text" placeholder="Ex.: João">
         <fieldset class="pt-irmao"><legend>Tem irmão estudando ou que vai estudar na escola?</legend>
@@ -645,6 +645,8 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
 <script>
 function soDig(v){return (v||'').replace(/\D/g,'');}
 function mascara(v){v=soDig(v).slice(0,11);return v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');}
+function mascaraTel(v){v=soDig(v).slice(0,11);if(v.length<=2)return v.length?'('+v:'';if(v.length<=6)return '('+v.slice(0,2)+') '+v.slice(2);if(v.length<=10)return '('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);}
+function telOk(v){var d=soDig(v);return (d.length===11&&d[2]==='9')||d.length===10;}
 function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return false;
   for(var t=9;t<11;t++){var s=0;for(var i=0;i<t;i++)s+=+c[i]*(t+1-i);var d=(s*10)%11%10;if(d!==+c[t])return false;}return true;}
 </script>
@@ -659,8 +661,8 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     </fieldset>
     <label for="fz-resp">Nome do pai, mãe ou responsável</label>
     <input id="fz-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
-    <label for="fz-cpf">CPF do responsável</label>
-    <input id="fz-cpf" type="text" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14">
+    <label for="fz-zap">WhatsApp do responsável</label>
+    <input id="fz-zap" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
     <label for="fz-crianca">Nome da criança</label>
     <input id="fz-crianca" type="text" placeholder="Ex.: Joãozinho">
     <label for="fz-irmao">Tem irmão na escola?</label>
@@ -742,9 +744,9 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       else{var m=mensal(u,t);linhas.push(['Mensalidade · '+t,m]);total+=m;}
       if(!berc&&sel.int.value!==''){var it=INT[u][sel.int.value];linhas.push([it[0],it[1]]);total+=it[1];}
     }
-    var liberado=$('fz-resp').value.trim()&&cpfOk($('fz-cpf').value)&&$('fz-crianca').value.trim();
+    var liberado=$('fz-resp').value.trim()&&telOk($('fz-zap').value)&&$('fz-crianca').value.trim();
     $('fz-irmao-box').hidden=$('fz-irmao').value!=='sim';
-    if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o CPF e o nome da criança para ver o valor.</p>';box.hidden=false;}
+    if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o WhatsApp e o nome da criança para ver o valor.</p>';box.hidden=false;}
     else if(linhas.length){
       var h='<b>Valor para '+(t)+' · '+(u==='sm'?'Santa Maria':'Messejana')+'</b><ul>';
       linhas.forEach(function(l){h+='<li><span>'+l[0]+'</span><strong>'+brl(l[1])+'</strong></li>';});
@@ -755,15 +757,15 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       box.innerHTML=h;box.hidden=false;
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
-    var cpf=$('fz-cpf').value, irm=$('fz-irmao').value;
-    var ok=u&&resp&&cpfOk(cpf)&&cri&&irm&&(irm==='nao'||($('fz-irmao-nome').value.trim()&&$('fz-irmao-serie').value))&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
+    var zap=$('fz-zap').value, irm=$('fz-irmao').value;
+    var ok=u&&resp&&telOk(zap)&&cri&&irm&&(irm==='nao'||($('fz-irmao-nome').value.trim()&&$('fz-irmao-serie').value))&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
     var a=$('fz-enviar');
     if(ok){
       msg.push('Olá! Vim pelo catálogo da Escola Espaço Criativo e quero informações sobre matrícula.');
       msg.push('');
       msg.push('*Unidade:* '+NOME[u]);
       msg.push('*Responsável:* '+resp);
-      msg.push('*CPF do responsável:* '+cpf);
+      msg.push('*WhatsApp do responsável:* '+zap);
       if(irm==='sim')msg.push('*Irmão na escola:* '+$('fz-irmao-nome').value.trim()+' ('+$('fz-irmao-serie').value+')');
       msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
       msg.push('*Turma:* '+t);
@@ -774,21 +776,21 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!cpfOk($('fz-cpf').value))falta.push('um CPF válido');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem irmão');else if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do irmão');if(!$('fz-irmao-serie').value)falta.push('a série do irmão');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem irmão');else if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do irmão');if(!$('fz-irmao-serie').value)falta.push('a série do irmão');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
   document.querySelectorAll('input[name=unid]').forEach(function(r){r.addEventListener('change',trocaUnidade);});
   sel.idade.addEventListener('change',function(){sugere(true);atualiza();});
   [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
-  [$('fz-resp'),$('fz-crianca'),$('fz-cpf'),$('fz-irmao-nome')].forEach(function(x){x.addEventListener('input',atualiza);});
+  [$('fz-resp'),$('fz-crianca'),$('fz-zap'),$('fz-irmao-nome')].forEach(function(x){x.addEventListener('input',atualiza);});
   $('fz-irmao').addEventListener('change',atualiza);
   $('fz-irmao-serie').addEventListener('change',atualiza);
-  $('fz-cpf').addEventListener('input',function(){this.value=mascara(this.value);});
+  $('fz-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-cpf').value=g.cpf;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';$('fz-irmao-serie').value=g.irmaoSerie||'';} trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';$('fz-irmao-serie').value=g.irmaoSerie||'';} trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
@@ -857,21 +859,21 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
 <script>
 (function(){
   var f=document.getElementById('portao'), $=function(i){return document.getElementById(i);};
-  $('pt-cpf').addEventListener('input',function(){this.value=mascara(this.value);});
+  $('pt-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
   document.querySelectorAll('input[name=pt-irmao]').forEach(function(r){r.addEventListener('change',function(){$('pt-irmao-box').hidden=r.value!=='sim'||!r.checked;});});
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var resp=$('pt-resp').value.trim(), cpf=$('pt-cpf').value, aluno=$('pt-aluno').value.trim();
+    var resp=$('pt-resp').value.trim(), zap=$('pt-zap').value, aluno=$('pt-aluno').value.trim();
     var irm=(document.querySelector('input[name=pt-irmao]:checked')||{}).value, irmNome=$('pt-irmao-nome').value.trim(), irmSerie=$('pt-irmao-serie').value;
     var falta=[];
     if(!resp)falta.push('o nome do responsável');
-    if(!cpfOk(cpf))falta.push(soDig(cpf).length?'um CPF válido':'o CPF');
+    if(!telOk(zap))falta.push(soDig(zap).length?'um WhatsApp válido com DDD':'o WhatsApp');
     if(!aluno)falta.push('o nome do aluno');
     if(!irm)falta.push('se tem irmão');
     else if(irm==='sim'){if(!irmNome)falta.push('o nome do irmão');if(!irmSerie)falta.push('a série do irmão');}
     if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     $('pt-erro').textContent='';
-    window.__dadosPortao={resp:resp,cpf:cpf,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
+    window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
     var ola='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Parque Santa Maria.';
     if(irm==='sim')ola+=' Como '+aluno+' tem irmão na escola, a mensalidade tem R$ 10,00 de desconto.';
     $('pt-ola').textContent=ola;
