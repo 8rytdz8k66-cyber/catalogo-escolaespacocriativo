@@ -341,6 +341,14 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 .pt-sim:has(input:checked){border-color:var(--verde);background:#e7f6ea;color:var(--verde)}
 .pt-irmao:has(input:checked){border-color:var(--verde)}
 #pt-irmao-box{margin-top:4px}
+.irmao-linha{border:2px dashed #cfe9d5;border-radius:14px;padding:10px 12px 12px;margin-top:10px;background:#fbfffb}
+.irmao-cab{display:flex;justify-content:space-between;align-items:center}
+.irmao-cab b{font-family:var(--display);color:var(--verde);font-size:16px}
+.irmao-tira{border:0;background:none;color:var(--vermelho);font-weight:700;font-size:14px;cursor:pointer;padding:6px}
+.irmao-linha label{display:block;font-weight:700;font-size:14.5px;margin:8px 0 4px}
+.irmao-linha input,.irmao-linha select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta);min-height:46px}
+.add-irmao{margin-top:10px;width:100%;border:2px solid var(--verde);background:#fff;color:var(--verde);font:inherit;font-family:var(--display);font-weight:700;font-size:16px;border-radius:14px;padding:10px;cursor:pointer;min-height:46px}
+.add-irmao:hover{background:#e7f6ea}
 </style>
 </head>
 <body>
@@ -481,10 +489,8 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
           <label class="pt-sim"><input type="checkbox" id="pt-irmao-sim" aria-describedby="pt-irmao-tit"> Sim</label>
         </div>
         <div id="pt-irmao-box" hidden>
-          <label for="pt-irmao-nome">Nome do outro aluno</label>
-          <input id="pt-irmao-nome" type="text" placeholder="Ex.: Maria">
-          <label for="pt-irmao-serie">Série do outro aluno</label>
-          <select id="pt-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select>
+          <div id="pt-irmaos"></div>
+          <button type="button" class="add-irmao" id="pt-add">+ Adicionar outro filho</button>
         </div>
         <p class="fz-erro" id="pt-erro" role="alert" aria-live="assertive"></p>
         <button type="submit" class="btn zap" style="width:100%;justify-content:center">Ver valores</button>
@@ -494,12 +500,12 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
         <p class="pt-ola" id="pt-ola"></p>
         <div class="grade">
         <details class="card ver" style="--c:var(--vermelho)"><summary><span class="etq">Mensalidade</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
-          <table class="tab grande"><tr><td>Educação Infantil</td><td>R$ 449,00</td></tr><tr><td>Fundamental I</td><td>R$ 471,00</td></tr><tr><td>Fundamental II</td><td>R$ 493,00</td></tr></table>
+          <table class="tab grande"><tr><td>Educação Infantil</td><td data-v="449.00">R$ 449,00</td></tr><tr><td>Fundamental I</td><td data-v="471.00">R$ 471,00</td></tr><tr><td>Fundamental II</td><td data-v="493.00">R$ 493,00</td></tr></table>
         </div></details>
         <details class="card ver" style="--c:var(--verde)"><summary><span class="etq">Berçário e integral</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
           <table class="tab">
-            <tr><td>Berçário integral<small>7h às 18h</small></td><td>R$ 1.220,00</td></tr>
-            <tr><td>Berçário meio período<small>7h às 12h ou 13h às 18h</small></td><td>R$ 720,00</td></tr>
+            <tr><td>Berçário integral<small>7h às 18h</small></td><td data-v="1220.00">R$ 1.220,00</td></tr>
+            <tr><td>Berçário meio período<small>7h às 12h ou 13h às 18h</small></td><td data-v="720.00">R$ 720,00</td></tr>
             <tr><td>Contraturno escolar</td><td>R$ 1.030,00</td></tr>
             <tr><td>Diária integral</td><td>R$ 120,00</td></tr>
             <tr><td>Diária meio período</td><td>R$ 70,00</td></tr>
@@ -513,7 +519,7 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
         </div></details>
       </div>
       <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="sm">Pedir matrícula no Santa Maria</button></div>
-      <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos estudam juntos e economizam: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
+      <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Agenda digital: R$ 60,00</span></div>
       </div>
     </div>
 
@@ -651,6 +657,32 @@ function telOk(v){var d=soDig(v);return (d.length===11&&d[2]==='9')||d.length===
 function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return false;
   for(var t=9;t<11;t++){var s=0;for(var i=0;i<t;i++)s+=+c[i]*(t+1-i);var d=(s*10)%11%10;if(d!==+c[t])return false;}return true;}
 </script>
+<script>
+var SERIES=["Berçário", "Infantil I", "Infantil II", "Infantil III", "Infantil IV", "Infantil V", "1º ano", "2º ano", "3º ano", "4º ano", "5º ano", "6º ano", "7º ano", "8º ano", "9º ano"];
+function listaIrmaos(box,pref,aoMudar){
+  var n=0;
+  function linha(dados){
+    n++; var id=pref+'-ir'+n, el=document.createElement('div'); el.className='irmao-linha';
+    el.innerHTML='<div class="irmao-cab"><b></b><button type="button" class="irmao-tira" aria-label="Remover">Remover</button></div>'+
+      '<label for="'+id+'-n">Nome</label><input id="'+id+'-n" type="text" placeholder="Nome do aluno">'+
+      '<label for="'+id+'-s">Série</label><select id="'+id+'-s"><option value="">Escolha a série</option>'+SERIES.map(function(x){return '<option>'+x+'</option>';}).join('')+'</select>';
+    if(dados){el.querySelector('input').value=dados.nome||'';el.querySelector('select').value=dados.serie||'';}
+    el.querySelector('.irmao-tira').addEventListener('click',function(){el.remove();renum();aoMudar&&aoMudar();});
+    el.querySelector('input').addEventListener('input',function(){aoMudar&&aoMudar();});
+    el.querySelector('select').addEventListener('change',function(){aoMudar&&aoMudar();});
+    box.appendChild(el); renum();
+  }
+  function renum(){var ls=box.querySelectorAll('.irmao-linha');ls.forEach(function(l,i){l.querySelector('b').textContent=(i+2)+'º filho';l.querySelector('.irmao-tira').hidden=ls.length===1;});}
+  return {
+    adiciona:function(d){linha(d);aoMudar&&aoMudar();},
+    garante:function(){if(!box.children.length)linha();},
+    limpa:function(){box.innerHTML='';},
+    lista:function(){return [].map.call(box.querySelectorAll('.irmao-linha'),function(l){return {nome:l.querySelector('input').value.trim(),serie:l.querySelector('select').value};});},
+    ok:function(){var l=this.lista();return l.length>0&&l.every(function(x){return x.nome&&x.serie;});},
+    define:function(arr){box.innerHTML='';(arr||[]).forEach(function(x){linha(x);});}
+  };
+}
+</script>
 <dialog id="formzap" aria-labelledby="fz-tit">
   <div class="jtopo" style="background:#1f8f3c">
     <div><h2 id="fz-tit">Fale com a escola pelo WhatsApp</h2><p>Preencha os dados e veja o valor da turma. A mensagem já vai pronta.</p></div>
@@ -668,7 +700,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     <input id="fz-crianca" required aria-required="true" type="text" placeholder="Ex.: Joãozinho">
     <label for="fz-irmao">Tem mais de 1 filho? <span class="pt-dica">Estudando juntos, economizam!</span></label>
     <select id="fz-irmao"><option value="nao">Não</option><option value="sim">Sim</option></select>
-    <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do outro aluno</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"><label for="fz-irmao-serie">Série do outro aluno</label><select id="fz-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select></div>
+    <div id="fz-irmao-box" hidden><div id="fz-irmaos"></div><button type="button" class="add-irmao" id="fz-add">+ Adicionar outro filho</button></div>
     <label for="fz-idade">Idade da criança</label>
     <select id="fz-idade"><option value="">Escolha a idade</option></select>
     <label for="fz-turma">Turma</label>
@@ -714,6 +746,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     return 0;
   }
   var d=document.getElementById('formzap'), $=function(id){return document.getElementById(id);};
+  var irmaosFz;
   var sel={idade:$('fz-idade'),turma:$('fz-turma'),turno:$('fz-turno'),int:$('fz-int')};
   for(var i=0;i<=14;i++){var o=document.createElement('option');o.value=i;o.textContent=i===0?'Menos de 1 ano':(i+(i===1?' ano':' anos'));sel.idade.appendChild(o);}
   function unid(){var r=document.querySelector('input[name=unid]:checked');return r?r.value:'';}
@@ -740,12 +773,13 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     if(u==='sm'&&t&&parseInt(t,10)>=6)$('fz-int-box').hidden=false;
     var total=0;
     if(u&&t){
-      if(berc){var b=BERC[u][sel.turno.value||0];linhas.push(['Berçário · '+b[0],b[1]]);total+=b[1];}
-      else{var m=mensal(u,t);linhas.push(['Mensalidade · '+t,m]);total+=m;}
+      var dsc=$('fz-irmao').value==='sim'?10:0;
+      if(berc){var b=BERC[u][sel.turno.value||0];linhas.push(['Berçário · '+b[0],b[1]-dsc]);total+=b[1]-dsc;}
+      else{var m=mensal(u,t)-dsc;linhas.push(['Mensalidade · '+t,m]);total+=m;}
       if(!berc&&sel.int.value!==''){var it=INT[u][sel.int.value];linhas.push([it[0],it[1]]);total+=it[1];}
     }
     var liberado=$('fz-resp').value.trim()&&telOk($('fz-zap').value)&&$('fz-crianca').value.trim();
-    $('fz-irmao-box').hidden=$('fz-irmao').value!=='sim';
+    $('fz-irmao-box').hidden=$('fz-irmao').value!=='sim'; if($('fz-irmao').value==='sim')irmaosFz.garante();
     if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o WhatsApp e o nome da criança para ver o valor.</p>';box.hidden=false;}
     else if(linhas.length){
       var h='<b>Valor para '+(t)+' · '+(u==='sm'?'Santa Maria':'Messejana')+'</b><ul>';
@@ -753,12 +787,11 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       h+='</ul>';
       if(u==='me'){var base=linhas[0][1];h+='<p class="fz-desc">Matrícula em novembro: '+linhas[0][0].split(' · ')[0].toLowerCase()+' com 10% de desconto ('+brl(base*0.9)+'). Em dezembro: 5% ('+brl(base*0.95)+').</p>';}
       var mt=MAT[t]; if(mt){h+='<p class="fz-desc">Material didático do '+t+': '+brl(mt)+'.</p>';}
-      if($('fz-irmao').value==='sim'){h+='<p class="fz-desc" style="color:var(--verde);font-weight:700">Irmãos estudam juntos e economizam: R$ 10,00 de desconto na mensalidade.</p>';}
       box.innerHTML=h;box.hidden=false;
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
     var zap=$('fz-zap').value, irm=$('fz-irmao').value;
-    var ok=u&&resp&&telOk(zap)&&cri&&irm&&(irm==='nao'||($('fz-irmao-nome').value.trim()&&$('fz-irmao-serie').value))&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
+    var ok=u&&resp&&telOk(zap)&&cri&&irm&&(irm==='nao'||irmaosFz.ok())&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
     var a=$('fz-enviar');
     if(ok){
       msg.push('Olá! Vim pelo catálogo da Escola Espaço Criativo e quero informações sobre matrícula.');
@@ -766,7 +799,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       msg.push('*Unidade:* '+NOME[u]);
       msg.push('*Responsável:* '+resp);
       msg.push('*WhatsApp do responsável:* '+zap);
-      if(irm==='sim')msg.push('*Outro filho:* '+$('fz-irmao-nome').value.trim()+' ('+$('fz-irmao-serie').value+')');
+      if(irm==='sim')irmaosFz.lista().forEach(function(x){msg.push('*Outro filho:* '+x.nome+' ('+x.serie+')');});
       msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
       msg.push('*Turma:* '+t);
       linhas.forEach(function(l){msg.push('*'+l[0]+':* '+brl(l[1]));});
@@ -776,21 +809,22 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do outro aluno');if(!$('fz-irmao-serie').value)falta.push('a série do outro aluno');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if($('fz-irmao').value==='sim'&&!irmaosFz.ok())falta.push('o nome e a série de cada filho');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
   document.querySelectorAll('input[name=unid]').forEach(function(r){r.addEventListener('change',trocaUnidade);});
   sel.idade.addEventListener('change',function(){sugere(true);atualiza();});
   [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
-  [$('fz-resp'),$('fz-crianca'),$('fz-zap'),$('fz-irmao-nome')].forEach(function(x){x.addEventListener('input',atualiza);});
+  [$('fz-resp'),$('fz-crianca'),$('fz-zap')].forEach(function(x){x.addEventListener('input',atualiza);});
   $('fz-irmao').addEventListener('change',atualiza);
-  $('fz-irmao-serie').addEventListener('change',atualiza);
+  irmaosFz=listaIrmaos($('fz-irmaos'),'fz',function(){atualiza();});
+  $('fz-add').addEventListener('click',function(){irmaosFz.adiciona();});
   $('fz-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';$('fz-irmao-serie').value=g.irmaoSerie||'';} trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;irmaosFz.define(g.irmaos);} trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
@@ -860,21 +894,23 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
 (function(){
   var f=document.getElementById('portao'), $=function(i){return document.getElementById(i);};
   $('pt-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
-  $('pt-irmao-sim').addEventListener('change',function(){$('pt-irmao-box').hidden=!this.checked;});
+  var irmaosPt=listaIrmaos($('pt-irmaos'),'pt');
+  $('pt-irmao-sim').addEventListener('change',function(){$('pt-irmao-box').hidden=!this.checked;if(this.checked)irmaosPt.garante();});
+  $('pt-add').addEventListener('click',function(){irmaosPt.adiciona();});
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var resp=$('pt-resp').value.trim(), zap=$('pt-zap').value, aluno=$('pt-aluno').value.trim();
-    var irm=$('pt-irmao-sim').checked?'sim':'nao', irmNome=$('pt-irmao-nome').value.trim(), irmSerie=$('pt-irmao-serie').value;
+    var irm=$('pt-irmao-sim').checked?'sim':'nao', irmaos=irm==='sim'?irmaosPt.lista():[];
     var falta=[];
     if(!resp)falta.push('o nome do responsável');
     if(!telOk(zap))falta.push(soDig(zap).length?'um WhatsApp válido com DDD':'o WhatsApp');
     if(!aluno)falta.push('o nome do aluno');
-    if(irm==='sim'){if(!irmNome)falta.push('o nome do outro aluno');if(!irmSerie)falta.push('a série do outro aluno');}
+    if(irm==='sim'&&!irmaosPt.ok())falta.push('o nome e a série de cada filho');
     if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     $('pt-erro').textContent='';
-    window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
+    window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaos:irmaos};
+    document.querySelectorAll('#precos td[data-v]').forEach(function(td){var v=+td.dataset.v-(irm==='sim'?10:0);td.textContent=v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});});
     var ola='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Parque Santa Maria.';
-    if(irm==='sim')ola+=' Irmãos estudam juntos e economizam: a mensalidade tem R$ 10,00 de desconto.';
     $('pt-ola').textContent=ola;
     f.hidden=true; $('precos').hidden=false;
     $('precos').querySelectorAll('details.card.ver').forEach(function(d){d.open=true;});
