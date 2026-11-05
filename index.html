@@ -237,6 +237,20 @@ details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .hc-texto p{max-width:65ch}
 .hc-texto h3{color:var(--vermelho);font-size:21px;margin:26px 0 8px}
 .hc-fim{font-family:var(--script);font-size:30px;color:var(--verde);margin-top:20px}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px;justify-items:center;text-align:center}
+.duas figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.duas .circ{width:150px;height:150px;border-color:var(--c)}
+@media (max-width:400px){.duas .circ{width:132px;height:132px}}
+.duas b{display:block;font-family:var(--display);font-size:19px;color:var(--marinho);line-height:1.15}
+.duas figcaption span{color:var(--cinza);font-size:14.5px}
+.conheca{margin:26px auto 0;display:flex;align-items:center;gap:14px;width:100%;max-width:560px;text-align:left;border:0;cursor:pointer;font:inherit;color:#fff;background:linear-gradient(135deg,var(--marinho),#2a2fb0);border-radius:22px;padding:14px 16px;box-shadow:0 10px 24px rgba(13,15,116,.22)}
+.conheca img{width:62px;height:62px;border-radius:50%;border:3px solid var(--amarelo);flex:none}
+.conheca small{display:block;font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--amarelo)}
+.conheca b{display:block;font-family:var(--display);font-size:20px;line-height:1.12}
+.conheca em{display:block;font-style:normal;color:#cfd2ff;font-size:14px;margin-top:2px}
+.conheca .seta{margin-left:auto;font-size:38px;line-height:1;color:var(--amarelo);flex:none}
+.jcorpo h3{color:var(--vermelho);font-size:20px;margin:22px 0 8px}
+.jcorpo .hc-fim{font-family:var(--script);font-size:28px;color:var(--verde)}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -306,30 +320,16 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
 
 <section id="quem-somos" class="claro" style="--c:var(--vermelho)">
   <div class="wrap">
-    <div class="cab"><span class="num">1</span><div><small>Quem somos</small><h2>Quem faz a Espaço Criativo</h2></div></div>
-    <p class="nota" style="text-align:center">Toque em uma foto para ler a biografia.</p>
-    <div class="bolas">
-      <button type="button" class="bola" style="--c:var(--vermelho)" data-bio="bio-elienice" data-foto="img/elienice-rosto.jpg">
-        <span class="circ"><img src="img/elienice-rosto.jpg" alt=""></span>
-        <b>Elienice Lima Nobre</b>
-        <span class="cargo">Fundadora e coordenadora geral da escola</span>
-        <span class="chips"><span>Pedagogia</span><span>Psicopedagogia</span><span>Gestão Escolar</span><span>Gestão de Pessoas</span></span>
-        <span class="ler">Ler biografia</span>
-      </button>
-      <button type="button" class="bola" style="--c:var(--verde)" data-bio="bio-evanisse" data-foto="img/evanisse-rosto.jpg">
-        <span class="circ"><img src="img/evanisse-rosto.jpg" alt=""></span>
-        <b>Evanisse Lima Nobre</b>
-        <span class="cargo">Coordenadora geral da creche</span>
-        <span class="chips"><span>Letras</span><span>Psicologia</span><span>Neuropsicologia</span></span>
-        <span class="ler">Ler biografia</span>
-      </button>
-      <button type="button" class="bola" style="--c:var(--amarelo)" data-bio="bio-escola" data-foto="img/logo.png">
-        <span class="circ"><img src="img/logo.png" alt=""></span>
-        <b>Escola Espaço Criativo</b>
-        <span class="cargo">Desde 2002</span>
-        <span class="ler" style="color:var(--marinho)">Ler a história</span>
-      </button>
+    <div class="cab"><span class="num">1</span><div><small>Quem somos</small><h2>Duas irmãs, uma história</h2></div></div>
+    <div class="duas">
+      <figure style="--c:var(--vermelho)"><span class="circ"><img src="img/elienice-rosto.jpg" alt="Elienice Lima Nobre"></span><figcaption><b>Elienice Lima Nobre</b><span>Fundadora</span></figcaption></figure>
+      <figure style="--c:var(--verde)"><span class="circ"><img src="img/evanisse-rosto.jpg" alt="Evanisse Lima Nobre"></span><figcaption><b>Evanisse Lima Nobre</b><span>Coordenadora geral da creche</span></figcaption></figure>
     </div>
+    <button type="button" class="conheca" data-historia>
+      <img src="img/logo.png" alt="">
+      <span><small>Uma história de superação</small><b>Venha conhecer a história da nossa escola</b><em>De quatro salas a mais de 700 crianças</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
   </div>
 </section>
 
@@ -354,33 +354,11 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       <li style="--c:var(--marinho)"><span class="q">2024–2025</span><div><b>Unidade Messejana</b>A ideia de Evanisse vira a segunda unidade da escola.</div></li>
     </ol>
 
-    <details class="historia-card">
-      <summary>
-        <span class="hc-selo">Uma história de superação</span>
-        <b class="hc-tit">De quatro salas a mais de 700 crianças</b>
-        <span class="hc-chamada">Uma casa adaptada, duas irmãs e um sonho que resistiu a tudo, até a uma pandemia.</span>
-        <span class="hc-btn">Ler a história</span>
-      </summary>
-      <div class="hc-texto">
-        <p>Em 2002, Elienice já era uma professora conhecida no bairro. Tinha um sonho grande e pouco recurso. Então fez o que dava: adaptou a própria casa, na Rua Jorge da Veiga, nº 595, e abriu ali a Escola Espaço Criativo.</p>
-        <p>Eram quatro salas, cinco professoras e 67 alunos logo no primeiro ano. Duas dessas professoras eram suas irmãs. Uma delas, Evanisse, começou ali, na sala de aula.</p>
-        <p>Não havia equipe grande. Elas recebiam as crianças no portão, organizavam as salas, faziam a limpeza e cuidavam da parte administrativa. No fim do dia, era a própria Elienice quem fechava a escola.</p>
-        <h3>Uma escola que cresceu junto com os alunos</h3>
-        <p>As famílias confiaram, e as crianças não queriam ir embora. Então, a cada turma que terminava uma etapa, a escola abria a série seguinte. Foi assim que chegaram o Fundamental I e, depois, o Fundamental II.</p>
-        <p>Um dia, um pai contou que não tinha com quem deixar o filho. Naquela época, tempo integral era coisa de escola de bairro nobre. No ano seguinte, a Espaço Criativo passou a oferecer. A creche começou em duas salas e uma cozinha adaptadas e, com Evanisse à frente, cresceu até se tornar o Espaço Brincar.</p>
-        <h3>O dia em que as portas fecharam</h3>
-        <p>Em 2020, veio a pandemia. A escola fechou de uma hora para outra, sem saber o que viria depois. Foi o momento mais difícil de toda a história. Teve medo, teve insegurança, teve muita pergunta sem resposta.</p>
-        <p>Mas a educação não parou. A escola se reinventou para não perder o vínculo com os alunos e as famílias. Na volta, foi preciso reconstruir a rotina, readaptar as crianças e recuperar o que ficou para trás. Foram anos de esforço, e a escola atravessou tudo isso de pé.</p>
-        <h3>O aluno que quase desistiu</h3>
-        <p>Entre tantas histórias, uma resume o que a escola é. Um aluno do 9º ano, mais velho que a turma, procurou uma educadora e disse que ia largar os estudos. Ela parou, ouviu e acreditou nele. Ele ficou.</p>
-        <p>Anos depois, aquele aluno se formou em Educação Física e voltou para a Espaço Criativo, agora como professor, ao lado de quem ajudou na sua formação.</p>
-        <h3>Hoje</h3>
-        <p>A casa de quatro salas virou uma escola com mais de 700 crianças e duas unidades. A segunda, em Messejana, nasceu de uma ideia de Evanisse, que Elienice abraçou na hora.</p>
-        <p>Muita coisa mudou. O que não mudou foi o jeito: olhar cada criança pelo nome, respeitar o tempo de cada uma e caminhar junto com as famílias.</p>
-        <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre, fundadora</cite></blockquote>
-        <p class="hc-fim">Mais que uma escola, um lugar para pertencer.</p>
-      </div>
-    </details>
+    <button type="button" class="conheca" data-historia>
+      <img src="img/logo.png" alt="">
+      <span><small>Uma história de superação</small><b>Venha conhecer a história da nossa escola</b><em>De quatro salas a mais de 700 crianças</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
   </div>
 </section>
 
@@ -542,6 +520,26 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   <p>Ao longo desses anos, as maiores conquistas não cabem em números: o aluno que superou a dificuldade de aprendizagem, a criança atípica que avançou com acolhimento, o estudante que quase desistiu no 9º ano e voltou à escola como professor de Educação Física.</p>
   <p style="font-family:var(--script);font-size:28px;color:var(--verde)">Mais que uma escola, um lugar para pertencer.</p>
 </template>
+
+<template id="tpl-historia">
+        <p>Em 2002, Elienice já era uma professora conhecida no bairro. Tinha um sonho grande e pouco recurso. Então fez o que dava: adaptou a própria casa, na Rua Jorge da Veiga, nº 595, e abriu ali a Escola Espaço Criativo.</p>
+        <p>Eram quatro salas, cinco professoras e 67 alunos logo no primeiro ano. Duas dessas professoras eram suas irmãs. Uma delas, Evanisse, começou ali, na sala de aula.</p>
+        <p>Não havia equipe grande. Elas recebiam as crianças no portão, organizavam as salas, faziam a limpeza e cuidavam da parte administrativa. No fim do dia, era a própria Elienice quem fechava a escola.</p>
+        <h3>Uma escola que cresceu junto com os alunos</h3>
+        <p>As famílias confiaram, e as crianças não queriam ir embora. Então, a cada turma que terminava uma etapa, a escola abria a série seguinte. Foi assim que chegaram o Fundamental I e, depois, o Fundamental II.</p>
+        <p>Um dia, um pai contou que não tinha com quem deixar o filho. Naquela época, tempo integral era coisa de escola de bairro nobre. No ano seguinte, a Espaço Criativo passou a oferecer. A creche começou em duas salas e uma cozinha adaptadas e, com Evanisse à frente, cresceu até se tornar o Espaço Brincar.</p>
+        <h3>O dia em que as portas fecharam</h3>
+        <p>Em 2020, veio a pandemia. A escola fechou de uma hora para outra, sem saber o que viria depois. Foi o momento mais difícil de toda a história. Teve medo, teve insegurança, teve muita pergunta sem resposta.</p>
+        <p>Mas a educação não parou. A escola se reinventou para não perder o vínculo com os alunos e as famílias. Na volta, foi preciso reconstruir a rotina, readaptar as crianças e recuperar o que ficou para trás. Foram anos de esforço, e a escola atravessou tudo isso de pé.</p>
+        <h3>O aluno que quase desistiu</h3>
+        <p>Entre tantas histórias, uma resume o que a escola é. Um aluno do 9º ano, mais velho que a turma, procurou uma educadora e disse que ia largar os estudos. Ela parou, ouviu e acreditou nele. Ele ficou.</p>
+        <p>Anos depois, aquele aluno se formou em Educação Física e voltou para a Espaço Criativo, agora como professor, ao lado de quem ajudou na sua formação.</p>
+        <h3>Hoje</h3>
+        <p>A casa de quatro salas virou uma escola com mais de 700 crianças e duas unidades. A segunda, em Messejana, nasceu de uma ideia de Evanisse, que Elienice abraçou na hora.</p>
+        <p>Muita coisa mudou. O que não mudou foi o jeito: olhar cada criança pelo nome, respeitar o tempo de cada uma e caminhar junto com as famílias.</p>
+        <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre, fundadora</cite></blockquote>
+        <p class="hc-fim">Mais que uma escola, um lugar para pertencer.</p>
+      </template>
 
 <dialog id="janela" aria-labelledby="jnome">
   <div class="jtopo">
@@ -735,6 +733,21 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   [nome,un,txt].forEach(function(x){x.addEventListener('input',monta);x.addEventListener('change',monta);});
   a.addEventListener('click',function(e){var er=document.getElementById('av-erro');
     if(a.getAttribute('aria-disabled')==='true'){e.preventDefault();var f=[];if(!nota)f.push('a nota');if(!nome.value.trim())f.push('seu nome');if(!un.value)f.push('a unidade');if(!txt.value.trim())f.push('o comentário');er.textContent='Falta preencher: '+f.join(', ')+'.';}else{er.textContent='';}});
+})();
+</script>
+<script>
+(function(){
+  var d=document.getElementById('janela');
+  document.querySelectorAll('[data-historia]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var c=document.getElementById('jcorpo'); c.innerHTML='';
+      c.appendChild(document.getElementById('tpl-historia').content.cloneNode(true));
+      document.getElementById('jnome').textContent='De quatro salas a mais de 700 crianças';
+      document.getElementById('jcargo').textContent='A história da Escola Espaço Criativo';
+      document.getElementById('jfoto').src='img/logo.png';
+      if(d.showModal){d.showModal();} c.scrollTop=0;
+    });
+  });
 })();
 </script>
 </body>
