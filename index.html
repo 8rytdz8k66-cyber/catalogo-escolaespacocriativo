@@ -251,6 +251,9 @@ details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .conheca .seta{margin-left:auto;font-size:38px;line-height:1;color:var(--amarelo);flex:none}
 .jcorpo h3{color:var(--vermelho);font-size:20px;margin:22px 0 8px}
 .jcorpo .hc-fim{font-family:var(--script);font-size:28px;color:var(--verde)}
+.conheca.me{background:linear-gradient(135deg,#1777c4,var(--azul))}
+.conheca.me img{border-color:#fff;background:#fff}
+.conheca.me small{color:#fff3c4}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -437,6 +440,11 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
     </div>
 
     
+    <button type="button" class="conheca me" data-messejana>
+      <img src="img/logo-messejana.png" alt="">
+      <span><small>Colégio Maria de Fátima · Berçário ao 5º ano</small><b>Conheça nossa outra unidade em Messejana</b><em>Toque para ver como é a unidade</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
   </div>
 </section>
 
@@ -485,6 +493,11 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         </div>
       </div>
     </div>
+    <button type="button" class="conheca me" data-messejana>
+      <img src="img/logo-messejana.png" alt="">
+      <span><small>Colégio Maria de Fátima · Berçário ao 5º ano</small><b>Conheça nossa outra unidade em Messejana</b><em>Toque para ver como é a unidade</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
     <p class="nota" style="color:#cfd2ff;text-align:center;margin-top:18px">Site: <a href="https://www.escolaespacocriativo.com.br" target="_blank" rel="noopener">escolaespacocriativo.com.br</a></p>
     <p class="fim">Mais que uma escola, um lugar para pertencer!</p>
   </div>
@@ -540,6 +553,26 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre, fundadora</cite></blockquote>
         <p class="hc-fim">Mais que uma escola, um lugar para pertencer.</p>
       </template>
+
+<template id="tpl-messejana">
+  <p style="text-align:center"><img src="img/logo-messejana.png" alt="Logo da unidade Messejana" style="width:150px;height:150px;border-radius:50%;border:4px solid var(--azul)"></p>
+  <p class="me-slogan">Educação que desenvolve <span style="color:var(--verde)">mente</span>, <span style="color:var(--laranja)">coração</span> e <span style="color:var(--azul)">conexões</span> para a vida.</p>
+  <p>A unidade Messejana é o capítulo mais novo da história da Espaço Criativo. Nasceu de uma ideia de Evanisse e leva para uma nova comunidade o mesmo jeito de cuidar e ensinar que acompanha a escola desde 2002.</p>
+  <p><b>Atende do berçário ao 5º ano</b>, preparando para o presente e inspirando o futuro.</p>
+  <div class="difs">
+    <span style="--c:var(--azul)">Acolhimento que abraça</span>
+    <span style="--c:var(--vermelho)">Desenvolvimento socioemocional</span>
+    <span style="--c:var(--laranja)">Parceria com as famílias</span>
+    <span style="--c:var(--verde)">Inglês integrado na prática</span>
+  </div>
+  <p class="nota">Rua Santa Efigênia, 300 · Messejana, Fortaleza</p>
+  <div class="botoes" style="justify-content:flex-start">
+    <a class="btn zap" href="https://wa.me/5585974007393" target="_blank" rel="noopener">WhatsApp da unidade</a>
+    <a class="btn marinho" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">📍 Como chegar</a>
+    <a class="ig" href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener" aria-label="Instagram da unidade Messejana"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
+  </div>
+  <p class="nota" style="margin-top:12px">Valores e matrículas da unidade Messejana pelo WhatsApp.</p>
+</template>
 
 <dialog id="janela" aria-labelledby="jnome">
   <div class="jtopo">
@@ -745,6 +778,21 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       document.getElementById('jnome').textContent='De quatro salas a mais de 700 crianças';
       document.getElementById('jcargo').textContent='A história da Escola Espaço Criativo';
       document.getElementById('jfoto').src='img/logo.png';
+      if(d.showModal){d.showModal();} c.scrollTop=0;
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var d=document.getElementById('janela');
+  document.querySelectorAll('[data-messejana]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var c=document.getElementById('jcorpo'); c.innerHTML='';
+      c.appendChild(document.getElementById('tpl-messejana').content.cloneNode(true));
+      document.getElementById('jnome').textContent='Unidade Messejana';
+      document.getElementById('jcargo').textContent='Colégio Maria de Fátima · Berçário ao 5º ano';
+      document.getElementById('jfoto').src='img/logo-messejana.png';
       if(d.showModal){d.showModal();} c.scrollTop=0;
     });
   });
