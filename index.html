@@ -349,6 +349,11 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 .irmao-linha input,.irmao-linha select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta);min-height:46px}
 .add-irmao{margin-top:10px;width:100%;border:2px solid var(--verde);background:#fff;color:var(--verde);font:inherit;font-family:var(--display);font-weight:700;font-size:16px;border-radius:14px;padding:10px;cursor:pointer;min-height:46px}
 .add-irmao:hover{background:#e7f6ea}
+.fz .pt-sim input{width:20px;height:20px;min-height:0;padding:0;border:0;box-shadow:none;accent-color:var(--verde);margin:0}
+.fz .fz-irmao{margin-top:14px}
+.fz-unid label{display:grid!important;grid-template-columns:auto 1fr;column-gap:10px;align-items:center}
+.fz-unid label input{grid-row:span 2;width:20px;height:20px;min-height:0;margin:0}
+.fz-unid label small{grid-column:2}
 </style>
 </head>
 <body>
@@ -694,8 +699,10 @@ function listaIrmaos(box,pref,aoMudar){
     <input id="fz-zap" required aria-required="true" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
     <label for="fz-crianca">Nome da criança</label>
     <input id="fz-crianca" required aria-required="true" type="text" placeholder="Ex.: Joãozinho">
-    <label for="fz-irmao">Tem mais de 1 filho? <span class="pt-dica">Estudando juntos, economizam!</span></label>
-    <select id="fz-irmao"><option value="nao">Não</option><option value="sim">Sim</option></select>
+    <div class="pt-irmao fz-irmao">
+      <p class="pt-perg" id="fz-irmao-tit">Tem mais de 1 filho? <span>Estudando juntos, economizam!</span></p>
+      <label class="pt-sim"><input type="checkbox" id="fz-irmao" aria-describedby="fz-irmao-tit"> Sim</label>
+    </div>
     <div id="fz-irmao-box" hidden><div id="fz-irmaos"></div><button type="button" class="add-irmao" id="fz-add">+ Adicionar outro filho</button></div>
     <label for="fz-idade">Idade da criança</label>
     <select id="fz-idade"><option value="">Escolha a idade</option></select>
@@ -769,13 +776,13 @@ function listaIrmaos(box,pref,aoMudar){
     if(u==='sm'&&t&&parseInt(t,10)>=6)$('fz-int-box').hidden=false;
     var total=0;
     if(u&&t){
-      var dsc=$('fz-irmao').value==='sim'?10:0;
+      var dsc=($('fz-irmao').checked?'sim':'nao')==='sim'?10:0;
       if(berc){var b=BERC[u][sel.turno.value||0];linhas.push(['Berçário · '+b[0],b[1]-dsc]);total+=b[1]-dsc;}
       else{var m=mensal(u,t)-dsc;linhas.push(['Mensalidade · '+t,m]);total+=m;}
       if(!berc&&sel.int.value!==''){var it=INT[u][sel.int.value];linhas.push([it[0],it[1]]);total+=it[1];}
     }
     var liberado=$('fz-resp').value.trim()&&telOk($('fz-zap').value)&&$('fz-crianca').value.trim();
-    $('fz-irmao-box').hidden=$('fz-irmao').value!=='sim'; if($('fz-irmao').value==='sim')irmaosFz.garante();
+    $('fz-irmao-box').hidden=($('fz-irmao').checked?'sim':'nao')!=='sim'; if(($('fz-irmao').checked?'sim':'nao')==='sim')irmaosFz.garante();
     if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o WhatsApp e o nome da criança para ver o valor.</p>';box.hidden=false;}
     else if(linhas.length){
       var h='<b>Valor para '+(t)+' · '+(u==='sm'?'Santa Maria':'Messejana')+'</b><ul>';
@@ -786,7 +793,7 @@ function listaIrmaos(box,pref,aoMudar){
       box.innerHTML=h;box.hidden=false;
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
-    var zap=$('fz-zap').value, irm=$('fz-irmao').value;
+    var zap=$('fz-zap').value, irm=($('fz-irmao').checked?'sim':'nao');
     var ok=u&&resp&&telOk(zap)&&cri&&irm&&(irm==='nao'||irmaosFz.ok())&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
     var a=$('fz-enviar');
     if(ok){
@@ -805,7 +812,7 @@ function listaIrmaos(box,pref,aoMudar){
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if($('fz-irmao').value==='sim'&&!irmaosFz.ok())falta.push('o nome e a série de cada filho');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(($('fz-irmao').checked?'sim':'nao')==='sim'&&!irmaosFz.ok())falta.push('o nome e a série de cada filho');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
@@ -820,7 +827,7 @@ function listaIrmaos(box,pref,aoMudar){
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;irmaosFz.define(g.irmaos);} trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').checked=g.irmao==='sim';irmaosFz.define(g.irmaos);} trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
