@@ -333,6 +333,14 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
 /* tablet */
 @media (min-width:600px) and (max-width:1023px){.duas .circ{width:170px;height:170px}.grade{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){dialog[open]{animation:none}.trilho{animation:none}}
+.pt-irmao{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px;border:2px solid var(--linha);border-radius:14px;background:#fff}
+.pt-irmao .pt-perg{margin:0;font-size:15.5px;font-weight:800;color:var(--marinho);line-height:1.3}
+.pt-irmao .pt-perg span,.pt-dica{display:block;font-weight:700;font-size:13.5px;color:var(--verde)}
+.pt-sim{flex:none;display:inline-flex!important;align-items:center;gap:8px;margin:0!important;padding:8px 14px;border:2px solid var(--linha);border-radius:999px;font-weight:700;cursor:pointer;min-height:44px}
+.portao .pt-sim input{width:20px;height:20px;min-height:0;padding:0;border:0;box-shadow:none;accent-color:var(--verde);margin:0}
+.pt-sim:has(input:checked){border-color:var(--verde);background:#e7f6ea;color:var(--verde)}
+.pt-irmao:has(input:checked){border-color:var(--verde)}
+#pt-irmao-box{margin-top:4px}
 </style>
 </head>
 <body>
@@ -468,11 +476,10 @@ dialog::backdrop{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
         <input id="pt-zap" required aria-required="true" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
         <label for="pt-aluno">Nome do aluno</label>
         <input id="pt-aluno" required aria-required="true" type="text" placeholder="Ex.: João">
-        <fieldset class="pt-irmao"><legend class="pt-frase">Irmãos estudam juntos e economizam!</legend>
-          <p class="pt-perg">Tem 2 filhos?</p>
-          <label><input type="radio" name="pt-irmao" value="sim"> Sim</label>
-          <label><input type="radio" name="pt-irmao" value="nao"> Não</label>
-        </fieldset>
+        <div class="pt-irmao">
+          <p class="pt-perg" id="pt-irmao-tit">Tem mais de 1 filho? <span>Estudando juntos, economizam!</span></p>
+          <label class="pt-sim"><input type="checkbox" id="pt-irmao-sim" aria-describedby="pt-irmao-tit"> Sim</label>
+        </div>
         <div id="pt-irmao-box" hidden>
           <label for="pt-irmao-nome">Nome do outro aluno</label>
           <input id="pt-irmao-nome" type="text" placeholder="Ex.: Maria">
@@ -659,9 +666,8 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     <input id="fz-zap" required aria-required="true" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
     <label for="fz-crianca">Nome da criança</label>
     <input id="fz-crianca" required aria-required="true" type="text" placeholder="Ex.: Joãozinho">
-    <p class="pt-frase" style="margin-top:14px">Irmãos estudam juntos e economizam!</p>
-    <label for="fz-irmao" style="margin-top:0">Tem 2 filhos?</label>
-    <select id="fz-irmao"><option value="">Escolha</option><option value="nao">Não</option><option value="sim">Sim</option></select>
+    <label for="fz-irmao">Tem mais de 1 filho? <span class="pt-dica">Estudando juntos, economizam!</span></label>
+    <select id="fz-irmao"><option value="nao">Não</option><option value="sim">Sim</option></select>
     <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do outro aluno</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"><label for="fz-irmao-serie">Série do outro aluno</label><select id="fz-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select></div>
     <label for="fz-idade">Idade da criança</label>
     <select id="fz-idade"><option value="">Escolha a idade</option></select>
@@ -770,7 +776,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem 2 filhos');else if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do outro aluno');if(!$('fz-irmao-serie').value)falta.push('a série do outro aluno');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!telOk($('fz-zap').value))falta.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do outro aluno');if(!$('fz-irmao-serie').value)falta.push('a série do outro aluno');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
@@ -854,17 +860,16 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
 (function(){
   var f=document.getElementById('portao'), $=function(i){return document.getElementById(i);};
   $('pt-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
-  document.querySelectorAll('input[name=pt-irmao]').forEach(function(r){r.addEventListener('change',function(){$('pt-irmao-box').hidden=r.value!=='sim'||!r.checked;});});
+  $('pt-irmao-sim').addEventListener('change',function(){$('pt-irmao-box').hidden=!this.checked;});
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var resp=$('pt-resp').value.trim(), zap=$('pt-zap').value, aluno=$('pt-aluno').value.trim();
-    var irm=(document.querySelector('input[name=pt-irmao]:checked')||{}).value, irmNome=$('pt-irmao-nome').value.trim(), irmSerie=$('pt-irmao-serie').value;
+    var irm=$('pt-irmao-sim').checked?'sim':'nao', irmNome=$('pt-irmao-nome').value.trim(), irmSerie=$('pt-irmao-serie').value;
     var falta=[];
     if(!resp)falta.push('o nome do responsável');
     if(!telOk(zap))falta.push(soDig(zap).length?'um WhatsApp válido com DDD':'o WhatsApp');
     if(!aluno)falta.push('o nome do aluno');
-    if(!irm)falta.push('se tem 2 filhos');
-    else if(irm==='sim'){if(!irmNome)falta.push('o nome do outro aluno');if(!irmSerie)falta.push('a série do outro aluno');}
+    if(irm==='sim'){if(!irmNome)falta.push('o nome do outro aluno');if(!irmSerie)falta.push('a série do outro aluno');}
     if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     $('pt-erro').textContent='';
     window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
