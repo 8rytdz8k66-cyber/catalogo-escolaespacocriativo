@@ -267,6 +267,7 @@ details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .pt-irmao input{accent-color:var(--verde)}
 .pt-ola{background:#e7f6ea;border-left:6px solid var(--verde);border-radius:12px;padding:10px 14px;font-weight:700;color:var(--marinho)}
 #precos{scroll-margin-top:70px}
+.pt-frase{margin:0 0 10px;background:#e7f6ea;color:var(--verde);font-weight:800;font-size:14.5px;border-radius:10px;padding:7px 12px}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -438,6 +439,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <label for="pt-aluno">Nome do aluno</label>
         <input id="pt-aluno" type="text" placeholder="Ex.: João">
         <fieldset class="pt-irmao"><legend>Tem irmão estudando ou que vai estudar na escola?</legend>
+          <p class="pt-frase">Irmãos estudam juntos e economizam: R$ 10,00 de desconto.</p>
           <label><input type="radio" name="pt-irmao" value="sim"> Sim</label>
           <label><input type="radio" name="pt-irmao" value="nao"> Não</label>
         </fieldset>
@@ -666,6 +668,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     <label for="fz-crianca">Nome da criança</label>
     <input id="fz-crianca" type="text" placeholder="Ex.: Joãozinho">
     <label for="fz-irmao">Tem irmão na escola?</label>
+    <p class="pt-frase">Irmãos estudam juntos e economizam: R$ 10,00 de desconto.</p>
     <select id="fz-irmao"><option value="">Escolha</option><option value="nao">Não</option><option value="sim">Sim</option></select>
     <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do irmão ou irmã</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"><label for="fz-irmao-serie">Série do irmão ou irmã</label><select id="fz-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select></div>
     <label for="fz-idade">Idade da criança</label>
