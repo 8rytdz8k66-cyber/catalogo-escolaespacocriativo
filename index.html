@@ -257,6 +257,7 @@ details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .portao{background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 14px rgba(13,15,116,.08);border-top:7px solid var(--verde)}
 .portao h3{font-size:22px}
 .portao label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.portao select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
 .portao input[type=text]{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
 .portao input[type=text]:focus{border-color:var(--verde);outline:none}
 .pt-irmao{border:0;padding:0;margin:14px 0 0}
@@ -443,6 +444,8 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <div id="pt-irmao-box" hidden>
           <label for="pt-irmao-nome">Nome do irmão ou irmã</label>
           <input id="pt-irmao-nome" type="text" placeholder="Ex.: Maria">
+          <label for="pt-irmao-serie">Série do irmão ou irmã</label>
+          <select id="pt-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select>
         </div>
         <p class="fz-erro" id="pt-erro" role="alert"></p>
         <button type="submit" class="btn zap" style="width:100%;justify-content:center">Ver valores</button>
@@ -529,11 +532,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         </div>
       </div>
     </div>
-    <button type="button" class="conheca me" data-messejana>
-      <img src="img/logo-messejana.png" alt="">
-      <span><small>Colégio Maria de Fátima · Berçário ao 5º ano</small><b>Conheça nossa outra unidade em Messejana</b><em>Toque para ver como é a unidade</em></span>
-      <span class="seta" aria-hidden="true">›</span>
-    </button>
+    
     <p class="nota" style="color:#cfd2ff;text-align:center;margin-top:18px">Site: <a href="https://www.escolaespacocriativo.com.br" target="_blank" rel="noopener">escolaespacocriativo.com.br</a></p>
     <p class="fim">Mais que uma escola, um lugar para pertencer!</p>
   </div>
@@ -666,7 +665,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     <input id="fz-crianca" type="text" placeholder="Ex.: Joãozinho">
     <label for="fz-irmao">Tem irmão na escola?</label>
     <select id="fz-irmao"><option value="">Escolha</option><option value="nao">Não</option><option value="sim">Sim</option></select>
-    <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do irmão ou irmã</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"></div>
+    <div id="fz-irmao-box" hidden><label for="fz-irmao-nome">Nome do irmão ou irmã</label><input id="fz-irmao-nome" type="text" placeholder="Ex.: Maria"><label for="fz-irmao-serie">Série do irmão ou irmã</label><select id="fz-irmao-serie"><option value="">Escolha a série</option><option>Berçário</option><option>Infantil I</option><option>Infantil II</option><option>Infantil III</option><option>Infantil IV</option><option>Infantil V</option><option>1º ano</option><option>2º ano</option><option>3º ano</option><option>4º ano</option><option>5º ano</option><option>6º ano</option><option>7º ano</option><option>8º ano</option><option>9º ano</option></select></div>
     <label for="fz-idade">Idade da criança</label>
     <select id="fz-idade"><option value="">Escolha a idade</option></select>
     <label for="fz-turma">Turma</label>
@@ -757,7 +756,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
     }else{box.hidden=true;}
     var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), id=sel.idade.value;
     var cpf=$('fz-cpf').value, irm=$('fz-irmao').value;
-    var ok=u&&resp&&cpfOk(cpf)&&cri&&irm&&(irm==='nao'||$('fz-irmao-nome').value.trim())&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
+    var ok=u&&resp&&cpfOk(cpf)&&cri&&irm&&(irm==='nao'||($('fz-irmao-nome').value.trim()&&$('fz-irmao-serie').value))&&id!==''&&t&&!(u==='me'&&parseInt(id,10)>10);
     var a=$('fz-enviar');
     if(ok){
       msg.push('Olá! Vim pelo catálogo da Escola Espaço Criativo e quero informações sobre matrícula.');
@@ -765,7 +764,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
       msg.push('*Unidade:* '+NOME[u]);
       msg.push('*Responsável:* '+resp);
       msg.push('*CPF do responsável:* '+cpf);
-      if(irm==='sim')msg.push('*Irmão na escola:* '+$('fz-irmao-nome').value.trim());
+      if(irm==='sim')msg.push('*Irmão na escola:* '+$('fz-irmao-nome').value.trim()+' ('+$('fz-irmao-serie').value+')');
       msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
       msg.push('*Turma:* '+t);
       linhas.forEach(function(l){msg.push('*'+l[0]+':* '+brl(l[1]));});
@@ -775,7 +774,7 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   }
   $('fz-enviar').addEventListener('click',function(e){
     if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
-      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!cpfOk($('fz-cpf').value))falta.push('um CPF válido');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem irmão');else if($('fz-irmao').value==='sim'&&!$('fz-irmao-nome').value.trim())falta.push('o nome do irmão');if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
+      var falta=[];if(!unid())falta.push('a unidade');if(!$('fz-resp').value.trim())falta.push('o nome do responsável');if(!cpfOk($('fz-cpf').value))falta.push('um CPF válido');if(!$('fz-crianca').value.trim())falta.push('o nome da criança');if(!$('fz-irmao').value)falta.push('se tem irmão');else if($('fz-irmao').value==='sim'){if(!$('fz-irmao-nome').value.trim())falta.push('o nome do irmão');if(!$('fz-irmao-serie').value)falta.push('a série do irmão');}if(sel.idade.value==='')falta.push('a idade');if(!sel.turma.value)falta.push('a turma');
       $('fz-erro').textContent=falta.length?'Falta preencher: '+falta.join(', ')+'.':'Confira a unidade e a idade.';
     }else{$('fz-erro').textContent='';}
   });
@@ -784,11 +783,12 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
   [$('fz-resp'),$('fz-crianca'),$('fz-cpf'),$('fz-irmao-nome')].forEach(function(x){x.addEventListener('input',atualiza);});
   $('fz-irmao').addEventListener('change',atualiza);
+  $('fz-irmao-serie').addEventListener('change',atualiza);
   $('fz-cpf').addEventListener('input',function(){this.value=mascara(this.value);});
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-cpf').value=g.cpf;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';} trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; if(window.__dadosPortao){var g=window.__dadosPortao;$('fz-resp').value=g.resp;$('fz-cpf').value=g.cpf;$('fz-crianca').value=g.aluno;$('fz-irmao').value=g.irmao;$('fz-irmao-nome').value=g.irmaoNome||'';$('fz-irmao-serie').value=g.irmaoSerie||'';} trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
@@ -862,16 +862,16 @@ function cpfOk(v){var c=soDig(v);if(c.length!==11||/^(\d)\1{10}$/.test(c))return
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var resp=$('pt-resp').value.trim(), cpf=$('pt-cpf').value, aluno=$('pt-aluno').value.trim();
-    var irm=(document.querySelector('input[name=pt-irmao]:checked')||{}).value, irmNome=$('pt-irmao-nome').value.trim();
+    var irm=(document.querySelector('input[name=pt-irmao]:checked')||{}).value, irmNome=$('pt-irmao-nome').value.trim(), irmSerie=$('pt-irmao-serie').value;
     var falta=[];
     if(!resp)falta.push('o nome do responsável');
     if(!cpfOk(cpf))falta.push(soDig(cpf).length?'um CPF válido':'o CPF');
     if(!aluno)falta.push('o nome do aluno');
     if(!irm)falta.push('se tem irmão');
-    else if(irm==='sim'&&!irmNome)falta.push('o nome do irmão');
+    else if(irm==='sim'){if(!irmNome)falta.push('o nome do irmão');if(!irmSerie)falta.push('a série do irmão');}
     if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     $('pt-erro').textContent='';
-    window.__dadosPortao={resp:resp,cpf:cpf,aluno:aluno,irmao:irm,irmaoNome:irmNome};
+    window.__dadosPortao={resp:resp,cpf:cpf,aluno:aluno,irmao:irm,irmaoNome:irmNome,irmaoSerie:irmSerie};
     var ola='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Parque Santa Maria.';
     if(irm==='sim')ola+=' Como '+aluno+' tem irmão na escola, a mensalidade tem R$ 10,00 de desconto.';
     $('pt-ola').textContent=ola;
