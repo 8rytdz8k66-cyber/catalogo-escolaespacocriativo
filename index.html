@@ -172,7 +172,7 @@ section.claro{background:var(--branco)}
 .fz label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
 .fz input[type=text],.fz select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
 .fz input[type=text]:focus,.fz select:focus{border-color:var(--azul);outline:none}
-.fz-unid{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fz-unid{border:0;padding:0;margin:0;display:grid;grid-template-columns:1fr;gap:8px}
 .fz-unid legend{font-weight:700;font-size:15px;margin-bottom:6px;padding:0}
 .fz-unid label{margin:0;border:2px solid var(--linha);border-radius:14px;padding:10px 12px;cursor:pointer;font-family:var(--display);font-size:16px;color:var(--marinho);line-height:1.15;background:#fff}
 .fz-unid label small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--cinza)}
@@ -222,6 +222,21 @@ details.card.ver[open] .ver-btn::after{content:" ▴"}
 details.card.ver[open] .ver-btn{font-size:0;padding:4px 10px}
 details.card.ver[open] .ver-btn::before{content:"Esconder";font-size:15px}
 .ver-corpo{margin-top:10px}
+.historia-card{margin-top:26px;border-radius:24px;background:var(--marinho);color:#fff;overflow:hidden;box-shadow:0 12px 30px rgba(13,15,116,.2)}
+.historia-card summary{list-style:none;cursor:pointer;padding:22px 20px;display:flex;flex-direction:column;gap:8px;background:linear-gradient(135deg,var(--marinho),#2a2fb0)}
+.historia-card summary::-webkit-details-marker{display:none}
+.hc-selo{align-self:flex-start;font-family:var(--display);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em;background:var(--amarelo);color:var(--marinho);padding:3px 12px;border-radius:999px}
+.hc-tit{font-family:var(--display);font-size:clamp(26px,6.5vw,34px);line-height:1.08;text-wrap:balance}
+.hc-chamada{color:#cfd2ff;font-size:16.5px}
+.hc-btn{align-self:flex-start;margin-top:6px;font-family:var(--display);font-weight:800;font-size:17px;background:#fff;color:var(--marinho);padding:9px 18px;border-radius:14px}
+.hc-btn::after{content:" ▾"}
+.historia-card[open] .hc-btn{font-size:0;padding:9px 14px}
+.historia-card[open] .hc-btn::before{content:"Fechar a história";font-size:17px}
+.historia-card[open] .hc-btn::after{content:" ▴";font-size:17px}
+.hc-texto{background:#fff;color:var(--tinta);padding:22px 22px 26px;max-width:none}
+.hc-texto p{max-width:65ch}
+.hc-texto h3{color:var(--vermelho);font-size:21px;margin:26px 0 8px}
+.hc-fim{font-family:var(--script);font-size:30px;color:var(--verde);margin-top:20px}
 /* 6 Unidades e contato */
 .contato{background:var(--marinho);color:#fff}
 .contato h2,.contato h3{color:#fff}
@@ -269,7 +284,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
     <p class="sub">Duas unidades em Fortaleza: Parque Santa Maria, do berçário ao 9º ano, e Messejana (Colégio Maria de Fátima), do berçário ao 5º ano.</p>
     <div class="botoes">
       <a class="btn branco" href="#valores">Ver turmas e valores</a>
-      <button type="button" class="btn zap" data-form="">Quero matricular meu filho</button>
+      <button type="button" class="btn zap" data-form="sm">Quero matricular meu filho</button>
     </div>
   </div>
 </header>
@@ -339,28 +354,32 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       <li style="--c:var(--marinho)"><span class="q">2024–2025</span><div><b>Unidade Messejana</b>A ideia de Evanisse vira a segunda unidade da escola.</div></li>
     </ol>
 
-    <h3 class="sub-h">A história contada por elas</h3>
-    <p class="nota">Toque para abrir cada relato completo.</p>
-    <details class="caixa" style="--c:var(--verde)">
-      <summary><img src="img/evanisse-relato.jpg" alt="Evanisse Lima Nobre"><span><b>Como tudo começou</b><small>Relato de Evanisse Lima Nobre</small></span></summary>
-      <div class="txt"><img class="foto-relato" src="img/evanisse-relato.jpg" alt="Evanisse Lima Nobre" style="border-color:var(--verde)"><p>A história da Escola Espaço Criativo começou em 2002. Elienice Lima Nobre trabalhava em outra instituição de ensino e percebeu ali uma necessidade. Dessa experiência nasceu o desejo de criar um espaço educacional próprio. O nome Espaço Criativo já estava nos planos desde o início e logo passou a representar a identidade da instituição. Nos primeiros anos, a imagem da escola foi inspirada nas formiguinhas da turma do Smilingüido, personagens que transmitem valores cristãos.</p>
-    <p>A primeira sede ficava na Rua Jorge da Veiga, nº 595, na própria residência da fundadora, que foi adaptada para receber os primeiros alunos. Começamos com quatro salas de aula, cerca de 60 alunos e uma equipe pequena: eu, Elienice, Dena, Silvely e uma amiga. Todas fazíamos de tudo. Recebíamos as crianças, organizávamos os espaços, cuidávamos da limpeza e das tarefas administrativas. O primeiro ano foi de muita construção e adaptação, sempre com dedicação e vontade de ver o projeto crescer.</p>
-    <p>Entre 2003 e 2004, passamos a oferecer o Ensino Fundamental I, primeiro com poucas turmas. A escola foi crescendo aos poucos e consolidou a Educação Infantil e o Fundamental I. Em 2010, começamos a implantar o Ensino Fundamental II, a partir do 6º ano. A cada ano uma série nova era aberta, até completarmos o ciclo. No mesmo período, demos início à creche, num prédio construído pela fundadora. A estrutura tinha duas salas e uma cozinha, adaptadas para receber as crianças.</p>
-    <p>Entre 2018 e 2019, fizemos um investimento importante: compramos o terreno vizinho, onde hoje ficam o prédio do Fundamental II e o da creche. Assim, os alunos passaram a ter um espaço mais adequado.</p>
-    <p>Pouco depois veio um dos momentos mais difíceis da nossa trajetória: a pandemia da Covid-19. Tivemos que fechar as portas de uma hora para outra, diante de muita incerteza sobre o futuro da educação e da própria escola. Com esforço, união e dedicação, atravessamos esse período e saímos ainda mais fortes.</p>
-    <p>Entre 2024 e 2025, começamos a planejar uma nova expansão. O projeto inicial era uma unidade no Eusébio, mas dificuldades com o terreno nos levaram a outro caminho: Messejana. A decisão foi rápida e abriu uma nova etapa na história da escola. Ela trouxe os desafios naturais de toda nova unidade, mas seguimos confiantes no potencial desse projeto.</p>
-    <p>Hoje, olhando para trás, vemos o quanto a Espaço Criativo cresceu. Começamos com quatro salas e cerca de 60 alunos. Hoje temos duas unidades, uma estrutura ampliada e atendemos do berçário ao 9º ano. Os desafios continuam, e reinventar-se faz parte do caminho. O que nos move é o amor pelo que fazemos, o compromisso com a educação e a vontade de ver a escola crescer cada vez mais.</p>
-    <p class="fecho">A história da Espaço Criativo é feita de trabalho, superação e, acima de tudo, de pessoas que acreditaram em um sonho e seguem trabalhando para torná-lo realidade.</p></div>
-    </details>
-    <details class="caixa" style="--c:var(--vermelho)">
-      <summary><img src="img/elienice-relato.jpg" alt="Elienice Lima Nobre"><span><b>Uma escola que cresceu junto com os alunos</b><small>Relato de Elienice Lima Nobre</small></span></summary>
-      <div class="txt"><img class="foto-relato" src="img/elienice-relato.jpg" alt="Elienice Lima Nobre" style="border-color:var(--vermelho)"><p>No início, a escola contava com cinco professoras, duas delas minhas irmãs, que me ajudaram muito nessa fase. Como eu já era conhecida como professora no bairro, a escola foi conquistando a confiança das famílias e, logo no primeiro ano, chegamos a 67 alunos matriculados.</p>
-    <p>O Ensino Fundamental I chegou com o crescimento da escola. Naquela época, a alfabetização fazia parte da Educação Infantil, e não do 1º ano, como acontece hoje. Por isso, abrimos primeiro a antiga primeira série, que hoje corresponde ao 2º ano. A cada ano, nossos alunos avançavam de série, e nós abríamos a turma seguinte para acompanhá-los.</p>
-    <p>O Ensino Fundamental II chegou da mesma forma. Foram os próprios alunos da escola que, ao avançar de série, permitiram a abertura de novas turmas. A escola cresceu junto com eles.</p>
-    <h3>A chegada do tempo integral</h3>
-    <p>Por muito tempo, o tempo integral foi uma realidade apenas das escolas dos bairros mais conhecidos de Fortaleza. Um dia, recebi um pai que não tinha com quem deixar o filho e me pediu que pensasse em oferecer o tempo integral. A partir dessa conversa, decidi abrir a modalidade no ano seguinte, para atender àquela família e a tantas outras que precisavam desse apoio.</p>
-    <h3>A unidade Messejana</h3>
-    <p>A ideia de abrir a unidade Messejana partiu da minha irmã, Evanisse Nobre. Eu abracei a ideia e, hoje, estamos lá.</p></div>
+    <details class="historia-card">
+      <summary>
+        <span class="hc-selo">Uma história de superação</span>
+        <b class="hc-tit">De quatro salas a mais de 700 crianças</b>
+        <span class="hc-chamada">Uma casa adaptada, duas irmãs e um sonho que resistiu a tudo, até a uma pandemia.</span>
+        <span class="hc-btn">Ler a história</span>
+      </summary>
+      <div class="hc-texto">
+        <p>Em 2002, Elienice já era uma professora conhecida no bairro. Tinha um sonho grande e pouco recurso. Então fez o que dava: adaptou a própria casa, na Rua Jorge da Veiga, nº 595, e abriu ali a Escola Espaço Criativo.</p>
+        <p>Eram quatro salas, cinco professoras e 67 alunos logo no primeiro ano. Duas dessas professoras eram suas irmãs. Uma delas, Evanisse, começou ali, na sala de aula.</p>
+        <p>Não havia equipe grande. Elas recebiam as crianças no portão, organizavam as salas, faziam a limpeza e cuidavam da parte administrativa. No fim do dia, era a própria Elienice quem fechava a escola.</p>
+        <h3>Uma escola que cresceu junto com os alunos</h3>
+        <p>As famílias confiaram, e as crianças não queriam ir embora. Então, a cada turma que terminava uma etapa, a escola abria a série seguinte. Foi assim que chegaram o Fundamental I e, depois, o Fundamental II.</p>
+        <p>Um dia, um pai contou que não tinha com quem deixar o filho. Naquela época, tempo integral era coisa de escola de bairro nobre. No ano seguinte, a Espaço Criativo passou a oferecer. A creche começou em duas salas e uma cozinha adaptadas e, com Evanisse à frente, cresceu até se tornar o Espaço Brincar.</p>
+        <h3>O dia em que as portas fecharam</h3>
+        <p>Em 2020, veio a pandemia. A escola fechou de uma hora para outra, sem saber o que viria depois. Foi o momento mais difícil de toda a história. Teve medo, teve insegurança, teve muita pergunta sem resposta.</p>
+        <p>Mas a educação não parou. A escola se reinventou para não perder o vínculo com os alunos e as famílias. Na volta, foi preciso reconstruir a rotina, readaptar as crianças e recuperar o que ficou para trás. Foram anos de esforço, e a escola atravessou tudo isso de pé.</p>
+        <h3>O aluno que quase desistiu</h3>
+        <p>Entre tantas histórias, uma resume o que a escola é. Um aluno do 9º ano, mais velho que a turma, procurou uma educadora e disse que ia largar os estudos. Ela parou, ouviu e acreditou nele. Ele ficou.</p>
+        <p>Anos depois, aquele aluno se formou em Educação Física e voltou para a Espaço Criativo, agora como professor, ao lado de quem ajudou na sua formação.</p>
+        <h3>Hoje</h3>
+        <p>A casa de quatro salas virou uma escola com mais de 700 crianças e duas unidades. A segunda, em Messejana, nasceu de uma ideia de Evanisse, que Elienice abraçou na hora.</p>
+        <p>Muita coisa mudou. O que não mudou foi o jeito: olhar cada criança pelo nome, respeitar o tempo de cada uma e caminhar junto com as famílias.</p>
+        <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre, fundadora</cite></blockquote>
+        <p class="hc-fim">Mais que uma escola, um lugar para pertencer.</p>
+      </div>
     </details>
   </div>
 </section>
@@ -412,13 +431,8 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
 <section id="valores" class="claro" style="--c:var(--lilas)">
   <div class="wrap">
     <div class="cab"><span class="num">5</span><div><small>Turmas e valores</small><h2>Investimento na educação</h2></div></div>
-    <p class="nota">Cada unidade tem seus próprios valores. Escolha a unidade:</p>
-    <div class="abas" role="tablist">
-      <button type="button" class="aba" role="tab" id="t-sm" aria-controls="p-sm" aria-selected="true" style="--c:var(--verde)">Parque Santa Maria<small>Berçário ao 9º ano</small></button>
-      <button type="button" class="aba" role="tab" id="t-me" aria-controls="p-me" aria-selected="false" style="--c:var(--azul)">Messejana<small>Colégio Maria de Fátima · Berçário ao 5º ano</small></button>
-    </div>
-
-    <div class="painel" id="p-sm" role="tabpanel" aria-labelledby="t-sm" style="--c:var(--verde)">
+    <p class="nota">Valores da unidade Parque Santa Maria. Para a unidade Messejana, fale com a escola pelo WhatsApp.</p>
+    <div class="painel" id="p-sm" style="--c:var(--verde)">
       <div class="faixa com-logo"><img src="img/logo.png" alt="Logo da unidade Parque Santa Maria"><div><b>Unidade Parque Santa Maria</b><span>Berçário ao 9º ano · WhatsApp (85) 99407-1372</span></div></div>
       <div class="grade">
         <details class="card ver" style="--c:var(--vermelho)"><summary><span class="etq">Mensalidade</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
@@ -444,52 +458,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
       <div class="selos" style="--c:var(--verde)"><span>Desconto pagando até o dia 05</span><span>Irmãos: R$ 10,00 de desconto</span><span>Agenda digital: R$ 60,00</span></div>
     </div>
 
-    <div class="painel" id="p-me" role="tabpanel" aria-labelledby="t-me" style="--c:var(--azul)" hidden>
-      <div class="faixa com-logo"><img src="img/logo-messejana.png" alt="Logo da unidade Messejana"><div><b>Unidade Messejana · Colégio Maria de Fátima</b><span>Berçário ao 5º ano · Matrículas 2027 · Rua Santa Efigênia, 300 · WhatsApp (85) 97400-7393</span></div></div>
-      <p class="me-slogan">Educação que desenvolve <span style="color:var(--verde)">mente</span>, <span style="color:var(--laranja)">coração</span> e <span style="color:var(--azul)">conexões</span> para a vida.</p>
-      <div class="difs">
-        <span style="--c:var(--azul)">Acolhimento que abraça</span>
-        <span style="--c:var(--vermelho)">Desenvolvimento socioemocional</span>
-        <span style="--c:var(--laranja)">Parceria com as famílias</span>
-        <span style="--c:var(--verde)">Inglês integrado na prática</span>
-      </div>
-      <div class="grade">
-        <details class="card ver" style="--c:var(--azul)"><summary><span class="etq">Mensalidade 2027</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
-          <p class="nota" style="margin:0 0 4px">Matrícula em novembro: mensalidade com 10% de desconto. Em dezembro: 5%.</p>
-          <div class="turma"><h4>Berçário <small>integral, 7h às 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.575,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.662,50</b></div></div>
-          <div class="turma"><h4>Berçário <small>integral, 7h às 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 1.710,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 1.805,00</b></div></div>
-          <div class="turma"><h4>Berçário <small>meio período</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 900,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 810,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 855,00</b></div></div>
-        </div></details>
-        <details class="card ver" style="--c:var(--laranja)"><summary><span class="etq">Infantil, Fundamental e integral</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
-          <div class="turma"><h4>Educação Infantil <small>Infantil I ao V · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 650,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 585,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 617,50</b></div></div>
-          <div class="turma"><h4>Fundamental I <small>1º ao 5º ano · manhã</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 750,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 675,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 712,50</b></div></div>
-          <div class="turma"><h4>Tempo integral <small>tarde, até as 17h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 940,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 846,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 893,00</b></div></div>
-          <div class="turma"><h4>Tempo integral <small>tarde, até as 18h</small></h4><div class="linha"><span>Mensalidade</span><b>R$ 1.050,00</b></div><div class="linha"><span>Novembro −10%</span><b class="d">R$ 945,00</b></div><div class="linha"><span>Dezembro −5%</span><b>R$ 997,50</b></div></div>
-        </div></details>
-        <details class="card ver" style="--c:var(--verde)"><summary><span class="etq">Material didático</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
-          <table class="tab">
-            <tr><td>Infantil I</td><td>R$ 299,00</td></tr><tr><td>Infantil II</td><td>R$ 439,00</td></tr><tr><td>Infantil III</td><td>R$ 775,00</td></tr><tr><td>Infantil IV</td><td>R$ 790,00</td></tr><tr><td>Infantil V</td><td>R$ 850,00</td></tr>
-            <tr><td>1º ano</td><td>R$ 1.450,00</td></tr><tr><td>2º ano</td><td>R$ 1.500,00</td></tr><tr><td>3º ano</td><td>R$ 1.550,00</td></tr><tr><td>4º ano</td><td>R$ 1.600,00</td></tr><tr><td>5º ano</td><td>R$ 1.750,00</td></tr>
-          </table>
-        </div></details>
-        <div class="card" style="--c:var(--lilas)"><span class="etq">Contraturno e diárias</span>
-          <table class="tab">
-            <tr><td>Contraturno escolar</td><td>R$ 940,00</td></tr>
-            <tr><td>Diária integral</td><td>R$ 110,00</td></tr>
-            <tr><td>Diária meio período</td><td>R$ 80,00</td></tr>
-            <tr><td>Agenda digital</td><td>R$ 60,00</td></tr>
-          </table>
-        </div>
-        <div class="card" style="--c:var(--vermelho)"><span class="etq">Documentos · novos alunos</span>
-          <ul class="docs"><li>4 fotos 3x4 atualizadas</li><li>1 pasta escolar</li><li>Cópia do registro da criança</li><li>Cópia do RG e CPF dos responsáveis</li><li>Cópia do comprovante de residência atual</li><li>Cópia do cartão de vacina atualizado</li><li>Declaração da escola anterior com a série e a quitação das mensalidades</li></ul>
-        </div>
-        <div class="card" style="--c:var(--verde)"><span class="etq">Documentos · veteranos</span>
-          <ul class="docs"><li>Contrato de Prestação de Serviços 2027</li><li>Atualização da ficha cadastral</li><li>Pagamento da matrícula</li></ul>
-        </div>
-      </div>
-      <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form="me">Pedir matrícula em Messejana</button></div>
-      <div class="selos" style="--c:var(--azul)"><span>Desconto pagando até o dia 05: R$ 20,00</span><span>Irmãos: R$ 10,00 de desconto</span><span>Indique um amigo: 10% de desconto</span><span>Fardamento, livros e agenda à venda na escola</span></div>
-    </div>
+    
   </div>
 </section>
 
@@ -532,7 +501,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
         <h3>Messejana · Colégio Maria de Fátima</h3>
         <p>Berçário ao 5º ano · Rua Santa Efigênia, 300 · WhatsApp (85) 97400-7393</p>
         <div class="botoes">
-          <button type="button" class="btn zap" data-form="me"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</button>
+          <a class="btn zap" href="https://wa.me/5585974007393" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a>
           <a class="btn branco" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">📍 Mapa</a>
           <a class="ig" href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener" aria-label="Instagram da unidade Messejana"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
         </div>
@@ -614,8 +583,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   </div>
   <form class="jcorpo fz" id="fz" novalidate>
     <fieldset class="fz-unid"><legend>Unidade</legend>
-      <label><input type="radio" name="unid" value="sm" id="fz-sm"> Parque Santa Maria<small>Berçário ao 9º ano</small></label>
-      <label><input type="radio" name="unid" value="me" id="fz-me"> Messejana<small>Berçário ao 5º ano</small></label>
+      <label><input type="radio" name="unid" value="sm" id="fz-sm" checked> Parque Santa Maria<small>Berçário ao 9º ano</small></label>
     </fieldset>
     <label for="fz-resp">Nome do pai, mãe ou responsável</label>
     <input id="fz-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
@@ -733,7 +701,7 @@ dialog::backdrop{background:rgba(13,15,116,.55)}
   $('fz').addEventListener('submit',function(e){e.preventDefault();});
   document.querySelectorAll('[data-form]').forEach(function(b){
     b.addEventListener('click',function(){
-      var u=b.dataset.form; if(u){$('fz-'+u).checked=true;} trocaUnidade(); $('fz-erro').textContent='';
+      $('fz-sm').checked=true; trocaUnidade(); $('fz-erro').textContent='';
       if(d.showModal)d.showModal();
     });
   });
