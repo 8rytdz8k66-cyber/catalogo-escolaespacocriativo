@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo Espaço Criativo Messejana</title>
+<meta name="description" content="Escola Espaço Criativo, unidade Messejana (Colégio Maria de Fátima): berçário ao 5º ano em Fortaleza. Conheça a escola, as turmas e fale com a gente pelo WhatsApp.">
+<meta name="theme-color" content="#1a4f9c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Espaço Criativo Messejana · Mais que uma escola, um lugar para pertencer">
+<meta property="og:description" content="Berçário ao 5º ano na Rua Santa Efigênia, 300. Conheça a unidade, as turmas e fale com a gente.">
+<meta property="og:image" content="https://8rytdz8k66-cyber.github.io/catalogo-escolaespacocriativo/img/logo-messejana.png">
+<meta property="og:url" content="https://8rytdz8k66-cyber.github.io/catalogo-escolaespacocriativo/messejana/">
+<link rel="icon" href="../img/logo-messejana.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cores do logo de Messejana: fundo creme, ondas azuis, sol amarelo e letras em arco-íris */
+  --marinho:#163f86;
+  --marinho-2:#1f56a8;
+  --onda:#2f8fd0;
+  --agua:#5cc3e0;
+  --vermelho:#e53b2c;
+  --laranja:#f7941d;
+  --amarelo:#f9c22e;
+  --verde:#2e9e47;
+  --azul:#2a9be0;
+  --lilas:#7a68c4;
+  --creme:#fff8ea;
+  --papel:#fffdf7;
+  --branco:#ffffff;
+  --tinta:#1d2a4a;
+  --cinza:#5e6680;
+  --linha:#ece3cf;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --script:"Caveat","Brush Script MT",cursive;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px;-webkit-text-size-adjust:100%}
+html.travado{overflow:hidden}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--amarelo);color:var(--marinho)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px;border-radius:10px}
+img{max-width:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+@media (min-width:768px){.wrap{padding:0 28px}}
+h1,h2,h3{font-family:var(--display);line-height:1.1;text-wrap:balance;margin:0;color:var(--marinho)}
+h2{font-size:clamp(27px,5.6vw,40px);letter-spacing:-.01em}
+h3{font-size:21px}
+p{margin:0 0 14px}
+.nota{color:var(--cinza);font-size:15px;line-height:1.5}
+.arco{height:8px;background:linear-gradient(90deg,var(--vermelho) 0 16.6%,var(--laranja) 0 33.3%,var(--amarelo) 0 50%,var(--verde) 0 66.6%,var(--azul) 0 83.3%,var(--lilas) 0)}
+
+.cab{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.num{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--display);font-weight:800;font-size:22px;background:var(--c)}
+.cab small{display:block;font-family:var(--display);font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.09em;font-size:12.5px}
+section{padding:56px 0;scroll-margin-top:58px}
+@media (min-width:768px){section{padding:80px 0}}
+main > section:nth-of-type(odd){background:var(--branco)}
+main > section:nth-of-type(even){background:var(--creme)}
+main > section.numeros,main > section.contato{background:var(--marinho)}
+
+/* Capa: creme com ondas azuis, como o logo */
+.capa{background:var(--creme);text-align:center;position:relative;overflow:hidden;padding:40px 0 120px}
+.capa .wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.enfeites{position:absolute;inset:0;pointer-events:none;z-index:1}
+.enfeites .sol{position:absolute;right:7%;top:28px;width:64px;height:64px}
+.enfeites .aviao{position:absolute;left:6%;top:40px;width:70px;height:46px}
+.enfeites b{position:absolute;font-size:26px;line-height:1}
+.enfeites .canto{position:absolute;left:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:var(--amarelo);opacity:.85}
+.ondas{position:absolute;left:0;right:0;bottom:0;height:130px;z-index:1}
+.ondas svg{width:100%;height:100%;display:block}
+.logo{width:min(240px,60vw);border-radius:50%;box-shadow:0 0 0 6px #fff,0 0 0 12px var(--agua),0 16px 34px rgba(22,63,134,.25)}
+.capa h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.tag{display:inline-block;margin-top:24px;font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--marinho);padding:5px 14px;border-radius:999px}
+.slogan{font-family:var(--display);font-weight:800;color:var(--marinho);font-size:clamp(25px,6.4vw,36px);line-height:1.15;margin:14px 0 8px;max-width:20em}
+.slogan .m{color:var(--verde)}.slogan .c{color:var(--laranja)}.slogan .x{color:var(--azul)}
+.capa .sub{color:var(--cinza);max-width:32em;margin:0 0 22px;font-size:16px}
+.botoes{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:17px;padding:11px 20px;border-radius:14px;border:0;cursor:pointer;min-height:46px;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.zap{background:#1f9a3d;color:#fff}
+.capa .btn.zap{font-size:19px;padding:15px 28px;border-radius:16px;box-shadow:0 10px 26px rgba(37,162,68,.35)}
+.btn.branco{background:#fff;color:var(--marinho)}
+.btn.marinho{background:var(--marinho);color:#fff}
+
+.menu{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--linha);box-shadow:0 2px 10px rgba(22,63,134,.06)}
+.menu-in{max-width:880px;margin:0 auto;padding:9px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;mask-image:linear-gradient(90deg,#000 92%,transparent)}
+.menu-in::-webkit-scrollbar{display:none}
+.menu a{flex:none;text-decoration:none;font-family:var(--display);font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;color:#fff;background:var(--c);opacity:.82;min-height:36px;display:inline-flex;align-items:center;transition:opacity .2s,transform .2s}
+.menu a.ativo,.menu a:hover{opacity:1;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+
+/* 1 Quem somos */
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:20px;justify-items:center;text-align:center;max-width:560px;margin:0 auto}
+.duas figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.circ{width:150px;height:150px;border-radius:50%;border:6px solid var(--c);overflow:hidden;box-shadow:0 12px 28px rgba(22,63,134,.18);background:var(--creme)}
+.circ img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:400px){.circ{width:132px;height:132px}}
+@media (min-width:600px){.circ{width:170px;height:170px}}
+.duas b{display:block;font-family:var(--display);font-size:19px;color:var(--marinho);line-height:1.15}
+.duas figcaption span{color:var(--cinza);font-size:14.5px}
+.intro{max-width:620px;margin:26px auto 0;text-align:center}
+.conheca{margin:22px auto 0;display:flex;align-items:center;gap:14px;width:100%;max-width:560px;text-align:left;border:0;cursor:pointer;font:inherit;color:#fff;background:linear-gradient(135deg,var(--marinho),var(--onda));border-radius:22px;padding:14px 16px;box-shadow:0 10px 24px rgba(22,63,134,.22);transition:transform .18s,box-shadow .18s}
+.conheca:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(22,63,134,.28)}
+.conheca img{width:62px;height:62px;border-radius:50%;border:3px solid var(--amarelo);flex:none;background:#fff}
+.conheca small{display:block;font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--amarelo)}
+.conheca b{display:block;font-family:var(--display);font-size:20px;line-height:1.12}
+.conheca em{display:block;font-style:normal;color:#d8e9ff;font-size:14px;margin-top:2px}
+.conheca .seta{margin-left:auto;font-size:38px;line-height:1;color:var(--amarelo);flex:none}
+
+/* Números */
+.numeros{padding:28px 0}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.nums > div{padding:6px 4px}
+.nums > div + div{border-left:1px solid rgba(255,255,255,.18)}
+.nums b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,50px);line-height:1}
+.nums span{color:#d8e9ff;font-weight:700;font-size:14.5px}
+
+/* 2 História */
+.tempo{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tempo li{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:12px 14px;border-radius:16px;background:var(--branco);border-left:7px solid var(--c);box-shadow:0 2px 10px rgba(22,63,134,.05)}
+.tempo .q{font-family:var(--display);font-weight:800;font-size:19px;color:var(--marinho);font-variant-numeric:tabular-nums}
+.tempo b{display:block;font-family:var(--display);font-size:18px;color:var(--marinho)}
+@media (max-width:480px){.tempo li{grid-template-columns:1fr;gap:0}}
+
+.txt{margin-top:30px;background:var(--branco);border-radius:22px;padding:22px 22px 10px;box-shadow:0 4px 14px rgba(22,63,134,.06)}
+.txt h3{color:var(--onda);font-size:21px;margin:20px 0 8px}
+.txt h3:first-child{margin-top:0}
+.txt p{max-width:66ch}
+.txt .hc-fim{font-family:var(--script);font-size:30px;color:var(--verde);margin-top:6px}
+/* 3 Nosso jeito */
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+@media (min-width:768px){.cards3{gap:18px}}
+.mini{background:#fff;border-radius:22px;padding:18px;border-top:7px solid var(--c);box-shadow:0 6px 18px rgba(22,63,134,.07)}
+main > section:nth-of-type(odd) .mini{background:var(--creme)}
+.mini .ic{font-size:30px;line-height:1;display:block;margin-bottom:8px}
+.mini h3{font-size:19px;margin-bottom:6px}
+.mini p{font-size:15.5px;margin:0}
+.citacao{position:relative;margin:24px 0 0;padding:26px 26px 22px 30px;background:var(--marinho);color:#fff;border-radius:22px}
+.citacao::before{content:"“";position:absolute;top:-18px;left:18px;font-family:Georgia,serif;font-size:90px;line-height:1;color:var(--amarelo)}
+.citacao p{font-family:var(--script);font-size:30px;line-height:1.2;margin:0 0 8px}
+.citacao cite{font-style:normal;font-weight:700;color:var(--amarelo);font-size:15px}
+
+/* 4 Vídeo */
+.video-box{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:22px;align-items:center;background:linear-gradient(135deg,#fff1cc,#dff1fb);border-radius:24px;padding:18px}
+.video-box video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:#000;display:block;box-shadow:0 10px 24px rgba(22,63,134,.2)}
+.video-box h3{font-size:24px}
+.video-box p{color:var(--cinza);margin:6px 0 12px}
+@media (max-width:560px){.video-box{grid-template-columns:1fr}.video-box video{max-width:320px;margin:0 auto}}
+
+/* 5 Turmas e valores */
+.faixa{border-radius:20px;padding:16px 18px;color:#fff;background:var(--c);margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.faixa img{width:76px;height:76px;flex:none;border-radius:50%;border:3px solid #fff;background:#fff}
+.faixa b{display:block;font-family:var(--display);font-size:23px;line-height:1.1}
+.faixa span{font-size:14px;opacity:.92}
+.promo{display:flex;gap:12px;align-items:center;background:#fff4d1;border:2px dashed var(--amarelo);border-radius:18px;padding:12px 16px;margin-bottom:14px}
+.promo b{font-family:var(--display);font-size:30px;color:var(--vermelho);line-height:1;flex:none}
+.promo p{margin:0;font-weight:700;font-size:15px;color:var(--marinho)}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:#fff;border-radius:22px;padding:16px 18px;box-shadow:0 4px 14px rgba(22,63,134,.06)}
+.etq{display:inline-block;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--c);padding:3px 12px;border-radius:999px}
+.tab{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tab td{padding:9px 0;border-bottom:1px dotted var(--linha);vertical-align:top}
+.tab tr:last-child td{border-bottom:0}
+.tab td:last-child{text-align:right;font-weight:800;white-space:nowrap;padding-left:10px;color:var(--marinho)}
+.tab small{display:block;color:var(--cinza);font-weight:600;font-size:13px}
+.tab.grande td:last-child{font-family:var(--display);font-size:21px}
+.tab .riscado{display:block;font-size:13px;color:var(--cinza);text-decoration:line-through;font-weight:600}
+details.card.ver summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+details.card.ver summary::-webkit-details-marker{display:none}
+.ver-btn{font-family:var(--display);font-weight:700;font-size:15px;color:var(--c);border:2px solid var(--c);border-radius:999px;padding:4px 14px;background:#fff}
+.ver-btn::after{content:" ▾"}
+details.card.ver[open] .ver-btn{color:#fff;background:var(--c)}
+details.card.ver[open] .ver-btn::after{content:" ▴"}
+.ver-corpo{margin-top:10px}
+.selos{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.selos span{font-weight:700;font-size:14.5px;padding:7px 14px;border-radius:999px;background:#fff;border:2px solid var(--c);color:var(--tinta)}
+
+.portao{background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 14px rgba(22,63,134,.08);border-top:7px solid var(--onda)}
+.portao h3{font-size:24px;margin-bottom:2px}
+.portao label,.fz label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.portao input[type=text],.fz input[type=text],.fz select,.avaliar input,.avaliar select,.avaliar textarea,.irmao-linha input,.irmao-linha select{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta);min-height:48px;transition:border-color .15s,box-shadow .15s}
+.portao input:focus,.fz input:focus,.fz select:focus,.avaliar input:focus,.avaliar select:focus,.avaliar textarea:focus,.irmao-linha input:focus,.irmao-linha select:focus{border-color:var(--azul);box-shadow:0 0 0 4px rgba(42,155,224,.15);outline:none}
+.portao button[type=submit]{font-size:18px;min-height:52px}
+.pt-irmao{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px;border:2px solid var(--linha);border-radius:14px;background:#fff}
+.pt-irmao:has(input:checked){border-color:var(--verde)}
+.pt-perg{margin:0;font-size:15.5px;font-weight:800;color:var(--marinho);line-height:1.3}
+.pt-perg span{display:block;font-weight:700;font-size:13.5px;color:var(--verde)}
+.pt-sim{flex:none;display:inline-flex!important;align-items:center;gap:8px;margin:0!important;padding:8px 14px;border:2px solid var(--linha);border-radius:999px;font-weight:700;cursor:pointer;min-height:44px}
+.pt-sim input{width:20px;height:20px;accent-color:var(--verde);margin:0}
+.pt-sim:has(input:checked){border-color:var(--verde);background:#e7f6ea;color:var(--verde)}
+.pt-ola{background:#e3f2fc;border-left:6px solid var(--onda);border-radius:12px;padding:10px 14px;font-weight:700;color:var(--marinho)}
+#precos{scroll-margin-top:70px}
+.irmao-linha{border:2px dashed #cfe9d5;border-radius:14px;padding:10px 12px 12px;margin-top:10px;background:#fbfffb}
+.irmao-cab{display:flex;justify-content:space-between;align-items:center}
+.irmao-cab b{font-family:var(--display);color:var(--verde);font-size:16px}
+.irmao-tira{border:0;background:none;color:var(--vermelho);font-weight:700;font-size:14px;cursor:pointer;padding:6px}
+.irmao-linha label{display:block;font-weight:700;font-size:14.5px;margin:8px 0 4px}
+.add-irmao{margin-top:10px;width:100%;border:2px solid var(--verde);background:#fff;color:var(--verde);font:inherit;font-family:var(--display);font-weight:700;font-size:16px;border-radius:14px;padding:10px;cursor:pointer;min-height:46px}
+.fz-dica{font-size:14px;color:var(--verde);font-weight:700;margin:6px 0 0}
+.fz-valor{margin-top:16px;background:#fff;border:2px solid var(--amarelo);border-radius:16px;padding:12px 14px}
+.fz-valor b{font-family:var(--display);color:var(--marinho);font-size:17px}
+.fz-valor ul{list-style:none;margin:6px 0 0;padding:0}
+.fz-valor li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-variant-numeric:tabular-nums}
+.fz-valor li strong{white-space:nowrap}
+.fz-desc{font-size:14px;color:var(--cinza);margin:6px 0 0}
+.fz-erro{color:var(--vermelho);font-weight:700;font-size:14px;margin:10px 0 0;min-height:1em}
+.fz-enviar{width:100%;justify-content:center;margin-top:8px}
+.fz-enviar[aria-disabled="true"],#av-enviar[aria-disabled="true"]{opacity:.55}
+
+/* 6 Avaliações */
+.carrossel{overflow:hidden;margin:0 -18px 22px;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.trilho{display:flex;gap:14px;width:max-content;padding:4px 18px;animation:passa 30s linear infinite}
+.carrossel:hover .trilho{animation-play-state:paused}
+@keyframes passa{to{transform:translateX(-50%)}}
+.coment{margin:0;width:270px;flex:none;background:#fff;border-radius:18px;padding:14px 16px;border-top:6px solid var(--amarelo)}
+.coment blockquote{margin:6px 0 8px;font-size:15.5px}
+.coment figcaption{font-weight:700;font-size:14px;color:var(--marinho)}
+.mini-est{color:var(--amarelo);letter-spacing:2px}
+.avaliar{background:linear-gradient(135deg,#fff3d2,#e3f2fc);border:1px solid #f3e3b0;border-radius:22px;padding:18px}
+.avaliar h3{font-size:22px}
+.avaliar label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.estrelas{display:flex;gap:4px;margin-top:6px}
+.estrelas button{background:none;border:0;cursor:pointer;font-size:38px;line-height:1;color:#d9d4c4;padding:0 2px;min-width:44px;min-height:44px;transition:transform .12s}
+.estrelas button:hover{transform:scale(1.12)}
+.estrelas button.on{color:var(--amarelo)}
+
+/* 7 Contato */
+.contato{color:#fff}
+.contato h2,.contato h3{color:#fff}
+.unids{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:18px}
+.unid{background:var(--marinho-2);border-radius:20px;padding:18px;border-top:7px solid var(--c);transition:transform .18s}
+.unid:hover{transform:translateY(-2px)}
+.unid-logo{width:84px;height:84px;border-radius:50%;border:3px solid #fff;background:#fff;display:block;margin-bottom:10px}
+.unid p{color:#d8e9ff;font-size:15px;margin:4px 0 12px}
+.unid .botoes{justify-content:flex-start}
+.unid .btn{font-size:15px;padding:9px 14px}
+.unid .btn.branco{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.unid.outra{background:rgba(255,255,255,.06);border-top-color:var(--verde)}
+.ig{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;color:#fff;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285aeb 90%);transition:transform .15s}
+.ig:hover{transform:scale(1.06)}
+.ig svg{width:26px;height:26px}
+.contato .nota a{color:var(--amarelo)}
+.fim{font-family:var(--script);font-size:34px;color:var(--amarelo);text-align:center;margin:30px 0 0}
+footer{background:var(--marinho);color:#a9c2ea;text-align:center;font-size:13px;padding:0 0 26px}
+
+/* Janelas */
+dialog{border:0;padding:0;border-radius:24px;width:min(660px,94vw);max-height:88vh;background:var(--papel);color:var(--tinta);box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+dialog[open]{display:flex;flex-direction:column;animation:sobe .22s ease-out}
+dialog::backdrop{background:rgba(22,63,134,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+@keyframes sobe{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+@media (max-width:560px){dialog{width:100%;max-width:100%;max-height:92vh;margin:auto 0 0;border-radius:24px 24px 0 0}}
+.jtopo{display:flex;gap:14px;align-items:center;padding:16px 18px;background:var(--marinho);color:#fff}
+.jtopo img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:4px solid var(--amarelo);flex:none;background:#fff}
+.jtopo h2{color:#fff;font-size:21px}
+.jtopo p{margin:2px 0 0;font-size:13.5px;color:#d8e9ff;line-height:1.35}
+.fechar{margin-left:auto;align-self:flex-start;background:rgba(255,255,255,.15);color:#fff;border:0;width:40px;height:40px;border-radius:50%;font-size:26px;line-height:1;cursor:pointer;flex:none}
+.jcorpo{overflow-y:auto;padding:20px 22px 26px}
+.jcorpo p{max-width:62ch}
+.jcorpo h3{color:var(--onda);font-size:20px;margin:22px 0 8px}
+.jcorpo .citacao p{font-size:27px}
+.jcorpo .hc-fim{font-family:var(--script);font-size:28px;color:var(--verde)}
+</style>
+</head>
+<body>
+
+<header class="capa">
+  <div class="enfeites" aria-hidden="true">
+    <span class="canto"></span>
+    <svg class="aviao" viewBox="0 0 70 46" fill="none" stroke="#2f8fd0" stroke-width="2.5" stroke-linejoin="round"><path d="M4 22 66 4 40 42 32 28Z"/><path d="M32 28 66 4"/></svg>
+    <svg class="sol" viewBox="0 0 64 64" fill="none" stroke="#f9c22e" stroke-width="3.5" stroke-linecap="round"><circle cx="32" cy="32" r="12"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8M13.6 13.6l5.6 5.6M44.8 44.8l5.6 5.6M13.6 50.4l5.6-5.6M44.8 19.2l5.6-5.6"/></svg>
+    <b style="left:8%;top:58%;color:var(--laranja)">☆</b>
+    <b style="right:7%;top:56%;color:var(--verde)">☆</b>
+    <b style="left:22%;top:20%;color:var(--azul)">✦</b>
+  </div>
+  <div class="wrap">
+    <img class="logo" src="../img/logo-messejana.png" alt="Logo Espaço Criativo Escola e Creche, unidade Messejana" width="240" height="240" fetchpriority="high">
+    <h1>Escola Espaço Criativo · Unidade Messejana</h1>
+    <span class="tag">Unidade Messejana</span>
+    <p class="slogan">Educação que desenvolve <span class="m">mente</span>, <span class="c">coração</span> e <span class="x">conexões</span> para a vida.</p>
+    <p class="sub">Do berçário ao 5º ano, na Rua Santa Efigênia, 300, em Messejana. O mesmo jeito de cuidar e ensinar da Espaço Criativo, agora pertinho de você.</p>
+    <div class="botoes">
+      <button type="button" class="btn zap" data-form>Quero matricular meu filho</button>
+    </div>
+  </div>
+  <div class="ondas" aria-hidden="true">
+    <svg viewBox="0 0 1440 130" preserveAspectRatio="none"><path fill="#5cc3e0" d="M0 60C240 10 420 110 720 70s520-60 720 0v60H0Z"/><path fill="#163f86" d="M0 90C260 50 480 130 760 96s480-40 680-10v44H0Z"/></svg>
+  </div>
+</header>
+<div class="arco" aria-hidden="true"></div>
+
+<nav class="menu" aria-label="Partes do catálogo">
+  <div class="menu-in">
+    <a href="#quem-somos" style="--c:var(--vermelho)">1 Quem somos</a>
+    <a href="#historia" style="--c:var(--laranja)">2 História</a>
+    <a href="#jeito" style="--c:var(--verde)">3 Nosso jeito</a>
+    <a href="#video" style="--c:var(--azul)">4 Vídeo</a>
+    <a href="#valores" style="--c:var(--lilas)">5 Turmas e valores</a>
+    <a href="#avaliar" style="--c:var(--amarelo);color:var(--marinho)">6 Avaliações</a>
+    <a href="#contato" style="--c:var(--marinho)">7 Contato</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="quem-somos" style="--c:var(--vermelho)">
+  <div class="wrap">
+    <div class="cab"><span class="num">1</span><div><small>Quem somos</small><h2>Duas irmãs, uma nova casa em Messejana</h2></div></div>
+    <div class="duas">
+      <figure style="--c:var(--vermelho)"><span class="circ"><img src="../img/elienice-rosto.jpg" alt="Elienice Lima Nobre" width="170" height="170" loading="lazy" decoding="async"></span><figcaption><b>Elienice Lima Nobre</b><span>Fundadora</span></figcaption></figure>
+      <figure style="--c:var(--verde)"><span class="circ"><img src="../img/evanisse-rosto.jpg" alt="Evanisse Lima Nobre" width="170" height="170" loading="lazy" decoding="async"></span><figcaption><b>Evanisse Lima Nobre</b><span>Coordenadora geral · idealizadora da unidade</span></figcaption></figure>
+    </div>
+    <p class="intro">A unidade Messejana nasceu de uma ideia de Evanisse, que Elienice abraçou na hora. É o capítulo mais novo de uma escola que começou em 2002, numa casa de quatro salas, e hoje cuida de mais de 700 crianças.</p>
+    <button type="button" class="conheca" data-historia>
+      <img src="../img/logo-messejana.png" alt="" loading="lazy" decoding="async">
+      <span><small>Uma história de superação</small><b>Venha conhecer a história da nossa escola</b><em>De quatro salas a duas unidades</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
+  </div>
+</section>
+
+<section class="numeros" aria-label="A escola em números">
+  <div class="wrap nums">
+    <div><b style="color:var(--amarelo)">23</b><span>anos de Espaço Criativo</span></div>
+    <div><b style="color:#7fd38f">+700</b><span>crianças na rede</span></div>
+    <div><b style="color:#9fdcf0">0–5º</b><span>berçário ao 5º ano</span></div>
+  </div>
+</section>
+
+<section id="historia" style="--c:var(--laranja)">
+  <div class="wrap">
+    <div class="cab"><span class="num">2</span><div><small>Nossa história</small><h2>De uma casa no bairro até Messejana</h2></div></div>
+    <ol class="tempo">
+      <li style="--c:var(--vermelho)"><span class="q">2002</span><div><b>Nasce a Espaço Criativo</b>Na casa da fundadora, com quatro salas e 67 alunos.</div></li>
+      <li style="--c:var(--laranja)"><span class="q">2003–2010</span><div><b>A escola cresce com os alunos</b>Chegam o Fundamental, a creche e o tempo integral.</div></li>
+      <li style="--c:var(--verde)"><span class="q">2018–2019</span><div><b>Escola ampliada</b>Novos prédios para o Fundamental II e a creche.</div></li>
+      <li style="--c:var(--lilas)"><span class="q">2020</span><div><b>Pandemia</b>O momento mais difícil, superado com união, fé e resiliência.</div></li>
+      <li style="--c:var(--azul)"><span class="q">2024–2025</span><div><b>Chega a unidade Messejana</b>A ideia de Evanisse vira a segunda unidade, no Colégio Maria de Fátima.</div></li>
+    </ol>
+
+    <button type="button" class="conheca" data-historia style="margin-top:22px">
+      <img src="../img/logo-messejana.png" alt="" loading="lazy" decoding="async">
+      <span><small>Uma história de superação</small><b>Venha conhecer a história da nossa escola</b><em>Toque para ler a história completa</em></span>
+      <span class="seta" aria-hidden="true">›</span>
+    </button>
+  </div>
+</section>
+
+<section id="jeito" style="--c:var(--verde)">
+  <div class="wrap">
+    <div class="cab"><span class="num">3</span><div><small>Nosso jeito</small><h2>O que a criança encontra aqui</h2></div></div>
+    <div class="cards3">
+      <div class="mini" style="--c:var(--azul)"><span class="ic" aria-hidden="true">🤗</span><h3>Acolhimento que abraça</h3><p>Cada criança é chamada pelo nome e acompanhada no seu tempo, do berçário em diante.</p></div>
+      <div class="mini" style="--c:var(--vermelho)"><span class="ic" aria-hidden="true">💛</span><h3>Desenvolvimento socioemocional</h3><p>Além do conteúdo, a criança aprende a conviver, a lidar com o que sente e a confiar em si.</p></div>
+      <div class="mini" style="--c:var(--laranja)"><span class="ic" aria-hidden="true">🏡</span><h3>Parceria com as famílias</h3><p>Escola presente no dia a dia, que conversa com os pais e caminha junto com eles.</p></div>
+      <div class="mini" style="--c:var(--verde)"><span class="ic" aria-hidden="true">🌎</span><h3>Inglês integrado na prática</h3><p>O inglês entra na rotina de um jeito natural, brincando e vivendo a língua.</p></div>
+    </div>
+    <blockquote class="citacao">
+      <p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p>
+      <cite>Elienice Lima Nobre, fundadora</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="video" style="--c:var(--azul)">
+  <div class="wrap">
+    <div class="cab"><span class="num">4</span><div><small>Vídeo</small><h2>Conheça a escola em vídeo</h2></div></div>
+    <div class="video-box">
+      <video controls playsinline preload="none" poster="../img/video-capa.jpg" aria-label="Vídeo: uma conversa sobre a Espaço Criativo">
+        <source src="../img/video-escola.mp4" type="video/mp4">
+      </video>
+      <div>
+        <h3>Uma conversa sobre a Espaço Criativo</h3>
+        <p>Aperte o play para assistir aqui mesmo. O vídeo tem cerca de 9 minutos.</p>
+        <a class="btn marinho" href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener">Ver a unidade no Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="valores" style="--c:var(--lilas)">
+  <div class="wrap">
+    <div class="cab"><span class="num">5</span><div><small>Turmas e valores</small><h2>Investimento na educação</h2></div></div>
+    <div class="faixa" style="--c:var(--onda)"><img src="../img/logo-messejana.png" alt="Logo da unidade Messejana" loading="lazy" decoding="async"><div><b>Unidade Messejana</b><span>Berçário ao 5º ano · WhatsApp (85) 97400-7393</span></div></div>
+    <div class="promo"><b>10%</b><p>Matrícula em novembro com 10% de desconto. Em dezembro, 5%.</p></div>
+
+    <form class="portao" id="portao" novalidate aria-describedby="pt-erro">
+      <h3>Veja os valores</h3>
+      <p class="nota">Preencha os dados abaixo para ver as mensalidades.</p>
+      <label for="pt-resp">Nome do pai, mãe ou responsável</label>
+      <input id="pt-resp" required aria-required="true" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+      <label for="pt-zap">WhatsApp do responsável</label>
+      <input id="pt-zap" required aria-required="true" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
+      <label for="pt-aluno">Nome do aluno</label>
+      <input id="pt-aluno" required aria-required="true" type="text" placeholder="Ex.: João">
+      <div class="pt-irmao">
+        <p class="pt-perg" id="pt-irmao-tit">Tem mais de 1 filho? <span>Estudando juntos, economizam!</span></p>
+        <label class="pt-sim"><input type="checkbox" id="pt-irmao-sim" aria-describedby="pt-irmao-tit"> Sim</label>
+      </div>
+      <div id="pt-irmao-box" hidden>
+        <div id="pt-irmaos"></div>
+        <button type="button" class="add-irmao" id="pt-add">+ Adicionar outro filho</button>
+      </div>
+      <p class="fz-erro" id="pt-erro" role="alert" aria-live="assertive"></p>
+      <button type="submit" class="btn zap" style="width:100%;justify-content:center">Ver valores</button>
+      <p class="nota" style="margin-top:8px">Seus dados não ficam salvos no catálogo. Eles só vão para a escola se você enviar pelo WhatsApp.</p>
+    </form>
+
+    <div id="precos" hidden>
+      <p class="pt-ola" id="pt-ola"></p>
+      <div class="grade">
+        <details class="card ver" style="--c:var(--vermelho)"><summary><span class="etq">Mensalidade</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
+          <table class="tab grande">
+            <tr><td>Educação Infantil<small>Infantil I ao V</small></td><td data-v="650">R$ 650,00</td></tr>
+            <tr><td>Fundamental I<small>1º ao 5º ano</small></td><td data-v="750">R$ 750,00</td></tr>
+          </table>
+        </div></details>
+        <details class="card ver" style="--c:var(--verde)"><summary><span class="etq">Berçário</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
+          <table class="tab">
+            <tr><td>Integral<small>7h às 17h</small></td><td data-v="1750">R$ 1.750,00</td></tr>
+            <tr><td>Integral<small>7h às 18h</small></td><td data-v="1900">R$ 1.900,00</td></tr>
+            <tr><td>Meio período<small>7h às 12h ou 13h às 18h</small></td><td data-v="900">R$ 900,00</td></tr>
+          </table>
+        </div></details>
+        <details class="card ver" style="--c:var(--azul)"><summary><span class="etq">Tempo integral</span><span class="ver-btn">Ver valores</span></summary><div class="ver-corpo">
+          <table class="tab">
+            <tr><td>Integral até as 17h<small>Infantil e Fundamental I</small></td><td>R$ 940,00</td></tr>
+            <tr><td>Integral até as 18h<small>Infantil e Fundamental I</small></td><td>R$ 1.050,00</td></tr>
+          </table>
+        </div></details>
+      </div>
+      <div class="botoes" style="justify-content:flex-start;margin-top:14px"><button type="button" class="btn zap" data-form>Pedir matrícula em Messejana</button></div>
+      <div class="selos" style="--c:var(--onda)"><span>Novembro: 10% de desconto</span><span>Dezembro: 5% de desconto</span><span>Material didático: consulte a escola</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="avaliar" style="--c:var(--amarelo)">
+  <div class="wrap">
+    <div class="cab"><span class="num" style="color:var(--marinho)">6</span><div><small style="color:#b07a00">Avaliações</small><h2>O que os pais dizem</h2></div></div>
+    <div class="carrossel" id="carrossel" hidden aria-live="polite"><div class="trilho" id="trilho"></div></div>
+    <div class="avaliar">
+      <h3>Avalie a Espaço Criativo Messejana</h3>
+      <div class="estrelas" role="radiogroup" aria-label="Nota de 1 a 5">
+        <button type="button" role="radio" aria-checked="false" data-n="1" aria-label="1 estrela">★</button><button type="button" role="radio" aria-checked="false" data-n="2" aria-label="2 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="3" aria-label="3 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="4" aria-label="4 estrelas">★</button><button type="button" role="radio" aria-checked="false" data-n="5" aria-label="5 estrelas">★</button>
+      </div>
+      <label for="av-nome">Seu nome</label><input id="av-nome" required aria-required="true" type="text" placeholder="Ex.: Ana, mãe do João">
+      <label for="av-txt">Seu comentário</label>
+      <textarea id="av-txt" required aria-required="true" rows="3" placeholder="Conte como é a experiência da sua família com a escola"></textarea>
+      <p class="fz-erro" id="av-erro" role="alert"></p>
+      <a class="btn zap" id="av-enviar" href="#" target="_blank" rel="noopener" aria-disabled="true" style="width:100%;justify-content:center">Enviar avaliação</a>
+    </div>
+  </div>
+</section>
+<div class="arco" aria-hidden="true"></div>
+<section id="contato" class="contato">
+  <div class="wrap">
+    <div class="cab" style="--c:var(--amarelo)"><span class="num" style="color:var(--marinho)">7</span><div><small>Contato</small><h2>Venha conhecer a unidade Messejana</h2></div></div>
+    <div class="unids">
+      <div class="unid" style="--c:var(--agua)">
+        <img class="unid-logo" src="../img/logo-messejana.png" alt="Logo da unidade Messejana" loading="lazy" decoding="async">
+        <h3>Messejana · Colégio Maria de Fátima</h3>
+        <p>Berçário ao 5º ano · Rua Santa Efigênia, 300 · WhatsApp (85) 97400-7393</p>
+        <div class="botoes">
+          <button type="button" class="btn zap" data-form><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</button>
+          <a class="btn branco" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">📍 Mapa</a>
+          <a class="ig" href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener" aria-label="Instagram da unidade Messejana"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div class="unid outra">
+        <img class="unid-logo" src="../img/logo.png" alt="Logo da unidade Parque Santa Maria" loading="lazy" decoding="async">
+        <h3>Também temos o Parque Santa Maria</h3>
+        <p>Do berçário ao 9º ano · WhatsApp (85) 99407-1372</p>
+        <div class="botoes">
+          <a class="btn branco" href="https://wa.me/5585994071372" target="_blank" rel="noopener">WhatsApp do Santa Maria</a>
+          <a class="ig" href="https://www.instagram.com/criativoespaco_sm/" target="_blank" rel="noopener" aria-label="Instagram da unidade Parque Santa Maria"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p class="nota" style="color:#d8e9ff;text-align:center;margin-top:18px">Site: <a href="https://escolaespacocriativo.com/" target="_blank" rel="noopener">escolaespacocriativo.com</a></p>
+    <p class="fim">Mais que uma escola, um lugar para pertencer!</p>
+  </div>
+</section>
+</main>
+<footer>Escola Espaço Criativo · Unidade Messejana · Colégio Maria de Fátima</footer>
+
+<template id="tpl-historia">
+    
+      <h3>Um sonho que começou em casa</h3>
+      <p>Toda grande escola começa com alguém que acredita antes de todos. No caso da Espaço Criativo, essa pessoa foi Elienice Lima Nobre. Em 2002, já reconhecida como professora no bairro, ela tinha um sonho muito maior do que os recursos disponíveis. Decidiu não esperar: adaptou a própria residência, na Rua Jorge da Veiga, nº 595, e ali fundou a Escola Espaço Criativo.</p>
+      <p>A escola nasceu com quatro salas, cinco professoras e 67 alunos já no primeiro ano. Entre as educadoras estavam duas irmãs da fundadora. Uma delas, Evanisse Lima Nobre, iniciou sua trajetória exatamente ali, em sala de aula, ao lado das crianças.</p>
+      <p>Não havia uma grande equipe. As irmãs recebiam os alunos no portão, organizavam as salas, cuidavam da limpeza e da administração. Ao fim de cada dia, era a própria Elienice quem fechava as portas da escola. Cada detalhe carregava o cuidado de quem estava construindo algo com as próprias mãos.</p>
+
+      <h3>Crescer ao lado de cada aluno</h3>
+      <p>A confiança das famílias veio rápido, e as crianças não queriam sair. A resposta da escola foi crescer junto com elas: a cada turma que concluía uma etapa, abria-se a série seguinte. Assim chegaram o Ensino Fundamental I e, mais tarde, o Fundamental II.</p>
+      <p>Certo dia, um pai confidenciou que não tinha com quem deixar o filho durante o trabalho. Naquela época, o tempo integral era um privilégio de escolas de bairros nobres. No ano seguinte, a Espaço Criativo passou a oferecê-lo. A creche, iniciada em duas salas e uma cozinha adaptadas, cresceu sob a liderança de Evanisse até se transformar no Espaço Brincar.</p>
+
+      <h3>A prova mais difícil</h3>
+      <p>Em 2020, a pandemia fechou as portas da escola de forma repentina. Foi o período mais desafiador de toda a sua história, marcado por incertezas, receios e perguntas ainda sem resposta.</p>
+      <p>Mesmo assim, a educação não parou. A escola se reinventou para manter vivo o vínculo com alunos e famílias. No retorno, foi preciso reconstruir rotinas, readaptar as crianças e recuperar o tempo perdido. Foram anos de dedicação intensa, e a Espaço Criativo atravessou esse momento de pé, mais unida do que nunca.</p>
+
+      <h3>Uma história que resume todas as outras</h3>
+      <p>Entre tantas trajetórias, uma traduz com perfeição o que a escola representa. Um aluno do 9º ano, mais velho que os colegas, procurou uma educadora e anunciou que iria abandonar os estudos. Ela parou, ouviu com atenção e acreditou nele. Ele decidiu ficar.</p>
+      <p>Anos depois, aquele mesmo aluno se formou em Educação Física e retornou à Espaço Criativo, desta vez como professor, trabalhando lado a lado com quem ajudou a transformar o seu futuro.</p>
+
+      <h3>Um novo capítulo em Messejana</h3>
+      <p>A casa de quatro salas tornou-se uma instituição que hoje acolhe mais de 700 crianças. Com a escola fortalecida, Evanisse propôs levar esse jeito de educar a uma nova comunidade, e Elienice abraçou a ideia de imediato. Assim nasceu a unidade Messejana, no Colégio Maria de Fátima, dedicada a crianças do berçário ao 5º ano.</p>
+      <p>Ao longo de mais de duas décadas, muita coisa mudou. A essência, porém, permanece a mesma: chamar cada criança pelo nome, respeitar o tempo de cada uma e caminhar de mãos dadas com as famílias.</p>
+      <blockquote class="citacao"><p>“Resiliência sempre foi a palavra de ordem na minha vida. Fé e resiliência.”</p><cite>Elienice Lima Nobre, fundadora</cite></blockquote>
+      <p class="hc-fim">Mais que uma escola, um lugar para pertencer.</p>
+    
+</template>
+
+<dialog id="janela" aria-labelledby="jnome">
+  <div class="jtopo">
+    <img id="jfoto" src="../img/logo-messejana.png" alt="">
+    <div><h2 id="jnome"></h2><p id="jcargo"></p></div>
+    <button type="button" class="fechar" data-fecha aria-label="Fechar">×</button>
+  </div>
+  <div class="jcorpo" id="jcorpo"></div>
+</dialog>
+
+<dialog id="formzap" aria-labelledby="fz-tit">
+  <div class="jtopo" style="background:#1f8f3c">
+    <div><h2 id="fz-tit">Fale com a unidade Messejana</h2><p>Preencha os dados e veja o valor da turma. A mensagem já vai pronta para o WhatsApp.</p></div>
+    <button type="button" class="fechar" data-fecha aria-label="Fechar">×</button>
+  </div>
+  <form class="jcorpo fz" id="fz" novalidate>
+    <label for="fz-resp">Nome do pai, mãe ou responsável</label>
+    <input id="fz-resp" required aria-required="true" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+    <label for="fz-zap">WhatsApp do responsável</label>
+    <input id="fz-zap" required aria-required="true" type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
+    <label for="fz-crianca">Nome da criança</label>
+    <input id="fz-crianca" required aria-required="true" type="text" placeholder="Ex.: Joãozinho">
+    <div class="pt-irmao">
+      <p class="pt-perg" id="fz-irmao-tit">Tem mais de 1 filho? <span>Estudando juntos, economizam!</span></p>
+      <label class="pt-sim"><input type="checkbox" id="fz-irmao" aria-describedby="fz-irmao-tit"> Sim</label>
+    </div>
+    <div id="fz-irmao-box" hidden><div id="fz-irmaos"></div><button type="button" class="add-irmao" id="fz-add">+ Adicionar outro filho</button></div>
+    <label for="fz-idade">Idade da criança</label>
+    <select id="fz-idade"><option value="">Escolha a idade</option></select>
+    <label for="fz-turma">Turma</label>
+    <select id="fz-turma"></select>
+    <p class="fz-dica" id="fz-dica"></p>
+    <div id="fz-turno-box" hidden><label for="fz-turno">Horário do berçário</label><select id="fz-turno"></select></div>
+    <div id="fz-int-box" hidden><label for="fz-int">Tempo integral (opcional)</label><select id="fz-int"></select></div>
+    <div class="fz-valor" id="fz-valor" hidden></div>
+    <p class="fz-erro" id="fz-erro" role="alert"></p>
+    <a class="btn zap fz-enviar" id="fz-enviar" href="#" target="_blank" rel="noopener" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+      Enviar para o WhatsApp da escola
+    </a>
+    <p class="nota" style="margin-top:10px">Os valores são os do catálogo. A escola confirma a turma e os valores no atendimento.</p>
+  </form>
+</dialog>
+
+<script>
+var ZAP='5585974007393';
+var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
+function soDig(v){return (v||'').replace(/\D/g,'');}
+function mascaraTel(v){v=soDig(v).slice(0,11);if(v.length<=2)return v.length?'('+v:'';if(v.length<=6)return '('+v.slice(0,2)+') '+v.slice(2);if(v.length<=10)return '('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);}
+function telOk(v){var d=soDig(v);return (d.length===11&&d[2]==='9')||d.length===10;}
+var SERIES=['Berçário','Infantil I','Infantil II','Infantil III','Infantil IV','Infantil V','1º ano','2º ano','3º ano','4º ano','5º ano'];
+function listaIrmaos(box,pref,aoMudar){
+  var n=0;
+  function linha(dados){
+    n++; var id=pref+'-ir'+n, el=document.createElement('div'); el.className='irmao-linha';
+    el.innerHTML='<div class="irmao-cab"><b></b><button type="button" class="irmao-tira">Remover</button></div>'+
+      '<label for="'+id+'-n">Nome</label><input id="'+id+'-n" type="text" placeholder="Nome do aluno">'+
+      '<label for="'+id+'-s">Série</label><select id="'+id+'-s"><option value="">Escolha a série</option>'+SERIES.map(function(x){return '<option>'+x+'</option>';}).join('')+'</select>';
+    if(dados){el.querySelector('input').value=dados.nome||'';el.querySelector('select').value=dados.serie||'';}
+    el.querySelector('.irmao-tira').addEventListener('click',function(){el.remove();renum();aoMudar&&aoMudar();});
+    el.querySelector('input').addEventListener('input',function(){aoMudar&&aoMudar();});
+    el.querySelector('select').addEventListener('change',function(){aoMudar&&aoMudar();});
+    box.appendChild(el); renum();
+  }
+  function renum(){var ls=box.querySelectorAll('.irmao-linha');ls.forEach(function(l,i){l.querySelector('b').textContent=(i+2)+'º filho';l.querySelector('.irmao-tira').hidden=ls.length===1;});}
+  return {
+    adiciona:function(d){linha(d);aoMudar&&aoMudar();},
+    garante:function(){if(!box.children.length)linha();},
+    lista:function(){return [].map.call(box.querySelectorAll('.irmao-linha'),function(l){return {nome:l.querySelector('input').value.trim(),serie:l.querySelector('select').value};});},
+    ok:function(){var l=this.lista();return l.length>0&&l.every(function(x){return x.nome&&x.serie;});},
+    define:function(arr){box.innerHTML='';(arr||[]).forEach(function(x){linha(x);});}
+  };
+}
+/* fecha janelas */
+document.querySelectorAll('dialog').forEach(function(d){
+  d.querySelectorAll('[data-fecha]').forEach(function(b){b.addEventListener('click',function(){d.close();});});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  new MutationObserver(function(){document.documentElement.classList.toggle('travado',!!document.querySelector('dialog[open]'));}).observe(d,{attributes:true,attributeFilter:['open']});
+});
+/* história */
+document.querySelectorAll('[data-historia]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var d=document.getElementById('janela'), c=document.getElementById('jcorpo'); c.innerHTML='';
+    c.appendChild(document.getElementById('tpl-historia').content.cloneNode(true));
+    document.getElementById('jnome').textContent='De quatro salas a duas unidades';
+    document.getElementById('jcargo').textContent='A história da Escola Espaço Criativo';
+    if(d.showModal)d.showModal(); c.scrollTop=0;
+  });
+});
+</script>
+
+<script>
+/* Formulário de matrícula pelo WhatsApp */
+(function(){
+  var $=function(id){return document.getElementById(id);}, d=$('formzap');
+  var TURMAS=SERIES;
+  var IDADE2TURMA={0:'Berçário',1:'Infantil I',2:'Infantil II',3:'Infantil III',4:'Infantil IV',5:'Infantil V',6:'1º ano',7:'2º ano',8:'3º ano',9:'4º ano',10:'5º ano'};
+  var BERC=[['Integral (7h às 17h)',1750],['Integral (7h às 18h)',1900],['Meio período (7h às 12h ou 13h às 18h)',900]];
+  var INT=[['Tempo integral até as 17h',940],['Tempo integral até as 18h',1050]];
+  function mensal(t){if(/^Infantil/.test(t))return 650;var n=parseInt(t,10);if(n>=1&&n<=5)return 750;return 0;}
+  var sel={idade:$('fz-idade'),turma:$('fz-turma'),turno:$('fz-turno'),int:$('fz-int')};
+  for(var i=0;i<=12;i++){var o=document.createElement('option');o.value=i;o.textContent=i===0?'Menos de 1 ano':(i+(i===1?' ano':' anos'));sel.idade.appendChild(o);}
+  function enche(select,itens,vazio){select.innerHTML='';if(vazio){var o=document.createElement('option');o.value='';o.textContent=vazio;select.appendChild(o);}itens.forEach(function(it,k){var o=document.createElement('option');if(Array.isArray(it)){o.value=k;o.textContent=it[0]+' · '+brl(it[1]);}else{o.value=it;o.textContent=it;}select.appendChild(o);});}
+  enche(sel.turma,TURMAS,'Escolha a turma'); enche(sel.turno,BERC); enche(sel.int,INT,'Não, só meio período');
+  var irmaos=listaIrmaos($('fz-irmaos'),'fz',function(){atualiza();});
+  function desconto(){var m=new Date().getMonth();return m===10?0.10:(m===11?0.05:0);}
+  function sugere(){
+    var id=sel.idade.value, dica=$('fz-dica'); dica.textContent='';
+    if(id==='')return;
+    if(parseInt(id,10)>10){dica.textContent='A unidade Messejana atende até o 5º ano. Para essa idade, fale com a unidade Parque Santa Maria: (85) 99407-1372.';sel.turma.value='';return;}
+    sel.turma.value=IDADE2TURMA[id]; dica.textContent='Sugerimos a turma '+IDADE2TURMA[id]+' pela idade. Você pode trocar se precisar.';
+  }
+  function atualiza(){
+    var t=sel.turma.value, berc=t==='Berçário', linhas=[], box=$('fz-valor');
+    $('fz-turno-box').hidden=!berc; $('fz-int-box').hidden=!(t&&!berc);
+    var irm=$('fz-irmao').checked; $('fz-irmao-box').hidden=!irm; if(irm)irmaos.garante();
+    var dsc=irm?10:0;
+    if(t){
+      if(berc){var b=BERC[sel.turno.value||0];linhas.push(['Berçário · '+b[0],b[1]-dsc]);}
+      else{linhas.push(['Mensalidade · '+t,mensal(t)-dsc]);if(sel.int.value!==''){var it=INT[sel.int.value];linhas.push([it[0],it[1]]);}}
+    }
+    var resp=$('fz-resp').value.trim(), cri=$('fz-crianca').value.trim(), zap=$('fz-zap').value, id=sel.idade.value;
+    var liberado=resp&&telOk(zap)&&cri;
+    if(linhas.length&&!liberado){box.innerHTML='<p class="fz-desc" style="margin:0">Preencha o nome do responsável, o WhatsApp e o nome da criança para ver o valor.</p>';box.hidden=false;}
+    else if(linhas.length){
+      var h='<b>Valor para '+t+' · Messejana</b><ul>';
+      linhas.forEach(function(l){h+='<li><span>'+l[0]+'</span><strong>'+brl(l[1])+'</strong></li>';});
+      h+='</ul>';
+      var base=linhas[0][1];
+      h+='<p class="fz-desc">Matrícula em novembro: 10% de desconto ('+brl(base*0.9)+'). Em dezembro: 5% ('+brl(base*0.95)+').</p>';
+      box.innerHTML=h; box.hidden=false;
+    }else box.hidden=true;
+    var ok=liberado&&(!irm||irmaos.ok())&&id!==''&&t&&parseInt(id,10)<=10;
+    var a=$('fz-enviar');
+    if(ok){
+      var msg=['Olá! Vim pelo catálogo da Espaço Criativo Messejana e quero informações sobre matrícula.','',
+        '*Unidade:* Messejana (Colégio Maria de Fátima)','*Responsável:* '+resp,'*WhatsApp do responsável:* '+zap];
+      if(irm)irmaos.lista().forEach(function(x){msg.push('*Outro filho:* '+x.nome+' ('+x.serie+')');});
+      msg.push('*Criança:* '+cri+' ('+(id==='0'?'menos de 1 ano':id+(id==='1'?' ano':' anos'))+')');
+      msg.push('*Turma:* '+t);
+      linhas.forEach(function(l){msg.push('*'+l[0]+':* '+brl(l[1]));});
+      a.href='https://wa.me/'+ZAP+'?text='+encodeURIComponent(msg.join('\n')); a.setAttribute('aria-disabled','false');
+    }else{a.href='#';a.setAttribute('aria-disabled','true');}
+  }
+  $('fz-enviar').addEventListener('click',function(e){
+    if(this.getAttribute('aria-disabled')==='true'){e.preventDefault();
+      var f=[];if(!$('fz-resp').value.trim())f.push('o nome do responsável');if(!telOk($('fz-zap').value))f.push('um WhatsApp válido com DDD');if(!$('fz-crianca').value.trim())f.push('o nome da criança');if($('fz-irmao').checked&&!irmaos.ok())f.push('o nome e a série de cada filho');if(sel.idade.value==='')f.push('a idade');if(!sel.turma.value)f.push('a turma');
+      $('fz-erro').textContent=f.length?'Falta preencher: '+f.join(', ')+'.':'Confira a idade: a unidade atende até o 5º ano.';
+    }else $('fz-erro').textContent='';
+  });
+  sel.idade.addEventListener('change',function(){sugere();atualiza();});
+  [sel.turma,sel.turno,sel.int].forEach(function(x){x.addEventListener('change',atualiza);});
+  [$('fz-resp'),$('fz-crianca'),$('fz-zap')].forEach(function(x){x.addEventListener('input',atualiza);});
+  $('fz-irmao').addEventListener('change',atualiza);
+  $('fz-add').addEventListener('click',function(){irmaos.adiciona();});
+  $('fz-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
+  $('fz').addEventListener('submit',function(e){e.preventDefault();});
+  document.querySelectorAll('[data-form]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var g=window.__dadosPortao; if(g){$('fz-resp').value=g.resp;$('fz-zap').value=g.zap;$('fz-crianca').value=g.aluno;$('fz-irmao').checked=g.irmao;irmaos.define(g.irmaos);}
+      atualiza(); $('fz-erro').textContent=''; if(d.showModal)d.showModal();
+    });
+  });
+})();
+</script>
+
+<script>
+/* Portão dos valores */
+(function(){
+  var f=document.getElementById('portao'), $=function(i){return document.getElementById(i);};
+  $('pt-zap').addEventListener('input',function(){this.value=mascaraTel(this.value);});
+  var irmaosPt=listaIrmaos($('pt-irmaos'),'pt');
+  $('pt-irmao-sim').addEventListener('change',function(){$('pt-irmao-box').hidden=!this.checked;if(this.checked)irmaosPt.garante();});
+  $('pt-add').addEventListener('click',function(){irmaosPt.adiciona();});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var resp=$('pt-resp').value.trim(), zap=$('pt-zap').value, aluno=$('pt-aluno').value.trim(), irm=$('pt-irmao-sim').checked;
+    var falta=[];
+    if(!resp)falta.push('o nome do responsável');
+    if(!telOk(zap))falta.push(soDig(zap).length?'um WhatsApp válido com DDD':'o WhatsApp');
+    if(!aluno)falta.push('o nome do aluno');
+    if(irm&&!irmaosPt.ok())falta.push('o nome e a série de cada filho');
+    if(falta.length){$('pt-erro').textContent='Falta preencher: '+falta.join(', ')+'.';return;}
+    $('pt-erro').textContent='';
+    window.__dadosPortao={resp:resp,zap:zap,aluno:aluno,irmao:irm,irmaos:irm?irmaosPt.lista():[]};
+    document.querySelectorAll('#precos td[data-v]').forEach(function(td){var v=+td.dataset.v;
+      if(irm){td.innerHTML='<span class="riscado">'+brl(v)+'</span>'+brl(v-10);}else td.textContent=brl(v);});
+    $('pt-ola').textContent='Olá, '+resp.split(' ')[0]+'! Estes são os valores para '+aluno+' na unidade Messejana.'+(irm?' Como são irmãos, já aparece o desconto.':'');
+    f.hidden=true; $('precos').hidden=false;
+    $('precos').querySelectorAll('details.card.ver').forEach(function(d){d.open=true;});
+    $('precos').scrollIntoView({block:'start'});
+  });
+})();
+</script>
+
+<script>
+/* Avaliações */
+(function(){
+  /* Comentários reais das famílias. Para adicionar: {nome:"...", nota:5, texto:"..."} */
+  var COMENTARIOS=[];
+  var trilho=document.getElementById('trilho');
+  if(COMENTARIOS.length){
+    document.getElementById('carrossel').hidden=false;
+    COMENTARIOS.concat(COMENTARIOS).forEach(function(c,k){var d=document.createElement('figure');d.className='coment';if(k>=COMENTARIOS.length)d.setAttribute('aria-hidden','true');
+      d.innerHTML='<div class="mini-est">'+'★'.repeat(c.nota)+'</div><blockquote></blockquote><figcaption></figcaption>';
+      d.querySelector('blockquote').textContent='“'+c.texto+'”';d.querySelector('figcaption').textContent=c.nome;trilho.appendChild(d);});
+    trilho.style.animationDuration=(COMENTARIOS.length*7)+'s';
+  }
+  var nota=0, bts=document.querySelectorAll('.estrelas button');
+  var nome=document.getElementById('av-nome'),txt=document.getElementById('av-txt'),a=document.getElementById('av-enviar');
+  bts.forEach(function(b){b.addEventListener('click',function(){nota=+b.dataset.n;bts.forEach(function(x){x.classList.toggle('on',+x.dataset.n<=nota);x.setAttribute('aria-checked',+x.dataset.n===nota?'true':'false');});monta();});});
+  function monta(){
+    var ok=nota&&nome.value.trim()&&txt.value.trim();
+    if(ok){var m='Olá! Quero deixar minha avaliação da Espaço Criativo Messejana.\n\n*Nota:* '+'★'.repeat(nota)+' ('+nota+' de 5)\n*Nome:* '+nome.value.trim()+'\n*Comentário:* '+txt.value.trim();
+      a.href='https://wa.me/'+ZAP+'?text='+encodeURIComponent(m);a.setAttribute('aria-disabled','false');}
+    else{a.href='#';a.setAttribute('aria-disabled','true');}
+  }
+  [nome,txt].forEach(function(x){x.addEventListener('input',monta);});
+  a.addEventListener('click',function(e){var er=document.getElementById('av-erro');
+    if(a.getAttribute('aria-disabled')==='true'){e.preventDefault();var f=[];if(!nota)f.push('a nota');if(!nome.value.trim())f.push('seu nome');if(!txt.value.trim())f.push('o comentário');er.textContent='Falta preencher: '+f.join(', ')+'.';}else er.textContent='';});
+})();
+</script>
+
+<script>
+/* Destaca no menu a seção que está na tela */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.menu a'));
+  if(!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){var on=l.getAttribute('href')==='#'+e.target.id;l.classList.toggle('ativo',on);if(on){l.setAttribute('aria-current','true');var m=l.parentNode;m.scrollTo({left:l.offsetLeft-m.clientWidth/2+l.clientWidth/2,behavior:'smooth'});}else l.removeAttribute('aria-current');});}});},{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(function(l){var t=document.querySelector(l.getAttribute('href'));if(t)io.observe(t);});
+})();
+</script>
+</body>
+</html>
