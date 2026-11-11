@@ -181,6 +181,17 @@ def pagina(k, d):
   </div>
 </section>
 
+<section id="historia" class="claro" aria-labelledby="t-hist">
+  <div class="wrap video-un">
+    <div class="vid"><video controls playsinline preload="none" poster="../img/video-capa.jpg" aria-label="Vídeo: Elienice e Evanisse contam a história da Espaço Criativo"><source src="../img/video-escola.mp4" type="video/mp4"></video></div>
+    <div>
+      <div class="cab"><small style="--c:var(--laranja)">Nossa história</small><h2 id="t-hist">Conheça mais a história da nossa escola</h2><p>Elienice Nobre, fundadora, e Evanisse Nobre contam como a Espaço Criativo nasceu em 2002 com quatro salas e chegou a mais de 700 crianças. O vídeo tem cerca de 9 minutos.</p></div>
+      <div class="irmas" style="margin-bottom:16px"><img src="../img/elienice-rosto.jpg" alt="Elienice Nobre" width="96" height="96"><img src="../img/evanisse-rosto.jpg" alt="Evanisse Nobre" width="96" height="96"></div>
+      <div class="botoes"><a class="btn marinho" href="../historia/?u={k}">Ler a história completa</a></div>
+    </div>
+  </div>
+</section>
+
 <section id="depoimentos" class="claro" hidden aria-labelledby="t-dep">
   <div class="wrap">
     <div class="cab"><small style="--c:#b07a00">Depoimentos</small><h2 id="t-dep">O que os pais dizem</h2></div>
