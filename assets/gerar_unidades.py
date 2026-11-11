@@ -191,7 +191,7 @@ def pagina(k, d):
 <section class="escuro" aria-labelledby="t-local">
   <div class="wrap">
     <div class="cab"><small style="--c:var(--amarelo)">Como chegar</small><h2 id="t-local">Venha conhecer a unidade</h2></div>
-    <div class="local">
+    <div class="local" style="grid-template-columns:1fr">
       <div class="card">
         <h3>Unidade {d['nome']}</h3>
         <p>{d['end']}<br>WhatsApp {d['zap']}</p>
@@ -201,11 +201,6 @@ def pagina(k, d):
           <a class="ig" href="{d['ig']}" target="_blank" rel="noopener" aria-label="Instagram da unidade {d['nome']}">{'{IG}'}</a>
         </div>
       </div>
-      <a class="uni" href="../{o[1]}/" style="--c:{o[5]}">
-        <img src="../{o[4]}" alt="" width="76" height="76">
-        <span><b>Conheça também: {o[2]}</b><span>Nossa outra unidade</span><span class="tag">{o[3]}</span></span>
-        <span class="seta" aria-hidden="true">›</span>
-      </a>
     </div>
     <details class="abre" style="margin-top:18px;--c:var(--amarelo)" id="avaliar"><summary>Já é da escola? Deixe sua avaliação</summary><div class="corpo">
       <div class="form" id="avaliar-form" style="box-shadow:none;padding:0;border:0">

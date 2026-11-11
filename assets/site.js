@@ -1,7 +1,10 @@
 /* Escola Espaço Criativo · comportamento compartilhado
    Cada página define no <body>: data-base ("" na raiz, "../" nas pastas), data-pagina e, nas unidades, data-u ("sm" ou "me"). */
 (function(){
-var B=document.body.dataset.base||'', PAG=document.body.dataset.pagina||'', U=document.body.dataset.u||'';
+var B=document.body.dataset.base||'', PAG=document.body.dataset.pagina||'';
+var U=document.body.dataset.u||((location.search.match(/[?&]u=(sm|me)/)||[])[1])||'';
+if(U==='me')document.body.classList.add('me');
+var QU=U?'?u='+U:'';
 var $=function(s,el){return (el||document).querySelector(s);}, $$=function(s,el){return [].slice.call((el||document).querySelectorAll(s));};
 var brl=function(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
 
@@ -34,37 +37,52 @@ function abrir(url){var a=document.createElement('a');a.href=url;a.target='_blan
 var ICO_ZAP='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>';
 var ICO_IG='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg>';
 
-/* ===== Topo, menu, barra e rodapé (iguais em todas as páginas) ===== */
+/* ===== Topo, menu, barra e rodapé =====
+   Com unidade (U): tudo é só daquela unidade. Sem unidade: página inicial com as duas. */
 var cur=function(p){return PAG===p?' aria-current="page"':'';};
-var matHref=B+'matricula/'+(U?'?u='+U:'');
-var logoTopo=U==='me'?UN.me.logo:'img/logo.png';
+var matHref=B+'matricula/'+QU, histHref=B+'historia/'+QU, casa=U?B+UN[U].pag:B+'./';
+var logoTopo=U?UN[U].logo:'img/logo.png';
+var linksTopo=U
+  ? '<a href="'+casa+'"'+cur(U)+'>Início</a><a href="'+casa+'#valores">Valores</a><a href="'+histHref+'"'+cur('historia')+'>Nossa história</a>'
+  : '<a href="'+B+'santa-maria/">Santa Maria</a><a href="'+B+'messejana/">Messejana</a><a href="'+histHref+'"'+cur('historia')+'>Nossa história</a>';
+var linksGav=U
+  ? '<a href="'+casa+'"'+cur(U)+'><img src="'+B+UN[U].logo+'" alt=""><span>Início<small>Unidade '+UN[U].nome+'</small></span></a>'+
+    '<a href="'+casa+'#valores"><span class="ico">💰</span>Valores</a>'+
+    '<a href="'+histHref+'"'+cur('historia')+'><span class="ico">📖</span>Nossa história</a>'+
+    '<a href="'+matHref+'"'+cur('matricula')+'><span class="ico">✏️</span>Matrícula</a>'+
+    '<a href="#rodape" data-fecha-ir><span class="ico">📞</span>Contato</a>'
+  : '<a href="'+B+'./"'+cur('home')+'><span class="ico">🏠</span>Início</a>'+
+    '<a href="'+B+'santa-maria/"><img src="'+B+'img/logo.png" alt=""><span>Unidade Santa Maria<small>Berçário ao 9º ano</small></span></a>'+
+    '<a href="'+B+'messejana/"><img src="'+B+'img/logo-messejana.png" alt=""><span>Unidade Messejana<small>Berçário ao 5º ano</small></span></a>'+
+    '<a href="'+histHref+'"'+cur('historia')+'><span class="ico">📖</span>Nossa história</a>'+
+    '<a href="'+matHref+'"'+cur('matricula')+'><span class="ico">✏️</span>Matrícula e valores</a>'+
+    '<a href="#rodape" data-fecha-ir><span class="ico">📞</span>Contato</a>';
 document.body.insertAdjacentHTML('afterbegin',
  '<a class="sr" href="#conteudo">Pular para o conteúdo</a>'+
  '<header class="topo"><div class="topo-in">'+
-  '<a class="marca" href="'+B+'./"><img src="'+B+logoTopo+'" alt="" width="42" height="42"><span><b>Espaço Criativo</b><small>'+(U?'Unidade '+UN[U].nome:'Escola e Creche · Fortaleza')+'</small></span></a>'+
-  '<nav class="topo-links" aria-label="Principal"><a href="'+B+'santa-maria/"'+cur('sm')+'>Santa Maria</a><a href="'+B+'messejana/"'+cur('me')+'>Messejana</a><a href="'+B+'historia/"'+cur('historia')+'>Nossa história</a></nav>'+
+  '<a class="marca" href="'+casa+'"><img src="'+B+logoTopo+'" alt="" width="42" height="42"><span><b>Espaço Criativo</b><small>'+(U?'Unidade '+UN[U].nome:'Escola e Creche · Fortaleza')+'</small></span></a>'+
+  '<nav class="topo-links" aria-label="Principal">'+linksTopo+'</nav>'+
   '<a class="btn zap" href="'+matHref+'">Matricular</a>'+
   '<button class="hamb" type="button" aria-label="Abrir menu" aria-haspopup="dialog" data-abre="gaveta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>'+
  '</div></header><div class="arco" aria-hidden="true"></div>'+
  '<dialog class="gaveta" id="gaveta" aria-label="Menu"><div class="gaveta-cab"><b>Menu</b><button class="x" type="button" data-fecha aria-label="Fechar">×</button></div>'+
-  '<nav><a href="'+B+'./"'+cur('home')+'><span class="ico">🏠</span>Início</a>'+
-  '<a href="'+B+'santa-maria/"'+cur('sm')+'><img src="'+B+'img/logo.png" alt=""><span>Unidade Santa Maria<small>Berçário ao 9º ano</small></span></a>'+
-  '<a href="'+B+'messejana/"'+cur('me')+'><img src="'+B+'img/logo-messejana.png" alt=""><span>Unidade Messejana<small>Berçário ao 5º ano</small></span></a>'+
-  '<a href="'+B+'historia/"'+cur('historia')+'><span class="ico">📖</span>Nossa história</a>'+
-  '<a href="'+matHref+'"'+cur('matricula')+'><span class="ico">✏️</span>Matrícula e valores</a>'+
-  '<a href="#rodape" data-fecha-ir><span class="ico">📞</span>Contato</a></nav>'+
+  '<nav>'+linksGav+'</nav>'+
   '<div class="rodape-gav"><a class="btn zap cheio" href="'+matHref+'">Quero matricular meu filho</a></div></dialog>'+
  '<dialog class="janela" id="escolha" aria-labelledby="esc-tit"><div class="j-cab"><b id="esc-tit">Escolha a unidade</b><button class="x" type="button" data-fecha aria-label="Fechar">×</button></div><div class="j-corpo" id="esc-corpo"></div></dialog>');
 
+function blocoUn(u){var x=UN[u];return '<div><h3>Unidade '+x.nome+'</h3><p>'+x.serie+'</p><p>'+x.end+'</p><p>WhatsApp <a href="https://wa.me/'+x.zap+'" target="_blank" rel="noopener">'+x.zapTxt+'</a></p><div class="links"><a href="'+x.mapa+'" target="_blank" rel="noopener">Como chegar</a><a href="'+x.ig+'" target="_blank" rel="noopener">Instagram</a>'+(U?'':'<a href="'+B+x.pag+'">Ver a unidade</a>')+'</div></div>';}
 document.body.insertAdjacentHTML('beforeend',
  '<nav class="barra" aria-label="Ações rápidas">'+
   '<button type="button" class="zap-b" data-acao="zap"><span class="i">💬</span>WhatsApp</button>'+
   '<button type="button" data-acao="mapa"><span class="i">📍</span>Como chegar</button>'+
   '<button type="button" data-acao="visita"><span class="i">📅</span>Agendar visita</button></nav>'+
  '<footer class="rodape" id="rodape"><div class="wrap"><div class="cols">'+
-  ['sm','me'].map(function(u){var x=UN[u];return '<div><h3>Unidade '+x.nome+'</h3><p>'+x.serie+'</p><p>'+x.end+'</p><p>WhatsApp <a href="https://wa.me/'+x.zap+'" target="_blank" rel="noopener">'+x.zapTxt+'</a></p><div class="links"><a href="'+x.mapa+'" target="_blank" rel="noopener">Como chegar</a><a href="'+x.ig+'" target="_blank" rel="noopener">Instagram</a><a href="'+B+x.pag+'">Ver a unidade</a></div></div>';}).join('')+
-  '<div><h3>Escola Espaço Criativo</h3><p>Escola e creche desde 2002.</p><div class="links"><a href="'+B+'historia/">Nossa história</a><a href="'+B+'matricula/">Matrícula e valores</a><a href="https://escolaespacocriativo.com/" target="_blank" rel="noopener">escolaespacocriativo.com</a></div></div>'+
- '</div><p class="frase">Mais que uma escola, um lugar para pertencer!</p><p class="peq">Escola Espaço Criativo · Escola e Creche · desde 2002</p></div></footer>');
+  (U?blocoUn(U):blocoUn('sm')+blocoUn('me'))+
+  '<div><h3>Escola Espaço Criativo</h3><p>Escola e creche desde 2002.</p><div class="links"><a href="'+histHref+'">Nossa história</a><a href="'+matHref+'">Matrícula e valores</a><a href="https://escolaespacocriativo.com/" target="_blank" rel="noopener">escolaespacocriativo.com</a></div></div>'+
+ '</div><p class="frase">Mais que uma escola, um lugar para pertencer!</p><p class="peq">Escola Espaço Criativo · '+(U?'Unidade '+UN[U].nome:'Escola e Creche')+' · desde 2002</p></div></footer>');
+
+/* links internos marcados com data-un recebem a unidade */
+if(U){$$('a[data-un]').forEach(function(a){a.href=a.getAttribute('href')+QU;});}
 
 /* janelas */
 $$('dialog').forEach(function(d){
@@ -156,7 +174,7 @@ var mat=$('#mat');
 if(mat){
   var s={idade:$('#m-idade'),turma:$('#m-turma'),turno:$('#m-turno'),int:$('#m-int')};
   for(var i=0;i<=14;i++){var o=document.createElement('option');o.value=i;o.textContent=i===0?'Menos de 1 ano':i+(i===1?' ano':' anos');s.idade.appendChild(o);}
-  var q=(location.search.match(/[?&]u=(sm|me)/)||[])[1]; if(q)$('#m-'+q).checked=true;
+  if(U){$('#m-'+U).checked=true;$('.unid-esc',mat).hidden=true;var t=$('#mat-tit');if(t)t.textContent='Matrícula · Unidade '+UN[U].nome;}
   var g2=pega(); if(g2){$('#m-resp').value=g2.resp||'';$('#m-zap').value=g2.zap||'';$('#m-crianca').value=g2.crianca||'';$('#m-irmao').checked=!!g2.irmao;}
   var un=function(){var r=$('input[name=unid]:checked',mat);return r?r.value:'';};
   function enche(sel,itens,vazio){sel.innerHTML='';if(vazio){var o=document.createElement('option');o.value='';o.textContent=vazio;sel.appendChild(o);}itens.forEach(function(it,k){var o=document.createElement('option');if(Array.isArray(it)){o.value=k;o.textContent=it[0]+' · '+brl(it[1]);}else{o.value=it;o.textContent=it;}sel.appendChild(o);});}

@@ -13,6 +13,7 @@
 }
 body.me{--acc:#2f8fd0}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topo) + 10px);-webkit-text-size-adjust:100%}
 html.travado{overflow:hidden}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
