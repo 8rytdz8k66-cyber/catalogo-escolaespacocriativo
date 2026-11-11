@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Matrícula e valores · Escola Espaço Criativo</title>
+<meta name="description" content="Escolha a unidade, veja o valor da turma do seu filho e envie a matrícula pelo WhatsApp.">
+<meta name="theme-color" content="#0d0f74">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Matrícula e valores · Escola Espaço Criativo">
+<meta property="og:description" content="Escolha a unidade, veja o valor da turma do seu filho e envie a matrícula pelo WhatsApp.">
+<meta property="og:image" content="https://8rytdz8k66-cyber.github.io/catalogo-escolaespacocriativo/img/logo.png">
+<meta property="og:url" content="https://8rytdz8k66-cyber.github.io/catalogo-escolaespacocriativo/matricula/">
+<link rel="icon" href="../img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-base="../" data-pagina="matricula">
+<main id="conteudo">
+<section style="padding-top:28px">
+  <div class="wrap" style="max-width:620px">
+    <div class="cab"><small style="--c:var(--verde)">Matrícula</small><h2>Veja o valor e fale com a escola</h2><p>Leva menos de 1 minuto. No final, a mensagem vai pronta para o WhatsApp da unidade.</p></div>
+    <form class="form" id="mat" novalidate>
+      <fieldset class="unid-esc"><legend>Unidade</legend>
+        <label><input type="radio" name="unid" value="sm" id="m-sm"> Santa Maria<small>Berçário ao 9º ano</small></label>
+        <label><input type="radio" name="unid" value="me" id="m-me"> Messejana<small>Berçário ao 5º ano</small></label>
+      </fieldset>
+      <label for="m-resp">Nome do pai, mãe ou responsável</label><input id="m-resp" type="text" autocomplete="name" placeholder="Ex.: Ana Souza">
+      <label for="m-zap">WhatsApp do responsável</label><input id="m-zap" data-tel type="text" inputmode="tel" autocomplete="tel" placeholder="(85) 99999-9999" maxlength="15">
+      <label for="m-crianca">Nome da criança</label><input id="m-crianca" type="text" placeholder="Ex.: João">
+      <label for="m-idade">Idade da criança</label><select id="m-idade"><option value="">Escolha a idade</option></select>
+      <label for="m-turma">Turma</label><select id="m-turma"></select>
+      <p class="dica" id="m-dica"></p>
+      <div id="m-turno-box" hidden><label for="m-turno">Horário do berçário</label><select id="m-turno"></select></div>
+      <div id="m-int-box" hidden><label for="m-int">Tempo integral (opcional)</label><select id="m-int"></select></div>
+      <div class="irmao"><p>Tem irmão estudando ou se matriculando? <span>Cada um paga R$ 10,00 a menos.</span></p><label><input type="checkbox" id="m-irmao"> Sim</label></div>
+      <div class="valor" id="m-valor" hidden></div>
+      <p class="erro" id="m-erro" role="alert"></p>
+      <a class="btn zap cheio" id="m-enviar" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar pelo WhatsApp da escola</a>
+      <p class="nota" style="margin-top:10px">Os valores são os da tabela atual. A escola confirma a turma e os valores no atendimento.</p>
+    </form>
+  </div>
+</section>
+</main>
+<script src="../assets/site.js"></script>
+</body>
+</html>
