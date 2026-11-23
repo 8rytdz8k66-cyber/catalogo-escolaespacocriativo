@@ -1,0 +1,710 @@
+#!/usr/bin/env python3
+"""Gera os catálogos Matrículas 2027 (Messejana e Parque Santa Maria) com a assistente Eli.
+
+Uso: python3 assets/gerar_catalogo_2027.py   (rodar na raiz do repositório)
+Escreve messejana/index.html e santa-maria/index.html. Sem preços.
+"""
+import json, os
+
+BASE_URL = "https://8rytdz8k66-cyber.github.io/catalogo-escolaespacocriativo/"
+
+UNIDADES = {
+    "messejana": {
+        "nome": "Messejana",
+        "nome_longo": "Unidade Messejana",
+        "colegio": " · Colégio Maria de Fátima",
+        "logo": "../img/logo-messejana.png",
+        "foto": "../img/messejana-por-dentro.jpg",
+        "video": "../img/messejana-por-dentro.mp4",
+        "zap": "5585974007393",
+        "zap_txt": "(85) 97400-7393",
+        "insta": "https://www.instagram.com/eecmessejana/",
+        "insta_txt": "@eecmessejana",
+        "mapa": "https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6",
+        "endereco": "Rua Santa Efigênia, 300 · Messejana · Fortaleza (CE)",
+        "endereco_curto": "Rua Santa Efigênia, 300",
+        "faixa": "Berçário ao 5º ano",
+        "local_frase": "Estamos no coração de Messejana, em Fortaleza/CE. Venha conhecer a nossa unidade.",
+        "destaque_local": ("No coração de Messejana", "Rua Santa Efigênia, 300"),
+        "destaque_etapas": ("Do Berçário ao 5º ano", "com tempo integral"),
+        "bullets": ["Estrutura nova e turmas pequenas",
+                    "Berçário, Educação Infantil e Fundamental I",
+                    "Programa Bilíngue e Educação Socioemocional"],
+        "etapas": [
+            ("a partir dos primeiros meses", "Berçário e creche", "Adaptação afetiva e gradual, com rotina de cuidado, estímulo e musicalização."),
+            ("até 5 anos", "Educação Infantil", "Brincar, explorar e aprender a conviver, com psicomotricidade e Programa Bilíngue."),
+            ("1º ao 5º ano", "Fundamental I", "Base sólida de leitura e matemática, com acompanhamento próximo da coordenação."),
+        ],
+        "etapas_nota": "Tempo integral disponível no contraturno.",
+        "etapas_form": ["Berçário / creche", "Educação Infantil", "Fundamental I (1º ao 5º)"],
+        "por_dentro_tit": "Conheça os espaços da Unidade Messejana",
+        "por_dentro_txt": "Vídeo real da unidade: estrutura nova, pensada para o Berçário e a Educação Infantil.",
+        "nota": "5,0", "avaliacoes": "12",
+        "google": "https://www.google.com/maps/search/?api=1&query=Escola+Espa%C3%A7o+Criativo+Messejana",
+        "outra": ("Parque Santa Maria", "../santa-maria/", "Berçário ao 9º ano"),
+    },
+    "santa-maria": {
+        "nome": "Parque Santa Maria",
+        "nome_longo": "Unidade Parque Santa Maria",
+        "colegio": "",
+        "logo": "../img/logo.png",
+        "foto": "../img/santa-maria-por-dentro.jpg",
+        "video": "../img/santa-maria-por-dentro.mp4",
+        "zap": "5585994071372",
+        "zap_txt": "(85) 99407-1372",
+        "insta": "https://www.instagram.com/criativoespaco_sm/",
+        "insta_txt": "@criativoespaco_sm",
+        "mapa": "https://maps.google.com/?q=-3.858689,-38.501865",
+        "endereco": "Rua Jorge da Veiga, 595 · Parque Santa Maria · Fortaleza (CE)",
+        "endereco_curto": "Rua Jorge da Veiga, 595",
+        "faixa": "Berçário ao 9º ano",
+        "local_frase": "Estamos no Parque Santa Maria, em Fortaleza/CE. Venha conhecer a nossa unidade.",
+        "destaque_local": ("No Parque Santa Maria", "onde a nossa história começou"),
+        "destaque_etapas": ("A partir de 2 anos até o 9º ano do Ensino Fundamental", "com tempo integral"),
+        "bullets": ["Do Berçário ao 9º ano, com tempo integral",
+                    "Fundamental II também à tarde",
+                    "Creche Espaço Brincar ao lado (Rua Jorge da Veiga, 620)"],
+        "etapas": [
+            ("a partir dos primeiros meses", "Berçário e creche", "Adaptação afetiva e gradual, com rotina de cuidado, estímulo e musicalização."),
+            ("até 5 anos", "Educação Infantil", "Brincar, explorar e aprender a conviver, com psicomotricidade e Programa Bilíngue."),
+            ("1º ao 5º ano", "Fundamental I", "Base sólida de leitura e matemática, com acompanhamento próximo da coordenação."),
+            ("6º ao 9º ano", "Fundamental II", "Projetos, interclasses e vagas também no turno da tarde."),
+        ],
+        "etapas_nota": "Tempo integral disponível. A Creche Espaço Brincar fica ao lado, na Rua Jorge da Veiga, 620.",
+        "etapas_form": ["Berçário / creche", "Educação Infantil", "Fundamental I (1º ao 5º)", "Fundamental II (6º ao 9º)"],
+        "por_dentro_tit": "Conheça os espaços da Unidade Parque Santa Maria",
+        "por_dentro_txt": "Vídeo real da unidade onde a Espaço Criativo nasceu, em 2002.",
+        "nota": "4,5", "avaliacoes": "47",
+        "google": "https://www.google.com/maps/search/?api=1&query=Escola+Espa%C3%A7o+Criativo+Parque+Santa+Maria",
+        "outra": ("Messejana", "../messejana/", "Berçário ao 5º ano"),
+    },
+}
+
+
+def eli_base(u):
+    """Respostas da Eli. Sem preços: valores sempre pela coordenação."""
+    zap = u["zap_txt"]
+    sm = u["nome"] == "Parque Santa Maria"
+    etapas = ("do Berçário ao 9º ano: Berçário e creche, Educação Infantil, Fundamental I (1º ao 5º) e Fundamental II (6º ao 9º), com tempo integral. O Fundamental II também tem turma à tarde."
+              if sm else
+              "do Berçário ao 5º ano: Berçário e creche, Educação Infantil e Fundamental I (1º ao 5º), com tempo integral no contraturno.")
+    itens = [
+        {"id": "etapas", "chip": "Turmas e etapas",
+         "chaves": ["etapa", "turma", "serie", "série", "ano", "infantil", "fundamental", "idade", "atende", "berçario", "bercario", "creche", "maternal"],
+         "r": f"A {u['nome_longo']} atende {etapas} 😊 Quer que eu te ajude a agendar uma visita?"},
+        {"id": "integral", "chip": "Tempo integral",
+         "chaves": ["integral", "contraturno", "tarde", "dia todo", "horario", "horário", "diaria", "diária", "meio periodo", "meio período"],
+         "r": ("Temos sim! O tempo integral amplia o dia da criança com acompanhamento das atividades escolares, brincadeiras, convivência e cuidado. "
+               "No berçário há opção de integral e de meio período (manhã ou tarde). "
+               f"Os horários certinhos de cada turma a coordenação confirma pelo WhatsApp {zap}.")},
+        {"id": "bilingue", "chip": "Programa Bilíngue",
+         "chaves": ["bilingue", "bilíngue", "ingles", "inglês", "idioma", "english"],
+         "r": ("O Programa Bilíngue está na grade e na rotina, não é uma aula solta! As crianças cantam, brincam, ouvem histórias e conversam em inglês até falar com naturalidade. "
+               "E o melhor: faz parte da mensalidade regular, sem taxa nem apostila à parte. 🌎")},
+        {"id": "socio", "chip": "Socioemocional",
+         "chaves": ["socioemocional", "emoc", "psicolog", "sossego", "comportamento", "empreendedor", "financeira"],
+         "r": ("A Educação Socioemocional está na grade regular, com acompanhamento de psicóloga. Seu filho aprende a entender, falar e cuidar das próprias emoções. "
+               "Temos o cantinho do sossego, um lugar de escuta e calma, nunca de castigo 💛 A grade também inclui educação financeira e empreendedorismo.")},
+        {"id": "endereco", "chip": "Endereço",
+         "chaves": ["endereço", "endereco", "onde fica", "localiza", "mapa", "chegar", "rua", "fica onde"],
+         "r": (f"A {u['nome_longo']}{u['colegio']} fica na {u['endereco']}. "
+               + ("A Creche Espaço Brincar fica ao lado, na Rua Jorge da Veiga, 620. " if sm else "")
+               + "Toque em \"Ver no mapa\" para abrir o caminho 📍"), "acao": "mapa"},
+        {"id": "visita", "chip": "Agendar visita",
+         "chaves": ["visita", "conhecer", "agendar", "ir ai", "ir aí", "passear", "marcar"],
+         "r": ("Que alegria! A visita é o melhor jeito de sentir a escola: você conversa com a coordenação, conhece as salas e tira todas as dúvidas, sem pressa. "
+               "É só preencher o formulário aqui no site ou chamar no WhatsApp 😊"), "acao": "form"},
+        {"id": "matricula", "chip": "Matrícula 2027",
+         "chaves": ["matricula", "matrícula", "vaga", "2027", "inscri", "documento", "papel"],
+         "r": ("As matrículas 2027 estão abertas! " + (
+               "Para novos alunos a escola costuma pedir: fotos 3x4, pasta escolar, cópia do registro da criança, RG e CPF dos responsáveis, comprovante de residência, cartão de vacina atualizado e declaração da escola anterior. "
+               if not sm else "") +
+               f"A coordenação confirma a lista de documentos e te ajuda com tudo pelo WhatsApp {zap}.")},
+        {"id": "valores", "chip": "Valores",
+         "chaves": ["valor", "preço", "preco", "mensalidade", "quanto custa", "custa", "pagar", "desconto", "material", "fardamento", "farda", "uniforme"],
+         "r": ("Os valores de mensalidade, material e fardamento quem passa é a nossa coordenação, direitinho para a turma do seu filho 😊 "
+               "E tem condição especial para irmãos! Toque no botão abaixo e fale direto com a gente no WhatsApp."), "acao": "zap"},
+        {"id": "historia", "chip": "Nossa história",
+         "chaves": ["historia", "história", "fundad", "dona", "elienice", "evanisse", "quem criou", "tempo de escola", "anos"],
+         "r": ("A Espaço Criativo nasceu em 2002, do sonho de duas irmãs, filhas de professora: Elienice e Evanisse. "
+               "Começou numa casa adaptada no Parque Santa Maria, com quatro salas, e hoje são duas unidades e mais de 23 anos de tradição em Fortaleza. "
+               "A direção conhece cada aluno e cada família pelo nome 💙")},
+        {"id": "seguranca", "chip": "Cuidado no dia a dia",
+         "chaves": ["segur", "portao", "portão", "entrada", "saida", "saída", "adapta", "cuidado", "familia", "família", "comunica", "agenda"],
+         "r": ("Aqui a família caminha de mãos dadas com a escola: tem canal direto com a gestão pelo WhatsApp e equipe no portão todos os dias, na entrada e na saída. "
+               "A adaptação é afetiva e gradual, no tempo de cada criança.")},
+        {"id": "avaliacoes", "chip": "Avaliações",
+         "chaves": ["avalia", "nota", "google", "opini", "recomenda", "boa escola", "é boa"],
+         "r": f"No Google, a {u['nome_longo']} tem nota {u['nota']} ⭐ com {u['avaliacoes']} avaliações de famílias. Dá uma olhada lá embaixo na página!"},
+        {"id": "outra", "chip": f"Unidade {u['outra'][0]}",
+         "chaves": ["outra unidade", "messejana" if sm else "santa maria", "unidades", "duas unidades"],
+         "r": f"Temos também a unidade {u['outra'][0]} ({u['outra'][2]}). Quer conhecer? Toque no botão abaixo 😊", "acao": "outra"},
+    ]
+    if sm:
+        itens.append({"id": "extras", "chip": "Atividades extras",
+                      "chaves": ["extra", "ballet", "balé", "futsal", "futebol", "jiu", "luta", "esporte", "dança"],
+                      "r": ("Na unidade Parque Santa Maria já tivemos atividades como ballet, futsal e jiu-jitsu. "
+                            f"As turmas e horários de 2027 a coordenação confirma pelo WhatsApp {zap} 😊")})
+    return itens
+
+
+TPL = r"""<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Espaço Criativo · __NOME_LONGO__ · Matrículas 2027</title>
+<meta name="description" content="Escola Espaço Criativo, __NOME_LONGO__: __FAIXA__ com Programa Bilíngue e Educação Socioemocional. Matrículas 2027 abertas, agende sua visita.">
+<meta name="theme-color" content="#0d0f74">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Espaço Criativo · __NOME_LONGO__ · Matrículas 2027">
+<meta property="og:description" content="Mais que uma escola, um lugar para pertencer! __FAIXA__. Agende sua visita.">
+<meta property="og:image" content="__OG_IMG__">
+<meta property="og:url" content="__OG_URL__">
+<link rel="icon" href="__LOGO__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cores do logo: marinho + letras em arco-íris */
+  --marinho:#0d0f74; --marinho2:#1b1f8f; --vermelho:#e53b2c; --laranja:#f7941d; --amarelo:#ffc928;
+  --verde:#2e9e47; --azul:#2a9be0; --lilas:#7a68c4; --papel:#f7f8ff; --tinta:#1d1f4a; --cinza:#5f6386; --linha:#e1e3f2;
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif; --body:"Nunito","Segoe UI",system-ui,sans-serif; --script:"Caveat","Brush Script MT",cursive;
+  /* Layout: coluna única no celular, duas colunas a partir de 820px */
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:#fff;color:var(--tinta);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;color:var(--marinho);text-wrap:balance}
+h2{font-size:clamp(28px,6vw,42px)}
+p{margin:0 0 12px}
+.eyebrow{display:inline-block;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--laranja));margin-bottom:8px}
+.sub{color:var(--cinza);font-size:17px;max-width:60ch}
+section{padding:60px 0}
+@media (min-width:820px){section{padding:84px 0}}
+.alt{background:var(--papel)}
+.arco{height:8px;background:linear-gradient(90deg,var(--vermelho) 0 16.6%,var(--laranja) 0 33.3%,var(--amarelo) 0 50%,var(--verde) 0 66.6%,var(--azul) 0 83.3%,var(--lilas) 0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:16px;border:0;cursor:pointer;text-decoration:none;font-family:var(--display);font-weight:800;font-size:17px;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn.zap{background:#1f9a3d;color:#fff}
+.btn.amarelo{background:var(--amarelo);color:var(--marinho)}
+.btn.branco{background:#fff;color:var(--marinho)}
+.btn.contorno{background:transparent;color:var(--marinho);border:2px solid var(--marinho)}
+.botoes{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Capa */
+.capa{background:var(--marinho);color:#fff;position:relative;overflow:hidden}
+.capa .wrap{display:grid;gap:28px;padding-top:28px;padding-bottom:44px;position:relative;z-index:1}
+@media (min-width:820px){.capa .wrap{grid-template-columns:1.15fr .85fr;align-items:center;padding-top:44px;padding-bottom:64px}}
+.capa-topo{display:flex;align-items:center;gap:12px}
+.capa-topo img{width:64px;height:64px;border-radius:50%;border:3px solid #fff;background:#fff}
+.capa-topo span{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.2}
+.selo{display:inline-block;background:var(--amarelo);color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:6px 14px;border-radius:999px;margin:18px 0 12px}
+.capa h1{color:#fff;font-size:clamp(38px,9vw,64px)}
+.capa h1 em{font-style:normal;font-family:var(--script);color:var(--amarelo);font-size:1.12em;display:block;line-height:1}
+.capa .sub{color:#d3d6ff;margin:14px 0 22px}
+.capa-foto{position:relative;justify-self:center;width:min(320px,80vw)}
+.capa-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.capa-foto .tag{position:absolute;left:-10px;bottom:22px;background:#fff;color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.bola{position:absolute;border-radius:50%;pointer-events:none}
+
+/* Destaques */
+.destaques{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:600px){.destaques{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){.destaques{grid-template-columns:repeat(5,1fr)}}
+.dest{background:#fff;border-radius:20px;padding:16px;border-top:6px solid var(--c);box-shadow:0 6px 18px rgba(13,15,116,.07)}
+.dest b{display:block;font-family:var(--display);font-size:18px;line-height:1.15;color:var(--marinho)}
+.dest span{font-size:14.5px;color:var(--cinza)}
+.faixa-dest{background:var(--papel);padding:26px 0}
+
+/* CTA */
+.cta-grid{display:grid;gap:14px;margin-top:22px}
+@media (min-width:720px){.cta-grid{grid-template-columns:1fr 1fr}}
+.cta{border-radius:24px;padding:22px;color:#fff;display:flex;flex-direction:column;gap:6px}
+.cta h3{color:#fff;font-size:24px}
+.cta p{color:rgba(255,255,255,.88);margin:0 0 10px}
+.cta.form{background:linear-gradient(135deg,var(--marinho),#2a2fb0)}
+.cta.zapc{background:linear-gradient(135deg,#1f9a3d,#33b357)}
+.cta .btn{align-self:flex-start}
+
+/* Cuidado */
+.cards{display:grid;gap:16px;margin-top:26px}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:#fff;border-radius:24px;padding:22px;box-shadow:0 6px 20px rgba(13,15,116,.07);border-left:7px solid var(--c)}
+.card h3{font-size:22px;margin-bottom:6px}
+.card .ic{width:46px;height:46px;border-radius:14px;background:var(--c);display:grid;place-items:center;margin-bottom:12px}
+.card .ic svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card blockquote{margin:12px 0 0;padding:12px 14px;background:var(--papel);border-radius:14px;font-family:var(--script);font-size:22px;line-height:1.2;color:var(--marinho)}
+
+/* Na prática */
+.pratica{display:grid;gap:16px;margin-top:24px}
+@media (min-width:720px){.pratica{grid-template-columns:1fr 1fr}}
+.pr{border-radius:24px;padding:24px;color:#fff}
+.pr h3{color:#fff;font-size:24px;margin-bottom:8px}
+.pr p{margin:0;color:rgba(255,255,255,.92)}
+.pr.b{background:linear-gradient(135deg,#1777c4,var(--azul))}
+.pr.s{background:linear-gradient(135deg,#5b49b0,var(--lilas))}
+
+/* Etapas */
+.etapas{display:grid;gap:12px;margin-top:24px}
+@media (min-width:720px){.etapas{grid-template-columns:repeat(__NCOLS__,1fr)}}
+.et{background:#fff;border-radius:20px;padding:18px;border-top:6px solid var(--c);box-shadow:0 6px 18px rgba(13,15,116,.07)}
+.et small{display:block;font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--c)}
+.et h3{font-size:21px;margin:2px 0 6px}
+.et p{font-size:15px;color:var(--cinza);margin:0}
+.nota-et{margin-top:16px;color:var(--cinza);font-weight:700}
+
+/* Unidade */
+.unid{display:grid;gap:18px;margin-top:24px;background:var(--marinho);color:#fff;border-radius:28px;padding:22px;overflow:hidden}
+@media (min-width:820px){.unid{grid-template-columns:auto 1fr;align-items:center;padding:30px}}
+.unid img.logo{width:120px;height:120px;border-radius:50%;border:4px solid #fff;background:#fff}
+.unid h3{color:#fff;font-size:28px}
+.unid .end{color:#cfd2ff;margin:4px 0 12px}
+.unid ul{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:6px}
+.unid li{padding-left:28px;position:relative}
+.unid li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--amarelo)}
+.unid .btn.contorno{color:#fff;border-color:rgba(255,255,255,.5)}
+.outra{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:14px 18px;border-radius:18px;background:var(--papel);text-decoration:none;border:2px solid var(--linha)}
+.outra b{font-family:var(--display);color:var(--marinho);font-size:18px;display:block}
+.outra span{color:var(--cinza);font-size:14.5px}
+.outra i{font-style:normal;font-size:30px;color:var(--azul)}
+
+/* Por dentro */
+.dentro{display:grid;gap:22px;margin-top:22px;align-items:center}
+@media (min-width:820px){.dentro{grid-template-columns:360px 1fr}}
+.dentro video{width:100%;max-width:360px;aspect-ratio:9/16;object-fit:cover;border-radius:24px;background:#000;box-shadow:0 14px 34px rgba(13,15,116,.22);margin:0 auto}
+.lista-esp{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.lista-esp span{background:var(--papel);border:2px solid var(--linha);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14.5px;color:var(--marinho)}
+
+/* História */
+.hist{display:grid;gap:24px;align-items:center}
+@media (min-width:820px){.hist{grid-template-columns:auto 1fr}}
+.irmas{display:flex;justify-content:center}
+.irmas figure{margin:0 -10px;text-align:center}
+.irmas img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:6px solid var(--c);box-shadow:0 10px 26px rgba(13,15,116,.18)}
+.irmas figcaption{font-family:var(--display);font-weight:700;color:var(--marinho);margin-top:6px}
+.legenda{text-align:center;color:var(--cinza);font-size:14px;margin-top:8px}
+
+/* Visita + formulário */
+.visita{display:grid;gap:26px}
+@media (min-width:900px){.visita{grid-template-columns:1fr 1fr;align-items:start}}
+.passos{list-style:none;margin:20px 0;padding:0;display:grid;gap:12px}
+.passos li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.passos .n{width:44px;height:44px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px}
+.passos b{display:block;font-family:var(--display);font-size:18px;color:var(--marinho)}
+.passos span{color:var(--cinza);font-size:15px}
+.form{background:#fff;border-radius:24px;padding:22px;box-shadow:0 10px 30px rgba(13,15,116,.1);border-top:7px solid var(--verde)}
+.form h3{font-size:24px;margin-bottom:6px}
+.form label{display:block;font-weight:700;font-size:15px;margin:12px 0 4px}
+.form input,.form select{width:100%;font:inherit;font-size:16px;min-height:48px;padding:10px 12px;border:2px solid var(--linha);border-radius:12px;background:#fff;color:var(--tinta)}
+.form input:focus,.form select:focus{border-color:var(--azul);outline:none;box-shadow:0 0 0 4px rgba(42,155,224,.15)}
+.periodo{display:flex;gap:10px}
+.periodo label{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;margin:0;border:2px solid var(--linha);border-radius:12px;min-height:48px;cursor:pointer;font-weight:700}
+.periodo label:has(input:checked){border-color:var(--verde);background:#e7f6ea;color:var(--verde)}
+.periodo input{width:18px;height:18px;min-height:0;accent-color:var(--verde);margin:0}
+.erro{color:var(--vermelho);font-weight:700;font-size:14px;min-height:1em;margin:10px 0 0}
+.form .btn{width:100%;margin-top:6px}
+.miudo{font-size:13.5px;color:var(--cinza);margin-top:10px}
+.miudo a{color:var(--verde);font-weight:700}
+
+/* Avaliações */
+.notas{display:flex;flex-wrap:wrap;gap:16px;margin-top:22px}
+.nota{background:#fff;border-radius:24px;padding:22px 26px;box-shadow:0 6px 20px rgba(13,15,116,.08);display:flex;align-items:center;gap:18px;text-decoration:none}
+.nota b{font-family:var(--display);font-size:52px;line-height:1;color:var(--marinho)}
+.nota .est{color:var(--amarelo);font-size:22px;letter-spacing:2px}
+.nota span{display:block;color:var(--cinza);font-size:14.5px}
+.nota u{color:var(--azul);font-weight:700;text-decoration:none}
+
+/* Rodapé */
+footer{background:var(--marinho);color:#cfd2ff;padding:46px 0 110px}
+footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32px,7vw,44px);line-height:1.1;margin-bottom:10px}
+.rod{display:grid;gap:24px;margin-top:24px}
+@media (min-width:720px){.rod{grid-template-columns:1fr 1fr 1fr}}
+.rod h3{color:#fff;font-size:19px;margin-bottom:8px}
+.rod ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rod a{color:#fff}
+.copy{margin-top:30px;font-size:13px;color:#9da1e0}
+
+/* Eli */
+.eli-bot{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:10px;border:0;cursor:pointer;background:#fff;color:var(--marinho);border-radius:999px;padding:6px 18px 6px 6px;box-shadow:0 12px 30px rgba(13,15,116,.3);font:inherit;font-family:var(--display);font-weight:800;font-size:16px}
+.eli-bot .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--laranja),var(--vermelho));display:grid;place-items:center;color:#fff;font-size:22px;position:relative}
+.eli-bot .av::after{content:"";position:absolute;right:1px;bottom:1px;width:12px;height:12px;border-radius:50%;background:#33c25a;border:2px solid #fff}
+.eli-bot small{display:block;font-family:var(--body);font-weight:600;font-size:12px;color:var(--cinza)}
+.eli-bot[aria-expanded="true"]{display:none}
+.eli-balao{position:fixed;right:16px;bottom:84px;z-index:49;max-width:250px;background:#fff;border-radius:18px 18px 4px 18px;padding:10px 14px;box-shadow:0 10px 26px rgba(13,15,116,.2);font-size:14.5px;animation:sobe .3s ease-out}
+.eli-balao button{position:absolute;top:2px;right:6px;border:0;background:none;color:var(--cinza);font-size:16px;cursor:pointer}
+.eli{position:fixed;right:16px;bottom:16px;z-index:60;width:min(380px,calc(100vw - 32px));height:min(600px,calc(100vh - 32px));background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(13,15,116,.35);display:flex;flex-direction:column;overflow:hidden;animation:sobe .25s ease-out}
+.eli[hidden]{display:none}
+@media (max-width:520px){.eli{right:0;bottom:0;width:100%;height:88vh;border-radius:24px 24px 0 0}}
+.eli-topo{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--marinho);color:#fff}
+.eli-topo .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--laranja),var(--vermelho));display:grid;place-items:center;font-size:20px;flex:none}
+.eli-topo b{font-family:var(--display);font-size:18px;display:block;line-height:1.1}
+.eli-topo small{color:#cfd2ff;font-size:12.5px}
+.eli-topo button{margin-left:auto;border:0;background:rgba(255,255,255,.15);color:#fff;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
+.eli-msgs{flex:1;overflow-y:auto;padding:14px;background:var(--papel);display:flex;flex-direction:column;gap:10px}
+.msg{max-width:86%;padding:10px 13px;border-radius:18px;font-size:15px;line-height:1.45;animation:sobe .2s ease-out}
+.msg.eli-m{background:#fff;border:1px solid var(--linha);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.eu{background:var(--marinho);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg .acao{display:inline-flex;margin-top:8px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:14.5px;padding:7px 14px;border-radius:12px;background:#1f9a3d;color:#fff;border:0;cursor:pointer}
+.digitando{display:inline-flex;gap:4px}
+.digitando i{width:7px;height:7px;border-radius:50%;background:var(--cinza);opacity:.5;animation:pisca 1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}.digitando i:nth-child(3){animation-delay:.3s}
+.eli-chips{display:flex;gap:6px;overflow-x:auto;padding:10px 12px 4px;background:#fff;scrollbar-width:none}
+.eli-chips::-webkit-scrollbar{display:none}
+.eli-chips button{flex:none;border:2px solid var(--linha);background:#fff;color:var(--marinho);border-radius:999px;padding:6px 12px;font:inherit;font-weight:700;font-size:13.5px;cursor:pointer}
+.eli-chips button:hover{border-color:var(--azul)}
+.eli-form{display:flex;gap:8px;padding:10px 12px 12px;background:#fff}
+.eli-form input{flex:1;min-width:0;font:inherit;font-size:16px;border:2px solid var(--linha);border-radius:14px;padding:10px 12px}
+.eli-form input:focus{border-color:var(--azul);outline:none}
+.eli-form button{border:0;background:var(--marinho);color:#fff;border-radius:14px;width:48px;cursor:pointer;font-size:20px}
+@keyframes sobe{from{transform:translateY(10px);opacity:0}to{transform:none;opacity:1}}
+@keyframes pisca{50%{opacity:1}}
+</style>
+</head>
+<body>
+
+<header class="capa">
+  <i class="bola" aria-hidden="true" style="width:120px;height:120px;background:var(--verde);right:-50px;top:-40px"></i>
+  <i class="bola" aria-hidden="true" style="width:80px;height:80px;background:var(--vermelho);left:-36px;bottom:40px"></i>
+  <i class="bola" aria-hidden="true" style="width:34px;height:34px;background:var(--amarelo);left:46%;top:18px"></i>
+  <div class="wrap">
+    <div>
+      <div class="capa-topo"><img src="__LOGO__" alt="Logo Espaço Criativo" width="64" height="64"><span>Escola Espaço Criativo<br>__NOME_LONGO____COLEGIO__</span></div>
+      <span class="selo">Matrículas 2027 · vagas para o __FAIXA__</span>
+      <h1>Mais que uma escola, <em>um lugar para pertencer!</em></h1>
+      <p class="sub">__LOCAL_FRASE__</p>
+      <div class="botoes">
+        <a class="btn amarelo" href="#formulario">Preencher o formulário</a>
+        <a class="btn zap" href="__ZAP_LINK__" target="_blank" rel="noopener">__ZAP_SVG__Chamar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="capa-foto">
+      <img src="__FOTO__" alt="Fachada da __NOME_LONGO__" width="320" height="427" fetchpriority="high">
+      <span class="tag">__NOME_LONGO__</span>
+    </div>
+  </div>
+</header>
+<div class="arco" aria-hidden="true"></div>
+
+<div class="faixa-dest">
+  <div class="wrap destaques">
+    <div class="dest" style="--c:var(--vermelho)"><b>Tradição e reconhecimento dos pais</b><span>há mais de 23 anos em Fortaleza</span></div>
+    <div class="dest" style="--c:var(--laranja)"><b>__DL1__</b><span>__DL2__</span></div>
+    <div class="dest" style="--c:var(--verde)"><b>__DE1__</b><span>__DE2__</span></div>
+    <div class="dest" style="--c:var(--azul)"><b>Programa Bilíngue: Inglês na prática</b><span>na grade, sem taxa à parte</span></div>
+    <div class="dest" style="--c:var(--lilas)"><b>Educação Socioemocional, educação financeira e empreendedorismo</b><span>na grade regular</span></div>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--vermelho)">Matrículas 2027</span>
+    <h2>Venha conhecer a escola e garantir a vaga para 2027</h2>
+    <p class="sub" style="margin-top:8px">Escolha o jeito mais fácil para você.</p>
+    <div class="cta-grid">
+      <div class="cta form"><h3>Preencher o formulário</h3><p>Deixe seus dados e a gente combina a visita com você.</p><a class="btn amarelo" href="#formulario">Agendar minha visita →</a></div>
+      <div class="cta zapc"><h3>Chamar no WhatsApp</h3><p>Fale agora com a coordenação: __ZAP_TXT__.</p><a class="btn branco" href="__ZAP_LINK__" target="_blank" rel="noopener">Abrir o WhatsApp →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--verde)">Nosso jeito de cuidar</span>
+    <h2>O que seu filho encontra aqui todos os dias</h2>
+    <p class="sub" style="margin-top:8px">Quatro compromissos que valem em todas as turmas, do __FAIXA_LOWER__.</p>
+    <div class="cards">
+      <div class="card" style="--c:var(--vermelho)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <h3>Acolhimento que abraça</h3><p>A direção e a equipe conhecem cada aluno e cada família pelo nome, desde o primeiro dia de adaptação.</p>
+        <blockquote>“Aqui, seu filho não é um número: ele é conhecido pelo nome e acolhido pelo coração.”</blockquote></div>
+      <div class="card" style="--c:var(--lilas)"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+        <h3>Educação Socioemocional</h3><p>Programa na grade regular, com acompanhamento de psicóloga e o cantinho do sossego, um lugar de escuta e calma.</p>
+        <blockquote>“Cuidamos das emoções do seu filho hoje, para que ele mude o mundo com empatia amanhã.”</blockquote></div>
+      <div class="card" style="--c:var(--azul)"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>Programa Bilíngue</h3><p>Muito além da aula de inglês: o Programa Bilíngue está na grade e na rotina, com música, brincadeira e conversa, sem cobrança de taxa ou apostila à parte.</p>
+        <blockquote>“Aqui, a aprendizagem bilíngue acontece de forma natural, integrada à rotina, para que seu filho conquiste o mundo com confiança.”</blockquote></div>
+      <div class="card" style="--c:var(--verde)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div>
+        <h3>Parceria com as famílias</h3><p>Canal direto com a gestão pelo WhatsApp e equipe no portão todos os dias, na entrada e na saída.</p>
+        <blockquote>“Portas abertas, corações ouvidos: a família caminha sempre de mãos dadas com a escola.”</blockquote></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--azul)">Na prática</span>
+    <h2>Programa Bilíngue e Educação Socioemocional</h2>
+    <p class="sub" style="margin-top:8px">Os dois programas fazem parte da grade e da mensalidade regular.</p>
+    <div class="pratica">
+      <div class="pr b"><h3>Programa Bilíngue</h3><p>O inglês vive na rotina: cantar, brincar, contar histórias e conversar, até falar com naturalidade. Sem curso à parte e sem apostila extra.</p></div>
+      <div class="pr s"><h3>Educação Socioemocional</h3><p>Seu filho aprende a entender, falar e cuidar das próprias emoções. O cantinho do sossego é lugar de escuta e calma, nunca de castigo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--laranja)">Etapas</span>
+    <h2>Do __FAIXA__, no mesmo caminho</h2>
+    <p class="sub" style="margin-top:8px">Seu filho pode crescer com a mesma escola, com a mesma equipe conhecendo a história dele.</p>
+    <div class="etapas">__ETAPAS__</div>
+    <p class="nota-et">__ETAPAS_NOTA__</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--vermelho)">Unidade</span>
+    <h2>__NOME_LONGO__</h2>
+    <p class="sub" style="margin-top:8px">Fale direto com a gente. A mensagem já chega dizendo que você quer conhecer a unidade __NOME__.</p>
+    <div class="unid">
+      <img class="logo" src="__LOGO__" alt="" width="120" height="120" loading="lazy">
+      <div>
+        <h3>__NOME_LONGO____COLEGIO__</h3>
+        <p class="end">__ENDERECO__</p>
+        <ul>__BULLETS__</ul>
+        <div class="botoes">
+          <a class="btn amarelo" href="#formulario">Agendar visita</a>
+          <a class="btn contorno" href="__MAPA__" target="_blank" rel="noopener">Ver no mapa</a>
+        </div>
+      </div>
+    </div>
+    <a class="outra" href="__OUTRA_LINK__"><div><b>Conheça também a unidade __OUTRA_NOME__</b><span>__OUTRA_FAIXA__</span></div><i aria-hidden="true">›</i></a>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--verde)">Por dentro da escola</span>
+    <h2>__PD_TIT__</h2>
+    <div class="dentro">
+      <video controls playsinline preload="none" poster="__FOTO__" aria-label="Vídeo: por dentro da __NOME_LONGO__"><source src="__VIDEO__" type="video/mp4"></video>
+      <div>
+        <p class="sub">__PD_TXT__</p>
+        <div class="lista-esp">__ESPACOS__</div>
+        <div class="botoes" style="margin-top:18px"><a class="btn amarelo" href="#formulario">Quero visitar</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap hist">
+    <div>
+      <div class="irmas">
+        <figure style="--c:var(--vermelho)"><img src="../img/elienice-rosto.jpg" alt="Elienice" width="150" height="150" loading="lazy"><figcaption>Elienice</figcaption></figure>
+        <figure style="--c:var(--verde)"><img src="../img/evanisse-rosto.jpg" alt="Evanisse" width="150" height="150" loading="lazy"><figcaption>Evanisse</figcaption></figure>
+      </div>
+      <p class="legenda">Elienice e Evanisse, fundadoras</p>
+    </div>
+    <div>
+      <span class="eyebrow" style="--c:var(--lilas)">Nossa história</span>
+      <h2>Mais de 23 anos de tradição em Fortaleza</h2>
+      <p class="sub" style="margin-top:10px">A Escola Espaço Criativo nasceu do sonho de duas irmãs, filhas de professora, de criar uma escola onde cada criança fosse vista por inteiro.</p>
+      <p class="sub">Hoje são duas unidades, em Messejana e no Parque Santa Maria, e a mesma tradição de cuidar: a direção, com Evanisse e Elienice, conhece cada aluno e cada família pelo nome. Somos uma alternativa às grandes redes, para famílias que querem uma educação forte com afeto de verdade.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="formulario">
+  <div class="wrap visita">
+    <div>
+      <span class="eyebrow" style="--c:var(--vermelho)">Matrículas 2027</span>
+      <h2>Matrículas 2027: venha conhecer a nossa segunda casa</h2>
+      <p class="sub" style="margin-top:8px">A visita é o melhor jeito de sentir a escola. Você conversa com a coordenação, conhece as salas e tira todas as dúvidas.</p>
+      <ol class="passos">
+        <li style="--c:var(--vermelho)"><span class="n">1</span><div><b>Deixe seu contato</b><span>Leva menos de um minuto.</span></div></li>
+        <li style="--c:var(--laranja)"><span class="n">2</span><div><b>A gente confirma pelo WhatsApp</b><span>Combinamos o melhor dia e horário para você.</span></div></li>
+        <li style="--c:var(--verde)"><span class="n">3</span><div><b>Você visita a unidade</b><span>Com a coordenação, sem pressa.</span></div></li>
+      </ol>
+      <p><b>Prefere falar agora?</b></p>
+      <a class="btn zap" href="__ZAP_LINK__" target="_blank" rel="noopener">__ZAP_SVG__Chamar no WhatsApp · __ZAP_TXT__</a>
+    </div>
+    <form class="form" id="form-visita" novalidate>
+      <h3>Preencha e agende sua visita</h3>
+      <label for="f-nome">Seu nome</label>
+      <input id="f-nome" type="text" autocomplete="name" required placeholder="Ex.: Ana Souza">
+      <label for="f-zap">WhatsApp com DDD</label>
+      <input id="f-zap" type="text" inputmode="tel" autocomplete="tel" required placeholder="(85) 99999-9999" maxlength="15">
+      <label for="f-etapa">Etapa</label>
+      <select id="f-etapa" required><option value="">Escolha</option>__ETAPAS_FORM__</select>
+      <label for="f-idade">Idade da criança</label>
+      <input id="f-idade" type="text" inputmode="numeric" placeholder="Ex.: 3 anos">
+      <label>Melhor período para visitar</label>
+      <div class="periodo" role="radiogroup" aria-label="Melhor período para visitar">
+        <label><input type="radio" name="f-periodo" value="Manhã" checked> Manhã</label>
+        <label><input type="radio" name="f-periodo" value="Tarde"> Tarde</label>
+      </div>
+      <p class="erro" id="f-erro" role="alert"></p>
+      <button class="btn zap" type="submit">Enviar e agendar minha visita</button>
+      <p class="miudo">ou <a href="__ZAP_LINK__" target="_blank" rel="noopener">falar direto no WhatsApp</a>. Ao enviar, abrimos o WhatsApp da escola com seus dados já escritos. Seus dados são usados só para combinar a visita.</p>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="--c:#b07a00">O que as famílias dizem</span>
+    <h2>Avaliações no Google</h2>
+    <p class="sub" style="margin-top:8px">Notas públicas das famílias.</p>
+    <div class="notas">
+      <a class="nota" href="__GOOGLE__" target="_blank" rel="noopener"><b>__NOTA__</b><div><div class="est" aria-label="__NOTA__ de 5 estrelas">★★★★★</div><span>__NOME__</span><span>__AVAL__ avaliações · <u>ver no Google</u></span></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="arco" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <p class="slogan">um lugar para pertencer!</p>
+    <p>Escola Espaço Criativo · mais de 23 anos de tradição. Do __FAIXA__, preparando para o presente e inspirando o futuro.</p>
+    <div class="rod">
+      <div><h3>Fale com a gente</h3><ul>
+        <li>WhatsApp: <a href="__ZAP_LINK__" target="_blank" rel="noopener">__ZAP_TXT__</a></li>
+        <li><a href="__INSTA__" target="_blank" rel="noopener">Instagram __NOME__ (__INSTA_TXT__)</a></li>
+      </ul></div>
+      <div><h3>Unidade</h3><ul><li>__NOME_LONGO__: __END_CURTO__</li>__ESPACO_BRINCAR__</ul></div>
+      <div><h3>Outra unidade</h3><ul><li><a href="__OUTRA_LINK__">Conheça a unidade __OUTRA_NOME__</a></li></ul></div>
+    </div>
+    <p class="copy">© 2026 Escola Espaço Criativo · Fortaleza (CE)</p>
+  </div>
+</footer>
+
+<!-- Eli: assistente virtual com respostas prontas sobre a escola (sem preços) -->
+<div class="eli-balao" id="eli-balao" hidden>Oi! Eu sou a Eli 😊 Posso te ajudar com alguma dúvida sobre a escola?<button type="button" id="eli-balao-x" aria-label="Fechar aviso">×</button></div>
+<button type="button" class="eli-bot" id="eli-abrir" aria-expanded="false" aria-controls="eli"><span class="av" aria-hidden="true">E</span><span>Fale com a Eli<small>assistente virtual</small></span></button>
+<section class="eli" id="eli" role="dialog" aria-label="Conversa com a Eli" hidden>
+  <div class="eli-topo"><span class="av" aria-hidden="true">E</span><div><b>Eli</b><small>Assistente virtual · __NOME_LONGO__</small></div><button type="button" id="eli-fechar" aria-label="Fechar conversa">×</button></div>
+  <div class="eli-msgs" id="eli-msgs" aria-live="polite"></div>
+  <div class="eli-chips" id="eli-chips"></div>
+  <form class="eli-form" id="eli-form"><input id="eli-txt" type="text" placeholder="Escreva sua dúvida…" autocomplete="off" aria-label="Sua mensagem"><button type="submit" aria-label="Enviar">➤</button></form>
+</section>
+
+<script>
+(function(){
+  var U=__U_JSON__, BASE=__ELI_JSON__;
+  function so(v){return (v||'').replace(/\D/g,'');}
+  function masc(v){v=so(v).slice(0,11);if(v.length<=2)return v.length?'('+v:'';if(v.length<=6)return '('+v.slice(0,2)+') '+v.slice(2);if(v.length<=10)return '('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);}
+  function telOk(v){var d=so(v);return (d.length===11&&d[2]==='9')||d.length===10;}
+  function zap(txt){return 'https://wa.me/'+U.zap+'?text='+encodeURIComponent(txt);}
+
+  /* Formulário de visita */
+  var f=document.getElementById('form-visita'), z=document.getElementById('f-zap');
+  z.addEventListener('input',function(){this.value=masc(this.value);});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nome=document.getElementById('f-nome').value.trim(), etapa=document.getElementById('f-etapa').value,
+        idade=document.getElementById('f-idade').value.trim(), per=(document.querySelector('input[name=f-periodo]:checked')||{}).value||'';
+    var falta=[]; if(!nome)falta.push('seu nome'); if(!telOk(z.value))falta.push('um WhatsApp com DDD'); if(!etapa)falta.push('a etapa');
+    var er=document.getElementById('f-erro');
+    if(falta.length){er.textContent='Falta preencher: '+falta.join(', ')+'.';return;}
+    er.textContent='';
+    var m=['Olá! Vim pelo catálogo e quero agendar uma visita na '+U.nome_longo+'.','','*Nome:* '+nome,'*WhatsApp:* '+z.value,'*Etapa:* '+etapa];
+    if(idade)m.push('*Idade da criança:* '+idade);
+    m.push('*Melhor período para visitar:* '+per);
+    window.open(zap(m.join('\n')),'_blank','noopener')||(location.href=zap(m.join('\n')));
+  });
+
+  /* Eli */
+  var abrir=document.getElementById('eli-abrir'), caixa=document.getElementById('eli'), msgs=document.getElementById('eli-msgs'),
+      chips=document.getElementById('eli-chips'), form=document.getElementById('eli-form'), txt=document.getElementById('eli-txt'),
+      balao=document.getElementById('eli-balao'), iniciou=false;
+  function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  function rolar(){msgs.scrollTop=msgs.scrollHeight;}
+  function bolha(quem,texto,acao){
+    var d=document.createElement('div'); d.className='msg '+(quem==='eu'?'eu':'eli-m'); d.textContent=texto;
+    if(acao){var a=document.createElement('a'); a.className='acao';
+      if(acao==='zap'){a.href=zap('Olá! Vim pelo catálogo da '+U.nome_longo+' e gostaria de saber os valores para 2027.');a.target='_blank';a.rel='noopener';a.textContent='Falar no WhatsApp';}
+      else if(acao==='mapa'){a.href=U.mapa;a.target='_blank';a.rel='noopener';a.textContent='Ver no mapa';}
+      else if(acao==='form'){a.href='#formulario';a.textContent='Agendar minha visita';a.addEventListener('click',fechar);}
+      else if(acao==='outra'){a.href=U.outra_link;a.textContent='Conhecer a unidade '+U.outra_nome;}
+      d.appendChild(document.createElement('br'));d.appendChild(a);}
+    msgs.appendChild(d); rolar();
+  }
+  function eliDiz(texto,acao){
+    var t=document.createElement('div'); t.className='msg eli-m'; t.innerHTML='<span class="digitando" aria-label="Eli está digitando"><i></i><i></i><i></i></span>';
+    msgs.appendChild(t); rolar();
+    setTimeout(function(){t.remove(); bolha('eli',texto,acao);}, Math.min(1200, 450+texto.length*4));
+  }
+  function responder(p){
+    var n=norm(p);
+    if(/^(oi|ola|bom dia|boa tarde|boa noite|e ai|hey)\b/.test(n)&&n.length<25){eliDiz('Oi! Que bom te ver por aqui 😊 Me conta, qual é a sua dúvida? Você pode escrever ou tocar num dos assuntos abaixo.');return;}
+    if(/(obrigad|valeu|brigad)/.test(n)){eliDiz('Imagina! Foi um prazer ajudar 💙 Se quiser, a nossa coordenação te recebe para uma visita. Até breve!','form');return;}
+    if(/(atendente|humano|pessoa|coordena|falar com|whats|telefone|contato|ligar)/.test(n)){eliDiz('Claro! A nossa coordenação te atende pelo WhatsApp '+U.zap_txt+'. É só tocar no botão 😊','zap');return;}
+    var melhor=null, pts=0;
+    BASE.forEach(function(it){var s=0; it.chaves.forEach(function(k){if(n.indexOf(norm(k))>-1)s+=k.length;}); if(s>pts){pts=s;melhor=it;}});
+    if(melhor){eliDiz(melhor.r,melhor.acao);return;}
+    eliDiz('Hmm, essa eu ainda não sei responder 😅 Mas a nossa coordenação te ajuda rapidinho pelo WhatsApp!','zap');
+  }
+  function enviar(p){if(!p.trim())return; bolha('eu',p); responder(p);}
+  BASE.forEach(function(it){var b=document.createElement('button');b.type='button';b.textContent=it.chip;b.addEventListener('click',function(){bolha('eu',it.chip);eliDiz(it.r,it.acao);});chips.appendChild(b);});
+  function abre(){caixa.hidden=false;abrir.setAttribute('aria-expanded','true');balao.hidden=true;
+    if(!iniciou){iniciou=true;eliDiz('Oi! Eu sou a Eli, a assistente virtual da Escola Espaço Criativo, '+U.nome_longo+' 😊 Estou aqui para tirar suas dúvidas sobre turmas, Programa Bilíngue, visita e matrícula 2027. Como posso te ajudar?');}
+    setTimeout(function(){txt.focus();},300);}
+  function fechar(){caixa.hidden=true;abrir.setAttribute('aria-expanded','false');abrir.focus();}
+  abrir.addEventListener('click',abre); document.getElementById('eli-fechar').addEventListener('click',fechar);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!caixa.hidden)fechar();});
+  form.addEventListener('submit',function(e){e.preventDefault();var v=txt.value;txt.value='';enviar(v);});
+  document.getElementById('eli-balao-x').addEventListener('click',function(){balao.hidden=true;});
+  setTimeout(function(){if(caixa.hidden&&!iniciou)balao.hidden=false;},4000);
+})();
+</script>
+</body>
+</html>
+"""
+
+ZAP_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>'
+CORES = ["var(--vermelho)", "var(--laranja)", "var(--verde)", "var(--azul)"]
+
+
+def gerar(chave, u):
+    from urllib.parse import quote
+    zap_link = f"https://wa.me/{u['zap']}?text=" + quote(f"Olá! Vim pelo catálogo e quero conhecer a {u['nome_longo']}.")
+    etapas = "".join(f'<div class="et" style="--c:{CORES[i % 4]}"><small>{a}</small><h3>{t}</h3><p>{d}</p></div>'
+                     for i, (a, t, d) in enumerate(u["etapas"]))
+    bullets = "".join(f"<li>{b}</li>" for b in u["bullets"])
+    espacos = ["Berçário", "Salas de aula", "Corredores ilustrados", "Parque e gramado", "Pátio coberto"] if chave == "messejana" \
+        else ["Berçário e creche", "Salas de aula", "Fundamental I e II", "Creche Espaço Brincar"]
+    rep = {
+        "__NOME_LONGO__": u["nome_longo"], "__NOME__": u["nome"], "__COLEGIO__": u["colegio"],
+        "__FAIXA__": u["faixa"], "__FAIXA_LOWER__": u["faixa"][0].upper() + u["faixa"][1:],
+        "__LOGO__": u["logo"], "__FOTO__": u["foto"], "__VIDEO__": u["video"],
+        "__OG_IMG__": BASE_URL + u["logo"].replace("../", ""), "__OG_URL__": BASE_URL + chave + "/",
+        "__LOCAL_FRASE__": u["local_frase"], "__ZAP_LINK__": zap_link, "__ZAP_TXT__": u["zap_txt"], "__ZAP_SVG__": ZAP_SVG,
+        "__DL1__": u["destaque_local"][0], "__DL2__": u["destaque_local"][1],
+        "__DE1__": u["destaque_etapas"][0], "__DE2__": u["destaque_etapas"][1],
+        "__ETAPAS__": etapas, "__NCOLS__": str(len(u["etapas"])), "__ETAPAS_NOTA__": u["etapas_nota"],
+        "__ENDERECO__": u["endereco"], "__END_CURTO__": u["endereco_curto"], "__BULLETS__": bullets, "__MAPA__": u["mapa"],
+        "__OUTRA_NOME__": u["outra"][0], "__OUTRA_LINK__": u["outra"][1], "__OUTRA_FAIXA__": u["outra"][2],
+        "__PD_TIT__": u["por_dentro_tit"], "__PD_TXT__": u["por_dentro_txt"],
+        "__ESPACOS__": "".join(f"<span>{e}</span>" for e in espacos),
+        "__ETAPAS_FORM__": "".join(f"<option>{e}</option>" for e in u["etapas_form"]),
+        "__NOTA__": u["nota"], "__AVAL__": u["avaliacoes"], "__GOOGLE__": u["google"],
+        "__INSTA__": u["insta"], "__INSTA_TXT__": u["insta_txt"],
+        "__ESPACO_BRINCAR__": "<li>Creche Espaço Brincar: Rua Jorge da Veiga, 620</li>" if chave == "santa-maria" else "",
+        "__U_JSON__": json.dumps({"zap": u["zap"], "zap_txt": u["zap_txt"], "nome_longo": u["nome_longo"], "mapa": u["mapa"],
+                                   "outra_link": u["outra"][1], "outra_nome": u["outra"][0]}, ensure_ascii=False),
+        "__ELI_JSON__": json.dumps(eli_base(u), ensure_ascii=False),
+    }
+    html = TPL
+    for k, v in rep.items():
+        html = html.replace(k, v)
+    os.makedirs(chave, exist_ok=True)
+    with open(os.path.join(chave, "index.html"), "w", encoding="utf-8") as fh:
+        fh.write(html)
+    print("ok", chave, len(html))
+
+
+if __name__ == "__main__":
+    for k, u in UNIDADES.items():
+        gerar(k, u)
