@@ -212,8 +212,8 @@ section{padding:60px 0}
 .capa h1 em{font-style:normal;font-family:var(--script);color:var(--amarelo);font-size:1.12em;display:block;line-height:1}
 .capa .sub{color:#d3d6ff;margin:14px 0 22px}
 .capa-foto{position:relative;justify-self:center;width:min(320px,80vw)}
-.capa-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
-.capa-foto .tag{position:absolute;left:-10px;bottom:22px;background:#fff;color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.capa-foto video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.capa-foto .tag{position:relative;display:inline-block;margin:0 0 10px;background:#fff;color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .bola{position:absolute;border-radius:50%;pointer-events:none}
 
 /* Destaques */
@@ -387,8 +387,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
       </div>
     </div>
     <div class="capa-foto">
-      <img src="__FOTO__" alt="Fachada da __NOME_LONGO__" width="320" height="427" fetchpriority="high">
-      <span class="tag">__NOME_LONGO__</span>
+      <span class="tag">Por dentro da __NOME_LONGO__</span>
+      <video controls playsinline preload="none" poster="__FOTO__" aria-label="Vídeo: por dentro da __NOME_LONGO__"><source src="__VIDEO__" type="video/mp4"></video>
     </div>
   </div>
 </header>
@@ -482,22 +482,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   </div>
 </section>
 
-<section class="alt">
-  <div class="wrap">
-    <span class="eyebrow" style="--c:var(--verde)">Por dentro da escola</span>
-    <h2>__PD_TIT__</h2>
-    <div class="dentro">
-      <video controls playsinline preload="none" poster="__FOTO__" aria-label="Vídeo: por dentro da __NOME_LONGO__"><source src="__VIDEO__" type="video/mp4"></video>
-      <div>
-        <p class="sub">__PD_TXT__</p>
-        <div class="lista-esp">__ESPACOS__</div>
-        <div class="botoes" style="margin-top:18px"><a class="btn amarelo" href="#formulario">Quero visitar</a></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section>
+<section class="alt">
   <div class="wrap hist">
     <div>
       <div class="irmas">
