@@ -62,7 +62,7 @@ section{padding:60px 0}
 .capa h1 em{font-style:normal;font-family:var(--script);color:var(--amarelo);font-size:1.12em;display:block;line-height:1}
 .capa .sub{color:#d3d6ff;margin:14px 0 22px}
 .capa-foto{position:relative;justify-self:center;width:min(320px,80vw)}
-.capa-foto video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.capa-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
 .capa-foto .tag{position:relative;display:inline-block;margin:0 0 10px;background:#fff;color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .bola{position:absolute;border-radius:50%;pointer-events:none}
 
@@ -183,6 +183,24 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 .rod a{color:#fff}
 .copy{margin-top:30px;font-size:13px;color:#9da1e0}
 
+.unids2{display:grid;gap:16px;margin-top:24px}
+@media (min-width:820px){.unids2{grid-template-columns:1fr 1fr}}
+.u2{background:var(--marinho);color:#fff;border-radius:26px;padding:22px;border-top:8px solid var(--c)}
+.u2 img{width:84px;height:84px;border-radius:50%;border:3px solid #fff;background:#fff;margin-bottom:10px}
+.u2 h3{color:#fff;font-size:25px}
+.u2 .end{color:#cfd2ff;margin:4px 0 12px;font-size:15px}
+.u2 ul{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:6px}
+.u2 li{padding-left:26px;position:relative}
+.u2 li::before{content:"";position:absolute;left:0;top:6px;width:14px;height:14px;border-radius:50%;background:var(--amarelo)}
+.u2 .btn{font-size:15.5px}
+.u2 .btn.contorno{color:#fff;border-color:rgba(255,255,255,.5)}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+@media (min-width:820px){.galeria{grid-template-columns:repeat(5,1fr)}}
+.galeria figure{margin:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(13,15,116,.08)}
+.galeria img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.galeria figcaption{padding:8px 12px;font-family:var(--display);font-weight:700;color:var(--marinho)}
+.galeria figure:first-child{grid-column:span 2}
+@media (min-width:820px){.galeria figure:first-child{grid-column:auto}}
 /* Eli */
 .eli-bot{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:10px;border:0;cursor:pointer;background:#fff;color:var(--marinho);border-radius:999px;padding:6px 18px 6px 6px;box-shadow:0 12px 30px rgba(13,15,116,.3);font:inherit;font-family:var(--display);font-weight:800;font-size:16px}
 .eli-bot .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--laranja),var(--vermelho));display:grid;place-items:center;color:#fff;font-size:22px;position:relative}
@@ -227,18 +245,17 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   <i class="bola" aria-hidden="true" style="width:34px;height:34px;background:var(--amarelo);left:46%;top:18px"></i>
   <div class="wrap">
     <div>
-      <div class="capa-topo"><img src="../img/logo-messejana.png" alt="Logo Espaço Criativo" width="64" height="64"><span>Escola Espaço Criativo<br>Unidade Messejana · Colégio Maria de Fátima</span></div>
-      <span class="selo">Matrículas 2027 · vagas para o Berçário ao 5º ano</span>
+      <div class="capa-topo"><img src="../img/logo-messejana.png" alt="Logo Espaço Criativo" width="64" height="64"><span>Matrículas 2027</span></div>
+      <span class="selo">Matrículas 2027 · vagas para o Berçário ao 9º ano</span>
       <h1>Mais que uma escola, <em>um lugar para pertencer!</em></h1>
-      <p class="sub">Estamos no coração de Messejana, em Fortaleza/CE. Venha conhecer a nossa unidade.</p>
+      <p class="sub">Estamos no coração de Messejana e no Parque Santa Maria, Fortaleza/CE. Venha conhecer as nossas unidades.</p>
       <div class="botoes">
         <a class="btn amarelo" href="#formulario">Preencher o formulário</a>
         <a class="btn zap" href="https://wa.me/5585974007393?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20e%20quero%20conhecer%20a%20Unidade%20Messejana." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>Chamar no WhatsApp</a>
       </div>
     </div>
     <div class="capa-foto">
-      <span class="tag">Por dentro da Unidade Messejana</span>
-      <video controls playsinline preload="none" poster="../img/messejana-por-dentro.jpg" aria-label="Vídeo: por dentro da Unidade Messejana"><source src="../img/messejana-por-dentro.mp4" type="video/mp4"></video>
+      <img src="../img/messejana-por-dentro.jpg" alt="Fachada da Unidade Messejana" width="320" height="427" fetchpriority="high">
     </div>
   </div>
 </header>
@@ -247,8 +264,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <div class="faixa-dest">
   <div class="wrap destaques">
     <div class="dest" style="--c:var(--vermelho)"><b>Tradição e reconhecimento dos pais</b><span>há mais de 23 anos em Fortaleza</span></div>
-    <div class="dest" style="--c:var(--laranja)"><b>No coração de Messejana</b><span>Rua Santa Efigênia, 300</span></div>
-    <div class="dest" style="--c:var(--verde)"><b>Do Berçário ao 5º ano</b><span>com tempo integral</span></div>
+    <div class="dest" style="--c:var(--laranja)"><b>Messejana e Parque Santa Maria</b><span>duas unidades perto de você</span></div>
+    <div class="dest" style="--c:var(--verde)"><b>A partir de 2 anos até o 9º ano do Ensino Fundamental</b><span>com tempo integral</span></div>
     <div class="dest" style="--c:var(--azul)"><b>Programa Bilíngue: Inglês na prática</b><span>na grade, sem taxa à parte</span></div>
     <div class="dest" style="--c:var(--lilas)"><b>Educação Socioemocional, educação financeira e empreendedorismo</b><span>na grade regular</span></div>
   </div>
@@ -271,7 +288,7 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   <div class="wrap">
     <span class="eyebrow" style="--c:var(--verde)">Nosso jeito de cuidar</span>
     <h2>O que seu filho encontra aqui todos os dias</h2>
-    <p class="sub" style="margin-top:8px">Quatro compromissos que valem em todas as turmas, do Berçário ao 5º ano.</p>
+    <p class="sub" style="margin-top:8px">Quatro compromissos que valem nas duas unidades, do Berçário ao 9º ano.</p>
     <div class="cards">
       <div class="card" style="--c:var(--vermelho)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
         <h3>Acolhimento que abraça</h3><p>A direção e a equipe conhecem cada aluno e cada família pelo nome, desde o primeiro dia de adaptação.</p>
@@ -304,36 +321,52 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <section class="alt">
   <div class="wrap">
     <span class="eyebrow" style="--c:var(--laranja)">Etapas</span>
-    <h2>Do Berçário ao 5º ano, no mesmo caminho</h2>
+    <h2>Do Berçário ao 9º ano, no mesmo caminho</h2>
     <p class="sub" style="margin-top:8px">Seu filho pode crescer com a mesma escola, com a mesma equipe conhecendo a história dele.</p>
-    <div class="etapas"><div class="et" style="--c:var(--vermelho)"><small>a partir dos primeiros meses</small><h3>Berçário e creche</h3><p>Adaptação afetiva e gradual, com rotina de cuidado, estímulo e musicalização.</p></div><div class="et" style="--c:var(--laranja)"><small>até 5 anos</small><h3>Educação Infantil</h3><p>Brincar, explorar e aprender a conviver, com psicomotricidade e Programa Bilíngue.</p></div><div class="et" style="--c:var(--verde)"><small>1º ao 5º ano</small><h3>Fundamental I</h3><p>Base sólida de leitura e matemática, com acompanhamento próximo da coordenação.</p></div></div>
-    <p class="nota-et">Tempo integral disponível no contraturno.</p>
+    <div class="etapas">
+      <div class="et" style="--c:var(--vermelho)"><small>a partir dos primeiros meses</small><h3>Berçário e creche</h3><p>Adaptação afetiva e gradual, com rotina de cuidado, estímulo e musicalização.</p></div>
+      <div class="et" style="--c:var(--laranja)"><small>até 5 anos</small><h3>Educação Infantil</h3><p>Brincar, explorar e aprender a conviver, com psicomotricidade e Programa Bilíngue.</p></div>
+      <div class="et" style="--c:var(--verde)"><small>1º ao 5º ano</small><h3>Fundamental I</h3><p>Base sólida de leitura e matemática, com acompanhamento próximo da coordenação.</p></div>
+      <div class="et" style="--c:var(--azul)"><small>6º ao 9º ano</small><h3>Fundamental II</h3><p>Projetos, interclasses e vagas também no turno da tarde.</p></div>
+    </div>
+    <p class="nota-et">Tempo integral disponível. Consulte as etapas oferecidas em cada unidade.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow" style="--c:var(--vermelho)">Unidade</span>
-    <h2>Unidade Messejana</h2>
-    <p class="sub" style="margin-top:8px">Fale direto com a gente. A mensagem já chega dizendo que você quer conhecer a unidade Messejana.</p>
-    <div class="unid">
-      <img class="logo" src="../img/logo-messejana.png" alt="" width="120" height="120" loading="lazy">
-      <div>
-        <h3>Unidade Messejana · Colégio Maria de Fátima</h3>
+    <span class="eyebrow" style="--c:var(--vermelho)">Unidades</span>
+    <h2>Em Messejana e no Parque Santa Maria</h2>
+    <p class="sub" style="margin-top:8px">Escolha a unidade e fale direto com a gente. A mensagem já chega dizendo qual unidade você quer conhecer.</p>
+    <div class="unids2">
+      <div class="u2" style="--c:var(--azul)">
+        <img src="../img/logo-messejana.png" alt="" width="84" height="84" loading="lazy">
+        <h3>Unidade Messejana</h3>
         <p class="end">Rua Santa Efigênia, 300 · Messejana · Fortaleza (CE)</p>
-        <ul><li>Estrutura nova e turmas pequenas</li><li>Berçário, Educação Infantil e Fundamental I</li><li>Programa Bilíngue e Educação Socioemocional</li></ul>
-        <div class="botoes">
-          <a class="btn amarelo" href="#formulario">Agendar visita</a>
-          <a class="btn contorno" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">Ver no mapa</a>
-        </div>
+        <ul><li>Estrutura nova e turmas pequenas</li><li>Berçário, Educação Infantil e Fundamental</li><li>Programa Bilíngue e Educação Socioemocional</li></ul>
+        <div class="botoes"><a class="btn amarelo" href="#formulario" data-unid="Messejana">Agendar visita em Messejana</a><a class="btn contorno" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">Ver no mapa</a></div>
+      </div>
+      <div class="u2" style="--c:var(--verde)">
+        <img src="../img/logo.png" alt="" width="84" height="84" loading="lazy">
+        <h3>Unidade Parque Santa Maria</h3>
+        <p class="end">Rua Jorge da Veiga, 595 · Parque Santa Maria · Fortaleza (CE)<br>Creche Espaço Brincar: Rua Jorge da Veiga, 620</p>
+        <ul><li>Do Berçário ao 9º ano, com tempo integral</li><li>Fundamental II também à tarde</li><li>Creche Espaço Brincar ao lado</li></ul>
+        <div class="botoes"><a class="btn amarelo" href="#formulario" data-unid="Parque Santa Maria">Agendar visita no Parque Santa Maria</a><a class="btn contorno" href="https://maps.google.com/?q=-3.858689,-38.501865" target="_blank" rel="noopener">Ver no mapa</a></div>
       </div>
     </div>
-    <a class="outra" href="../santa-maria/"><div><b>Conheça também a unidade Parque Santa Maria</b><span>Berçário ao 9º ano</span></div><i aria-hidden="true">›</i></a>
   </div>
 </section>
 
-
 <section class="alt">
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--verde)">Por dentro da escola</span>
+    <h2>Conheça os espaços da Unidade Messejana</h2>
+    <p class="sub" style="margin-top:8px">Fotos reais da unidade: estrutura nova, pensada para o Berçário e a Educação Infantil.</p>
+    <div class="galeria"><figure><img src="../img/messejana-bercario.jpg" alt="Berçário, Unidade Messejana" width="360" height="360" loading="lazy"><figcaption>Berçário</figcaption></figure><figure><img src="../img/messejana-sala.jpg" alt="Sala de aula, Unidade Messejana" width="360" height="360" loading="lazy"><figcaption>Sala de aula</figcaption></figure><figure><img src="../img/messejana-corredores.jpg" alt="Corredores ilustrados, Unidade Messejana" width="360" height="360" loading="lazy"><figcaption>Corredores ilustrados</figcaption></figure><figure><img src="../img/messejana-parque.jpg" alt="Parque e gramado, Unidade Messejana" width="360" height="360" loading="lazy"><figcaption>Parque e gramado</figcaption></figure><figure><img src="../img/messejana-patio.jpg" alt="Pátio coberto, Unidade Messejana" width="360" height="360" loading="lazy"><figcaption>Pátio coberto</figcaption></figure></div>
+  </div>
+</section>
+
+<section>
   <div class="wrap hist">
     <div>
       <div class="irmas">
@@ -368,13 +401,15 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
     <form class="form" id="form-visita" novalidate>
       <h3>Preencha e agende sua visita</h3>
       <label for="f-nome">Seu nome</label>
-      <input id="f-nome" type="text" autocomplete="name" required placeholder="Ex.: Ana Souza">
+      <input id="f-nome" type="text" autocomplete="name" required>
       <label for="f-zap">WhatsApp com DDD</label>
-      <input id="f-zap" type="text" inputmode="tel" autocomplete="tel" required placeholder="(85) 99999-9999" maxlength="15">
+      <input id="f-zap" type="text" inputmode="tel" autocomplete="tel" required maxlength="15">
+      <label for="f-unid">Unidade</label>
+      <select id="f-unid"><option value="">Escolha</option><option>Messejana</option><option>Parque Santa Maria</option><option>Ainda não sei</option></select>
       <label for="f-etapa">Etapa</label>
-      <select id="f-etapa" required><option value="">Escolha</option><option>Berçário / creche</option><option>Educação Infantil</option><option>Fundamental I (1º ao 5º)</option></select>
+      <select id="f-etapa" required><option value="">Escolha</option><option>Berçário / creche</option><option>Educação Infantil</option><option>Fundamental I (1º ao 5º)</option><option>Fundamental II (6º ao 9º)</option></select>
       <label for="f-idade">Idade da criança</label>
-      <input id="f-idade" type="text" inputmode="numeric" placeholder="Ex.: 3 anos">
+      <input id="f-idade" type="text" inputmode="numeric">
       <label>Melhor período para visitar</label>
       <div class="periodo" role="radiogroup" aria-label="Melhor período para visitar">
         <label><input type="radio" name="f-periodo" value="Manhã" checked> Manhã</label>
@@ -382,7 +417,7 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
       </div>
       <p class="erro" id="f-erro" role="alert"></p>
       <button class="btn zap" type="submit">Enviar e agendar minha visita</button>
-      <p class="miudo">ou <a href="https://wa.me/5585974007393?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20e%20quero%20conhecer%20a%20Unidade%20Messejana." target="_blank" rel="noopener">falar direto no WhatsApp</a>. Ao enviar, abrimos o WhatsApp da escola com seus dados já escritos. Seus dados são usados só para combinar a visita.</p>
+      <p class="miudo">ou <a href="https://wa.me/5585974007393?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20e%20quero%20conhecer%20a%20Unidade%20Messejana." target="_blank" rel="noopener">Falar direto no WhatsApp</a>. Ao enviar, abrimos o WhatsApp da escola com seus dados já escritos. Seus dados são usados só para combinar a visita.</p>
     </form>
   </div>
 </section>
@@ -393,7 +428,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
     <h2>Avaliações no Google</h2>
     <p class="sub" style="margin-top:8px">Notas públicas das famílias.</p>
     <div class="notas">
-      <a class="nota" href="https://www.google.com/maps/search/?api=1&query=Escola+Espa%C3%A7o+Criativo+Messejana" target="_blank" rel="noopener"><b>5,0</b><div><div class="est" aria-label="5,0 de 5 estrelas">★★★★★</div><span>Messejana</span><span>12 avaliações · <u>ver no Google</u></span></div></a>
+      <a class="nota" href="https://www.google.com/maps/search/?api=1&amp;query=Escola+Espa%C3%A7o+Criativo+Parque+Santa+Maria" target="_blank" rel="noopener"><b>4,5</b><div><div class="est" aria-label="4,5 de 5 estrelas">★★★★★</div><span>Santa Maria</span><span>47 avaliações · <u>ver no Google</u></span></div></a>
+      <a class="nota" href="https://www.google.com/maps/search/?api=1&amp;query=Escola+Espa%C3%A7o+Criativo+Messejana" target="_blank" rel="noopener"><b>5,0</b><div><div class="est" aria-label="5,0 de 5 estrelas">★★★★★</div><span>Messejana</span><span>12 avaliações · <u>ver no Google</u></span></div></a>
     </div>
   </div>
 </section>
@@ -403,14 +439,18 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <footer>
   <div class="wrap">
     <p class="slogan">um lugar para pertencer!</p>
-    <p>Escola Espaço Criativo · mais de 23 anos de tradição. Do Berçário ao 5º ano, preparando para o presente e inspirando o futuro.</p>
+    <p>Escola Espaço Criativo · mais de 23 anos de tradição. Do Berçário ao 9º ano, preparando para o presente e inspirando o futuro.</p>
     <div class="rod">
       <div><h3>Fale com a gente</h3><ul>
         <li>WhatsApp: <a href="https://wa.me/5585974007393?text=Ol%C3%A1%21%20Vim%20pelo%20cat%C3%A1logo%20e%20quero%20conhecer%20a%20Unidade%20Messejana." target="_blank" rel="noopener">(85) 97400-7393</a></li>
-        <li><a href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener">Instagram Messejana (@eecmessejana)</a></li>
+        <li><a href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener">Instagram Messejana</a></li>
+        <li><a href="https://www.instagram.com/criativoespaco_sm/" target="_blank" rel="noopener">Instagram Santa Maria</a></li>
       </ul></div>
-      <div><h3>Unidade</h3><ul><li>Unidade Messejana: Rua Santa Efigênia, 300</li></ul></div>
-      <div><h3>Outra unidade</h3><ul><li><a href="../santa-maria/">Conheça a unidade Parque Santa Maria</a></li></ul></div>
+      <div><h3>Unidades</h3><ul>
+        <li>Messejana · Rua Santa Efigênia, 300</li>
+        <li>Parque Santa Maria · Rua Jorge da Veiga, 595</li>
+        <li>Creche Espaço Brincar · Rua Jorge da Veiga, 620</li>
+      </ul></div>
     </div>
     <p class="copy">© 2026 Escola Espaço Criativo · Fortaleza (CE)</p>
   </div>
@@ -428,7 +468,7 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 
 <script>
 (function(){
-  var U={"zap": "5585974007393", "zap_txt": "(85) 97400-7393", "nome_longo": "Unidade Messejana", "mapa": "https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6", "outra_link": "../santa-maria/", "outra_nome": "Parque Santa Maria"}, BASE=[{"id": "etapas", "chip": "Turmas e etapas", "chaves": ["etapa", "turma", "serie", "série", "ano", "infantil", "fundamental", "idade", "atende", "berçario", "bercario", "creche", "maternal"], "r": "A Unidade Messejana atende do Berçário ao 5º ano: Berçário e creche, Educação Infantil e Fundamental I (1º ao 5º), com tempo integral no contraturno. 😊 Quer que eu te ajude a agendar uma visita?"}, {"id": "integral", "chip": "Tempo integral", "chaves": ["integral", "contraturno", "tarde", "dia todo", "horario", "horário", "diaria", "diária", "meio periodo", "meio período"], "r": "Temos sim! O tempo integral amplia o dia da criança com acompanhamento das atividades escolares, brincadeiras, convivência e cuidado. No berçário há opção de integral e de meio período (manhã ou tarde). Os horários certinhos de cada turma a coordenação confirma pelo WhatsApp (85) 97400-7393."}, {"id": "bilingue", "chip": "Programa Bilíngue", "chaves": ["bilingue", "bilíngue", "ingles", "inglês", "idioma", "english"], "r": "O Programa Bilíngue está na grade e na rotina, não é uma aula solta! As crianças cantam, brincam, ouvem histórias e conversam em inglês até falar com naturalidade. E o melhor: faz parte da mensalidade regular, sem taxa nem apostila à parte. 🌎"}, {"id": "socio", "chip": "Socioemocional", "chaves": ["socioemocional", "emoc", "psicolog", "sossego", "comportamento", "empreendedor", "financeira"], "r": "A Educação Socioemocional está na grade regular, com acompanhamento de psicóloga. Seu filho aprende a entender, falar e cuidar das próprias emoções. Temos o cantinho do sossego, um lugar de escuta e calma, nunca de castigo 💛 A grade também inclui educação financeira e empreendedorismo."}, {"id": "endereco", "chip": "Endereço", "chaves": ["endereço", "endereco", "onde fica", "localiza", "mapa", "chegar", "rua", "fica onde"], "r": "A Unidade Messejana · Colégio Maria de Fátima fica na Rua Santa Efigênia, 300 · Messejana · Fortaleza (CE). Toque em \"Ver no mapa\" para abrir o caminho 📍", "acao": "mapa"}, {"id": "visita", "chip": "Agendar visita", "chaves": ["visita", "conhecer", "agendar", "ir ai", "ir aí", "passear", "marcar"], "r": "Que alegria! A visita é o melhor jeito de sentir a escola: você conversa com a coordenação, conhece as salas e tira todas as dúvidas, sem pressa. É só preencher o formulário aqui no site ou chamar no WhatsApp 😊", "acao": "form"}, {"id": "matricula", "chip": "Matrícula 2027", "chaves": ["matricula", "matrícula", "vaga", "2027", "inscri", "documento", "papel"], "r": "As matrículas 2027 estão abertas! Para novos alunos a escola costuma pedir: fotos 3x4, pasta escolar, cópia do registro da criança, RG e CPF dos responsáveis, comprovante de residência, cartão de vacina atualizado e declaração da escola anterior. A coordenação confirma a lista de documentos e te ajuda com tudo pelo WhatsApp (85) 97400-7393."}, {"id": "valores", "chip": "Valores", "chaves": ["valor", "preço", "preco", "mensalidade", "quanto custa", "custa", "pagar", "desconto", "material", "fardamento", "farda", "uniforme"], "r": "Os valores de mensalidade, material e fardamento quem passa é a nossa coordenação, direitinho para a turma do seu filho 😊 E tem condição especial para irmãos! Toque no botão abaixo e fale direto com a gente no WhatsApp.", "acao": "zap"}, {"id": "historia", "chip": "Nossa história", "chaves": ["historia", "história", "fundad", "dona", "elienice", "evanisse", "quem criou", "tempo de escola", "anos"], "r": "A Espaço Criativo nasceu em 2002, do sonho de duas irmãs, filhas de professora: Elienice e Evanisse. Começou numa casa adaptada no Parque Santa Maria, com quatro salas, e hoje são duas unidades e mais de 23 anos de tradição em Fortaleza. A direção conhece cada aluno e cada família pelo nome 💙"}, {"id": "seguranca", "chip": "Cuidado no dia a dia", "chaves": ["segur", "portao", "portão", "entrada", "saida", "saída", "adapta", "cuidado", "familia", "família", "comunica", "agenda"], "r": "Aqui a família caminha de mãos dadas com a escola: tem canal direto com a gestão pelo WhatsApp e equipe no portão todos os dias, na entrada e na saída. A adaptação é afetiva e gradual, no tempo de cada criança."}, {"id": "avaliacoes", "chip": "Avaliações", "chaves": ["avalia", "nota", "google", "opini", "recomenda", "boa escola", "é boa"], "r": "No Google, a Unidade Messejana tem nota 5,0 ⭐ com 12 avaliações de famílias. Dá uma olhada lá embaixo na página!"}, {"id": "outra", "chip": "Unidade Parque Santa Maria", "chaves": ["outra unidade", "santa maria", "unidades", "duas unidades"], "r": "Temos também a unidade Parque Santa Maria (Berçário ao 9º ano). Quer conhecer? Toque no botão abaixo 😊", "acao": "outra"}];
+  var U={"nome": "Messejana", "zap": "5585974007393", "zap_txt": "(85) 97400-7393", "nome_longo": "Unidade Messejana", "mapa": "https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6", "outra_link": "../santa-maria/", "outra_nome": "Parque Santa Maria"}, BASE=[{"id": "etapas", "chip": "Turmas e etapas", "chaves": ["etapa", "turma", "serie", "série", "ano", "infantil", "fundamental", "idade", "atende", "berçario", "bercario", "creche", "maternal"], "r": "A Unidade Messejana atende do Berçário ao 5º ano: Berçário e creche, Educação Infantil e Fundamental I (1º ao 5º), com tempo integral no contraturno. 😊 Quer que eu te ajude a agendar uma visita?"}, {"id": "integral", "chip": "Tempo integral", "chaves": ["integral", "contraturno", "tarde", "dia todo", "horario", "horário", "diaria", "diária", "meio periodo", "meio período"], "r": "Temos sim! O tempo integral amplia o dia da criança com acompanhamento das atividades escolares, brincadeiras, convivência e cuidado. No berçário há opção de integral e de meio período (manhã ou tarde). Os horários certinhos de cada turma a coordenação confirma pelo WhatsApp (85) 97400-7393."}, {"id": "bilingue", "chip": "Programa Bilíngue", "chaves": ["bilingue", "bilíngue", "ingles", "inglês", "idioma", "english"], "r": "O Programa Bilíngue está na grade e na rotina, não é uma aula solta! As crianças cantam, brincam, ouvem histórias e conversam em inglês até falar com naturalidade. E o melhor: faz parte da mensalidade regular, sem taxa nem apostila à parte. 🌎"}, {"id": "socio", "chip": "Socioemocional", "chaves": ["socioemocional", "emoc", "psicolog", "sossego", "comportamento", "empreendedor", "financeira"], "r": "A Educação Socioemocional está na grade regular, com acompanhamento de psicóloga. Seu filho aprende a entender, falar e cuidar das próprias emoções. Temos o cantinho do sossego, um lugar de escuta e calma, nunca de castigo 💛 A grade também inclui educação financeira e empreendedorismo."}, {"id": "endereco", "chip": "Endereço", "chaves": ["endereço", "endereco", "onde fica", "localiza", "mapa", "chegar", "rua", "fica onde"], "r": "A Unidade Messejana · Colégio Maria de Fátima fica na Rua Santa Efigênia, 300 · Messejana · Fortaleza (CE). Toque em \"Ver no mapa\" para abrir o caminho 📍", "acao": "mapa"}, {"id": "visita", "chip": "Agendar visita", "chaves": ["visita", "conhecer", "agendar", "ir ai", "ir aí", "passear", "marcar"], "r": "Que alegria! A visita é o melhor jeito de sentir a escola: você conversa com a coordenação, conhece as salas e tira todas as dúvidas, sem pressa. É só preencher o formulário aqui no site ou chamar no WhatsApp 😊", "acao": "form"}, {"id": "matricula", "chip": "Matrícula 2027", "chaves": ["matricula", "matrícula", "vaga", "2027", "inscri", "documento", "papel"], "r": "As matrículas 2027 estão abertas! Para novos alunos a escola costuma pedir: fotos 3x4, pasta escolar, cópia do registro da criança, RG e CPF dos responsáveis, comprovante de residência, cartão de vacina atualizado e declaração da escola anterior. A coordenação confirma a lista de documentos e te ajuda com tudo pelo WhatsApp (85) 97400-7393."}, {"id": "valores", "chip": "Valores", "chaves": ["valor", "preço", "preco", "mensalidade", "quanto custa", "custa", "pagar", "desconto", "material", "fardamento", "farda", "uniforme"], "r": "Os valores de mensalidade, material e fardamento quem passa é a nossa coordenação, direitinho para a turma do seu filho 😊 E tem condição especial para irmãos! Toque no botão abaixo e fale direto com a gente no WhatsApp.", "acao": "zap"}, {"id": "historia", "chip": "Nossa história", "chaves": ["historia", "história", "fundad", "dona", "elienice", "evanisse", "quem criou", "tempo de escola", "anos"], "r": "A Espaço Criativo nasceu em 2002, do sonho de duas irmãs, filhas de professora: Elienice e Evanisse. Começou numa casa adaptada no Parque Santa Maria, com quatro salas, e hoje são duas unidades e mais de 23 anos de tradição em Fortaleza. A direção conhece cada aluno e cada família pelo nome 💙"}, {"id": "seguranca", "chip": "Cuidado no dia a dia", "chaves": ["segur", "portao", "portão", "entrada", "saida", "saída", "adapta", "cuidado", "familia", "família", "comunica", "agenda"], "r": "Aqui a família caminha de mãos dadas com a escola: tem canal direto com a gestão pelo WhatsApp e equipe no portão todos os dias, na entrada e na saída. A adaptação é afetiva e gradual, no tempo de cada criança."}, {"id": "avaliacoes", "chip": "Avaliações", "chaves": ["avalia", "nota", "google", "opini", "recomenda", "boa escola", "é boa"], "r": "No Google, a Unidade Messejana tem nota 5,0 ⭐ com 12 avaliações de famílias. Dá uma olhada lá embaixo na página!"}, {"id": "outra", "chip": "Unidade Parque Santa Maria", "chaves": ["outra unidade", "santa maria", "unidades", "duas unidades"], "r": "Temos também a unidade Parque Santa Maria (Berçário ao 9º ano). Quer conhecer? Toque no botão abaixo 😊", "acao": "outra"}];
   function so(v){return (v||'').replace(/\D/g,'');}
   function masc(v){v=so(v).slice(0,11);if(v.length<=2)return v.length?'('+v:'';if(v.length<=6)return '('+v.slice(0,2)+') '+v.slice(2);if(v.length<=10)return '('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);}
   function telOk(v){var d=so(v);return (d.length===11&&d[2]==='9')||d.length===10;}
@@ -437,18 +477,23 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   /* Formulário de visita */
   var f=document.getElementById('form-visita'), z=document.getElementById('f-zap');
   z.addEventListener('input',function(){this.value=masc(this.value);});
+  document.getElementById('f-unid').value=U.nome;
+  document.querySelectorAll('[data-unid]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('f-unid').value=b.dataset.unid;});});
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var nome=document.getElementById('f-nome').value.trim(), etapa=document.getElementById('f-etapa').value,
-        idade=document.getElementById('f-idade').value.trim(), per=(document.querySelector('input[name=f-periodo]:checked')||{}).value||'';
-    var falta=[]; if(!nome)falta.push('seu nome'); if(!telOk(z.value))falta.push('um WhatsApp com DDD'); if(!etapa)falta.push('a etapa');
+        idade=document.getElementById('f-idade').value.trim(), per=(document.querySelector('input[name=f-periodo]:checked')||{}).value||'',
+        unid=document.getElementById('f-unid').value;
+    var falta=[]; if(!nome)falta.push('seu nome'); if(!telOk(z.value))falta.push('um WhatsApp com DDD'); if(!unid)falta.push('a unidade'); if(!etapa)falta.push('a etapa');
     var er=document.getElementById('f-erro');
     if(falta.length){er.textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     er.textContent='';
-    var m=['Olá! Vim pelo catálogo e quero agendar uma visita na '+U.nome_longo+'.','','*Nome:* '+nome,'*WhatsApp:* '+z.value,'*Etapa:* '+etapa];
+    var num=unid==='Messejana'?'5585974007393':(unid==='Parque Santa Maria'?'5585994071372':U.zap);
+    var m=['Olá! Vim pelo catálogo e quero agendar uma visita.','','*Nome:* '+nome,'*WhatsApp:* '+z.value,'*Unidade:* '+unid,'*Etapa:* '+etapa];
     if(idade)m.push('*Idade da criança:* '+idade);
     m.push('*Melhor período para visitar:* '+per);
-    window.open(zap(m.join('\n')),'_blank','noopener')||(location.href=zap(m.join('\n')));
+    var url='https://wa.me/'+num+'?text='+encodeURIComponent(m.join('\n'));
+    window.open(url,'_blank','noopener')||(location.href=url);
   });
 
   /* Eli */

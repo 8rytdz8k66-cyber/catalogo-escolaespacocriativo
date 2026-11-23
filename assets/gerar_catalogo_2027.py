@@ -38,7 +38,8 @@ UNIDADES = {
         "etapas_nota": "Tempo integral disponível no contraturno.",
         "etapas_form": ["Berçário / creche", "Educação Infantil", "Fundamental I (1º ao 5º)"],
         "por_dentro_tit": "Conheça os espaços da Unidade Messejana",
-        "por_dentro_txt": "Vídeo real da unidade: estrutura nova, pensada para o Berçário e a Educação Infantil.",
+        "por_dentro_txt": "Fotos reais da unidade: estrutura nova, pensada para o Berçário e a Educação Infantil.",
+        "galeria": [("messejana-bercario","Berçário"),("messejana-sala","Sala de aula"),("messejana-corredores","Corredores ilustrados"),("messejana-parque","Parque e gramado"),("messejana-patio","Pátio coberto")],
         "nota": "5,0", "avaliacoes": "12",
         "google": "https://www.google.com/maps/search/?api=1&query=Escola+Espa%C3%A7o+Criativo+Messejana",
         "outra": ("Parque Santa Maria", "../santa-maria/", "Berçário ao 9º ano"),
@@ -73,7 +74,8 @@ UNIDADES = {
         "etapas_nota": "Tempo integral disponível. A Creche Espaço Brincar fica ao lado, na Rua Jorge da Veiga, 620.",
         "etapas_form": ["Berçário / creche", "Educação Infantil", "Fundamental I (1º ao 5º)", "Fundamental II (6º ao 9º)"],
         "por_dentro_tit": "Conheça os espaços da Unidade Parque Santa Maria",
-        "por_dentro_txt": "Vídeo real da unidade onde a Espaço Criativo nasceu, em 2002.",
+        "por_dentro_txt": "Fotos reais da unidade onde a Espaço Criativo nasceu, em 2002.",
+        "galeria": [("santa-maria-patio","Pátio coberto"),("santa-maria-corredor","Corredor colorido"),("santa-maria-parquinho","Parquinho"),("santa-maria-sala","Sala de atividades"),("santa-maria-brinquedoteca","Brinquedoteca")],
         "nota": "4,5", "avaliacoes": "47",
         "google": "https://www.google.com/maps/search/?api=1&query=Escola+Espa%C3%A7o+Criativo+Parque+Santa+Maria",
         "outra": ("Messejana", "../messejana/", "Berçário ao 5º ano"),
@@ -212,7 +214,7 @@ section{padding:60px 0}
 .capa h1 em{font-style:normal;font-family:var(--script);color:var(--amarelo);font-size:1.12em;display:block;line-height:1}
 .capa .sub{color:#d3d6ff;margin:14px 0 22px}
 .capa-foto{position:relative;justify-self:center;width:min(320px,80vw)}
-.capa-foto video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
+.capa-foto img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 62%;border-radius:28px;border:6px solid #fff;box-shadow:0 22px 50px rgba(0,0,0,.35)}
 .capa-foto .tag{position:relative;display:inline-block;margin:0 0 10px;background:#fff;color:var(--marinho);font-family:var(--display);font-weight:800;font-size:14px;padding:8px 14px;border-radius:14px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
 .bola{position:absolute;border-radius:50%;pointer-events:none}
 
@@ -333,6 +335,24 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 .rod a{color:#fff}
 .copy{margin-top:30px;font-size:13px;color:#9da1e0}
 
+.unids2{display:grid;gap:16px;margin-top:24px}
+@media (min-width:820px){.unids2{grid-template-columns:1fr 1fr}}
+.u2{background:var(--marinho);color:#fff;border-radius:26px;padding:22px;border-top:8px solid var(--c)}
+.u2 img{width:84px;height:84px;border-radius:50%;border:3px solid #fff;background:#fff;margin-bottom:10px}
+.u2 h3{color:#fff;font-size:25px}
+.u2 .end{color:#cfd2ff;margin:4px 0 12px;font-size:15px}
+.u2 ul{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:6px}
+.u2 li{padding-left:26px;position:relative}
+.u2 li::before{content:"";position:absolute;left:0;top:6px;width:14px;height:14px;border-radius:50%;background:var(--amarelo)}
+.u2 .btn{font-size:15.5px}
+.u2 .btn.contorno{color:#fff;border-color:rgba(255,255,255,.5)}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+@media (min-width:820px){.galeria{grid-template-columns:repeat(5,1fr)}}
+.galeria figure{margin:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(13,15,116,.08)}
+.galeria img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.galeria figcaption{padding:8px 12px;font-family:var(--display);font-weight:700;color:var(--marinho)}
+.galeria figure:first-child{grid-column:span 2}
+@media (min-width:820px){.galeria figure:first-child{grid-column:auto}}
 /* Eli */
 .eli-bot{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:10px;border:0;cursor:pointer;background:#fff;color:var(--marinho);border-radius:999px;padding:6px 18px 6px 6px;box-shadow:0 12px 30px rgba(13,15,116,.3);font:inherit;font-family:var(--display);font-weight:800;font-size:16px}
 .eli-bot .av{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--laranja),var(--vermelho));display:grid;place-items:center;color:#fff;font-size:22px;position:relative}
@@ -377,18 +397,17 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   <i class="bola" aria-hidden="true" style="width:34px;height:34px;background:var(--amarelo);left:46%;top:18px"></i>
   <div class="wrap">
     <div>
-      <div class="capa-topo"><img src="__LOGO__" alt="Logo Espaço Criativo" width="64" height="64"><span>Escola Espaço Criativo<br>__NOME_LONGO____COLEGIO__</span></div>
-      <span class="selo">Matrículas 2027 · vagas para o __FAIXA__</span>
+      <div class="capa-topo"><img src="__LOGO__" alt="Logo Espaço Criativo" width="64" height="64"><span>Matrículas 2027</span></div>
+      <span class="selo">Matrículas 2027 · vagas para o Berçário ao 9º ano</span>
       <h1>Mais que uma escola, <em>um lugar para pertencer!</em></h1>
-      <p class="sub">__LOCAL_FRASE__</p>
+      <p class="sub">Estamos no coração de Messejana e no Parque Santa Maria, Fortaleza/CE. Venha conhecer as nossas unidades.</p>
       <div class="botoes">
         <a class="btn amarelo" href="#formulario">Preencher o formulário</a>
         <a class="btn zap" href="__ZAP_LINK__" target="_blank" rel="noopener">__ZAP_SVG__Chamar no WhatsApp</a>
       </div>
     </div>
     <div class="capa-foto">
-      <span class="tag">Por dentro da __NOME_LONGO__</span>
-      <video controls playsinline preload="none" poster="__FOTO__" aria-label="Vídeo: por dentro da __NOME_LONGO__"><source src="__VIDEO__" type="video/mp4"></video>
+      <img src="__FOTO__" alt="Fachada da __NOME_LONGO__" width="320" height="427" fetchpriority="high">
     </div>
   </div>
 </header>
@@ -397,8 +416,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <div class="faixa-dest">
   <div class="wrap destaques">
     <div class="dest" style="--c:var(--vermelho)"><b>Tradição e reconhecimento dos pais</b><span>há mais de 23 anos em Fortaleza</span></div>
-    <div class="dest" style="--c:var(--laranja)"><b>__DL1__</b><span>__DL2__</span></div>
-    <div class="dest" style="--c:var(--verde)"><b>__DE1__</b><span>__DE2__</span></div>
+    <div class="dest" style="--c:var(--laranja)"><b>Messejana e Parque Santa Maria</b><span>duas unidades perto de você</span></div>
+    <div class="dest" style="--c:var(--verde)"><b>A partir de 2 anos até o 9º ano do Ensino Fundamental</b><span>com tempo integral</span></div>
     <div class="dest" style="--c:var(--azul)"><b>Programa Bilíngue: Inglês na prática</b><span>na grade, sem taxa à parte</span></div>
     <div class="dest" style="--c:var(--lilas)"><b>Educação Socioemocional, educação financeira e empreendedorismo</b><span>na grade regular</span></div>
   </div>
@@ -421,7 +440,7 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   <div class="wrap">
     <span class="eyebrow" style="--c:var(--verde)">Nosso jeito de cuidar</span>
     <h2>O que seu filho encontra aqui todos os dias</h2>
-    <p class="sub" style="margin-top:8px">Quatro compromissos que valem em todas as turmas, do __FAIXA_LOWER__.</p>
+    <p class="sub" style="margin-top:8px">Quatro compromissos que valem nas duas unidades, do Berçário ao 9º ano.</p>
     <div class="cards">
       <div class="card" style="--c:var(--vermelho)"><div class="ic"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
         <h3>Acolhimento que abraça</h3><p>A direção e a equipe conhecem cada aluno e cada família pelo nome, desde o primeiro dia de adaptação.</p>
@@ -454,36 +473,52 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <section class="alt">
   <div class="wrap">
     <span class="eyebrow" style="--c:var(--laranja)">Etapas</span>
-    <h2>Do __FAIXA__, no mesmo caminho</h2>
+    <h2>Do Berçário ao 9º ano, no mesmo caminho</h2>
     <p class="sub" style="margin-top:8px">Seu filho pode crescer com a mesma escola, com a mesma equipe conhecendo a história dele.</p>
-    <div class="etapas">__ETAPAS__</div>
-    <p class="nota-et">__ETAPAS_NOTA__</p>
+    <div class="etapas">
+      <div class="et" style="--c:var(--vermelho)"><small>a partir dos primeiros meses</small><h3>Berçário e creche</h3><p>Adaptação afetiva e gradual, com rotina de cuidado, estímulo e musicalização.</p></div>
+      <div class="et" style="--c:var(--laranja)"><small>até 5 anos</small><h3>Educação Infantil</h3><p>Brincar, explorar e aprender a conviver, com psicomotricidade e Programa Bilíngue.</p></div>
+      <div class="et" style="--c:var(--verde)"><small>1º ao 5º ano</small><h3>Fundamental I</h3><p>Base sólida de leitura e matemática, com acompanhamento próximo da coordenação.</p></div>
+      <div class="et" style="--c:var(--azul)"><small>6º ao 9º ano</small><h3>Fundamental II</h3><p>Projetos, interclasses e vagas também no turno da tarde.</p></div>
+    </div>
+    <p class="nota-et">Tempo integral disponível. Consulte as etapas oferecidas em cada unidade.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="eyebrow" style="--c:var(--vermelho)">Unidade</span>
-    <h2>__NOME_LONGO__</h2>
-    <p class="sub" style="margin-top:8px">Fale direto com a gente. A mensagem já chega dizendo que você quer conhecer a unidade __NOME__.</p>
-    <div class="unid">
-      <img class="logo" src="__LOGO__" alt="" width="120" height="120" loading="lazy">
-      <div>
-        <h3>__NOME_LONGO____COLEGIO__</h3>
-        <p class="end">__ENDERECO__</p>
-        <ul>__BULLETS__</ul>
-        <div class="botoes">
-          <a class="btn amarelo" href="#formulario">Agendar visita</a>
-          <a class="btn contorno" href="__MAPA__" target="_blank" rel="noopener">Ver no mapa</a>
-        </div>
+    <span class="eyebrow" style="--c:var(--vermelho)">Unidades</span>
+    <h2>Em Messejana e no Parque Santa Maria</h2>
+    <p class="sub" style="margin-top:8px">Escolha a unidade e fale direto com a gente. A mensagem já chega dizendo qual unidade você quer conhecer.</p>
+    <div class="unids2">
+      <div class="u2" style="--c:var(--azul)">
+        <img src="../img/logo-messejana.png" alt="" width="84" height="84" loading="lazy">
+        <h3>Unidade Messejana</h3>
+        <p class="end">Rua Santa Efigênia, 300 · Messejana · Fortaleza (CE)</p>
+        <ul><li>Estrutura nova e turmas pequenas</li><li>Berçário, Educação Infantil e Fundamental</li><li>Programa Bilíngue e Educação Socioemocional</li></ul>
+        <div class="botoes"><a class="btn amarelo" href="#formulario" data-unid="Messejana">Agendar visita em Messejana</a><a class="btn contorno" href="https://maps.app.goo.gl/7UgxG8nRy4DjcvGP6" target="_blank" rel="noopener">Ver no mapa</a></div>
+      </div>
+      <div class="u2" style="--c:var(--verde)">
+        <img src="../img/logo.png" alt="" width="84" height="84" loading="lazy">
+        <h3>Unidade Parque Santa Maria</h3>
+        <p class="end">Rua Jorge da Veiga, 595 · Parque Santa Maria · Fortaleza (CE)<br>Creche Espaço Brincar: Rua Jorge da Veiga, 620</p>
+        <ul><li>Do Berçário ao 9º ano, com tempo integral</li><li>Fundamental II também à tarde</li><li>Creche Espaço Brincar ao lado</li></ul>
+        <div class="botoes"><a class="btn amarelo" href="#formulario" data-unid="Parque Santa Maria">Agendar visita no Parque Santa Maria</a><a class="btn contorno" href="https://maps.google.com/?q=-3.858689,-38.501865" target="_blank" rel="noopener">Ver no mapa</a></div>
       </div>
     </div>
-    <a class="outra" href="__OUTRA_LINK__"><div><b>Conheça também a unidade __OUTRA_NOME__</b><span>__OUTRA_FAIXA__</span></div><i aria-hidden="true">›</i></a>
   </div>
 </section>
 
-
 <section class="alt">
+  <div class="wrap">
+    <span class="eyebrow" style="--c:var(--verde)">Por dentro da escola</span>
+    <h2>Conheça os espaços da __NOME_LONGO__</h2>
+    <p class="sub" style="margin-top:8px">__PD_TXT__</p>
+    <div class="galeria">__GALERIA__</div>
+  </div>
+</section>
+
+<section>
   <div class="wrap hist">
     <div>
       <div class="irmas">
@@ -518,13 +553,15 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
     <form class="form" id="form-visita" novalidate>
       <h3>Preencha e agende sua visita</h3>
       <label for="f-nome">Seu nome</label>
-      <input id="f-nome" type="text" autocomplete="name" required placeholder="Ex.: Ana Souza">
+      <input id="f-nome" type="text" autocomplete="name" required>
       <label for="f-zap">WhatsApp com DDD</label>
-      <input id="f-zap" type="text" inputmode="tel" autocomplete="tel" required placeholder="(85) 99999-9999" maxlength="15">
+      <input id="f-zap" type="text" inputmode="tel" autocomplete="tel" required maxlength="15">
+      <label for="f-unid">Unidade</label>
+      <select id="f-unid"><option value="">Escolha</option><option>Messejana</option><option>Parque Santa Maria</option><option>Ainda não sei</option></select>
       <label for="f-etapa">Etapa</label>
-      <select id="f-etapa" required><option value="">Escolha</option>__ETAPAS_FORM__</select>
+      <select id="f-etapa" required><option value="">Escolha</option><option>Berçário / creche</option><option>Educação Infantil</option><option>Fundamental I (1º ao 5º)</option><option>Fundamental II (6º ao 9º)</option></select>
       <label for="f-idade">Idade da criança</label>
-      <input id="f-idade" type="text" inputmode="numeric" placeholder="Ex.: 3 anos">
+      <input id="f-idade" type="text" inputmode="numeric">
       <label>Melhor período para visitar</label>
       <div class="periodo" role="radiogroup" aria-label="Melhor período para visitar">
         <label><input type="radio" name="f-periodo" value="Manhã" checked> Manhã</label>
@@ -532,7 +569,7 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
       </div>
       <p class="erro" id="f-erro" role="alert"></p>
       <button class="btn zap" type="submit">Enviar e agendar minha visita</button>
-      <p class="miudo">ou <a href="__ZAP_LINK__" target="_blank" rel="noopener">falar direto no WhatsApp</a>. Ao enviar, abrimos o WhatsApp da escola com seus dados já escritos. Seus dados são usados só para combinar a visita.</p>
+      <p class="miudo">ou <a href="__ZAP_LINK__" target="_blank" rel="noopener">Falar direto no WhatsApp</a>. Ao enviar, abrimos o WhatsApp da escola com seus dados já escritos. Seus dados são usados só para combinar a visita.</p>
     </form>
   </div>
 </section>
@@ -543,7 +580,8 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
     <h2>Avaliações no Google</h2>
     <p class="sub" style="margin-top:8px">Notas públicas das famílias.</p>
     <div class="notas">
-      <a class="nota" href="__GOOGLE__" target="_blank" rel="noopener"><b>__NOTA__</b><div><div class="est" aria-label="__NOTA__ de 5 estrelas">★★★★★</div><span>__NOME__</span><span>__AVAL__ avaliações · <u>ver no Google</u></span></div></a>
+      <a class="nota" href="https://www.google.com/maps/search/?api=1&amp;query=Escola+Espa%C3%A7o+Criativo+Parque+Santa+Maria" target="_blank" rel="noopener"><b>4,5</b><div><div class="est" aria-label="4,5 de 5 estrelas">★★★★★</div><span>Santa Maria</span><span>47 avaliações · <u>ver no Google</u></span></div></a>
+      <a class="nota" href="https://www.google.com/maps/search/?api=1&amp;query=Escola+Espa%C3%A7o+Criativo+Messejana" target="_blank" rel="noopener"><b>5,0</b><div><div class="est" aria-label="5,0 de 5 estrelas">★★★★★</div><span>Messejana</span><span>12 avaliações · <u>ver no Google</u></span></div></a>
     </div>
   </div>
 </section>
@@ -553,14 +591,18 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
 <footer>
   <div class="wrap">
     <p class="slogan">um lugar para pertencer!</p>
-    <p>Escola Espaço Criativo · mais de 23 anos de tradição. Do __FAIXA__, preparando para o presente e inspirando o futuro.</p>
+    <p>Escola Espaço Criativo · mais de 23 anos de tradição. Do Berçário ao 9º ano, preparando para o presente e inspirando o futuro.</p>
     <div class="rod">
       <div><h3>Fale com a gente</h3><ul>
         <li>WhatsApp: <a href="__ZAP_LINK__" target="_blank" rel="noopener">__ZAP_TXT__</a></li>
-        <li><a href="__INSTA__" target="_blank" rel="noopener">Instagram __NOME__ (__INSTA_TXT__)</a></li>
+        <li><a href="https://www.instagram.com/eecmessejana/" target="_blank" rel="noopener">Instagram Messejana</a></li>
+        <li><a href="https://www.instagram.com/criativoespaco_sm/" target="_blank" rel="noopener">Instagram Santa Maria</a></li>
       </ul></div>
-      <div><h3>Unidade</h3><ul><li>__NOME_LONGO__: __END_CURTO__</li>__ESPACO_BRINCAR__</ul></div>
-      <div><h3>Outra unidade</h3><ul><li><a href="__OUTRA_LINK__">Conheça a unidade __OUTRA_NOME__</a></li></ul></div>
+      <div><h3>Unidades</h3><ul>
+        <li>Messejana · Rua Santa Efigênia, 300</li>
+        <li>Parque Santa Maria · Rua Jorge da Veiga, 595</li>
+        <li>Creche Espaço Brincar · Rua Jorge da Veiga, 620</li>
+      </ul></div>
     </div>
     <p class="copy">© 2026 Escola Espaço Criativo · Fortaleza (CE)</p>
   </div>
@@ -587,18 +629,23 @@ footer .slogan{font-family:var(--script);color:var(--amarelo);font-size:clamp(32
   /* Formulário de visita */
   var f=document.getElementById('form-visita'), z=document.getElementById('f-zap');
   z.addEventListener('input',function(){this.value=masc(this.value);});
+  document.getElementById('f-unid').value=U.nome;
+  document.querySelectorAll('[data-unid]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('f-unid').value=b.dataset.unid;});});
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var nome=document.getElementById('f-nome').value.trim(), etapa=document.getElementById('f-etapa').value,
-        idade=document.getElementById('f-idade').value.trim(), per=(document.querySelector('input[name=f-periodo]:checked')||{}).value||'';
-    var falta=[]; if(!nome)falta.push('seu nome'); if(!telOk(z.value))falta.push('um WhatsApp com DDD'); if(!etapa)falta.push('a etapa');
+        idade=document.getElementById('f-idade').value.trim(), per=(document.querySelector('input[name=f-periodo]:checked')||{}).value||'',
+        unid=document.getElementById('f-unid').value;
+    var falta=[]; if(!nome)falta.push('seu nome'); if(!telOk(z.value))falta.push('um WhatsApp com DDD'); if(!unid)falta.push('a unidade'); if(!etapa)falta.push('a etapa');
     var er=document.getElementById('f-erro');
     if(falta.length){er.textContent='Falta preencher: '+falta.join(', ')+'.';return;}
     er.textContent='';
-    var m=['Olá! Vim pelo catálogo e quero agendar uma visita na '+U.nome_longo+'.','','*Nome:* '+nome,'*WhatsApp:* '+z.value,'*Etapa:* '+etapa];
+    var num=unid==='Messejana'?'5585974007393':(unid==='Parque Santa Maria'?'5585994071372':U.zap);
+    var m=['Olá! Vim pelo catálogo e quero agendar uma visita.','','*Nome:* '+nome,'*WhatsApp:* '+z.value,'*Unidade:* '+unid,'*Etapa:* '+etapa];
     if(idade)m.push('*Idade da criança:* '+idade);
     m.push('*Melhor período para visitar:* '+per);
-    window.open(zap(m.join('\n')),'_blank','noopener')||(location.href=zap(m.join('\n')));
+    var url='https://wa.me/'+num+'?text='+encodeURIComponent(m.join('\n'));
+    window.open(url,'_blank','noopener')||(location.href=url);
   });
 
   /* Eli */
@@ -673,12 +720,12 @@ def gerar(chave, u):
         "__ENDERECO__": u["endereco"], "__END_CURTO__": u["endereco_curto"], "__BULLETS__": bullets, "__MAPA__": u["mapa"],
         "__OUTRA_NOME__": u["outra"][0], "__OUTRA_LINK__": u["outra"][1], "__OUTRA_FAIXA__": u["outra"][2],
         "__PD_TIT__": u["por_dentro_tit"], "__PD_TXT__": u["por_dentro_txt"],
-        "__ESPACOS__": "".join(f"<span>{e}</span>" for e in espacos),
+        "__GALERIA__": "".join(f'<figure><img src="../img/{a}.jpg" alt="{t}, {u["nome_longo"]}" width="360" height="360" loading="lazy"><figcaption>{t}</figcaption></figure>' for a, t in u["galeria"]),
         "__ETAPAS_FORM__": "".join(f"<option>{e}</option>" for e in u["etapas_form"]),
         "__NOTA__": u["nota"], "__AVAL__": u["avaliacoes"], "__GOOGLE__": u["google"],
         "__INSTA__": u["insta"], "__INSTA_TXT__": u["insta_txt"],
         "__ESPACO_BRINCAR__": "<li>Creche Espaço Brincar: Rua Jorge da Veiga, 620</li>" if chave == "santa-maria" else "",
-        "__U_JSON__": json.dumps({"zap": u["zap"], "zap_txt": u["zap_txt"], "nome_longo": u["nome_longo"], "mapa": u["mapa"],
+        "__U_JSON__": json.dumps({"nome": u["nome"], "zap": u["zap"], "zap_txt": u["zap_txt"], "nome_longo": u["nome_longo"], "mapa": u["mapa"],
                                    "outra_link": u["outra"][1], "outra_nome": u["outra"][0]}, ensure_ascii=False),
         "__ELI_JSON__": json.dumps(eli_base(u), ensure_ascii=False),
     }
