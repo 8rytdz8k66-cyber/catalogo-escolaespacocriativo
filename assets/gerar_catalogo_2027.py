@@ -741,3 +741,78 @@ def gerar(chave, u):
 if __name__ == "__main__":
     for k, u in UNIDADES.items():
         gerar(k, u)
+
+
+def eli_geral():
+    z = "(85) 99407-1372"
+    return [
+        {"id": "etapas", "chip": "Turmas e etapas", "chaves": ["etapa", "turma", "serie", "série", "ano", "infantil", "fundamental", "idade", "atende", "berçario", "bercario", "creche", "maternal"],
+         "r": ("Atendemos do Berçário ao 9º ano 😊 Na unidade Parque Santa Maria tem Berçário e creche, Educação Infantil, Fundamental I e Fundamental II (também à tarde). "
+               "Na unidade Messejana tem Berçário, Educação Infantil e Fundamental I (até o 5º ano). As duas têm tempo integral. Quer agendar uma visita?"), "acao": "form"},
+        {"id": "unidades", "chip": "Unidades e endereço", "chaves": ["endereço", "endereco", "onde fica", "localiza", "mapa", "chegar", "rua", "unidade", "messejana", "santa maria"],
+         "r": ("Temos duas unidades 📍 Messejana: Rua Santa Efigênia, 300 (Colégio Maria de Fátima, estrutura nova e turmas pequenas). "
+               "Parque Santa Maria: Rua Jorge da Veiga, 595, com a Creche Espaço Brincar ao lado, na Rua Jorge da Veiga, 620. Os botões \"Ver no mapa\" estão na parte Unidades.")},
+        {"id": "integral", "chip": "Tempo integral", "chaves": ["integral", "contraturno", "tarde", "dia todo", "horario", "horário", "diaria", "diária", "meio periodo", "meio período"],
+         "r": ("Temos sim, nas duas unidades! O tempo integral amplia o dia da criança com acompanhamento das atividades escolares, brincadeiras, convivência e cuidado. "
+               f"No berçário há integral e meio período. Os horários de cada turma a coordenação confirma pelo WhatsApp {z}.")},
+        {"id": "bilingue", "chip": "Programa Bilíngue", "chaves": ["bilingue", "bilíngue", "ingles", "inglês", "idioma", "english"],
+         "r": ("O Programa Bilíngue está na grade e na rotina! As crianças cantam, brincam, ouvem histórias e conversam em inglês até falar com naturalidade. "
+               "Faz parte da mensalidade regular, sem taxa nem apostila à parte 🌎")},
+        {"id": "socio", "chip": "Socioemocional", "chaves": ["socioemocional", "emoc", "psicolog", "sossego", "comportamento", "empreendedor", "financeira"],
+         "r": ("A Educação Socioemocional está na grade regular, com acompanhamento de psicóloga. Temos o cantinho do sossego, lugar de escuta e calma, nunca de castigo 💛 "
+               "A grade também tem educação financeira e empreendedorismo.")},
+        {"id": "visita", "chip": "Agendar visita", "chaves": ["visita", "conhecer", "agendar", "ir ai", "ir aí", "marcar"],
+         "r": "Que alegria! A visita é o melhor jeito de sentir a escola. É só preencher o formulário aqui no site, escolher a unidade, e a gente confirma pelo WhatsApp 😊", "acao": "form"},
+        {"id": "matricula", "chip": "Matrícula 2027", "chaves": ["matricula", "matrícula", "vaga", "2027", "inscri", "documento", "papel"],
+         "r": ("As matrículas 2027 estão abertas! Para novos alunos a escola costuma pedir fotos 3x4, pasta escolar, cópia do registro da criança, RG e CPF dos responsáveis, "
+               f"comprovante de residência, cartão de vacina e declaração da escola anterior. A coordenação confirma tudo pelo WhatsApp {z}.")},
+        {"id": "valores", "chip": "Valores", "chaves": ["valor", "preço", "preco", "mensalidade", "quanto custa", "custa", "pagar", "desconto", "material", "fardamento", "farda", "uniforme"],
+         "r": ("Os valores de mensalidade, material e fardamento quem passa é a nossa coordenação, certinho para a turma e a unidade do seu filho 😊 "
+               "E tem condição especial para irmãos! Toque no botão e fale com a gente no WhatsApp."), "acao": "zap"},
+        {"id": "historia", "chip": "Nossa história", "chaves": ["historia", "história", "fundad", "dona", "elienice", "evanisse", "quem criou", "anos"],
+         "r": ("A Espaço Criativo nasceu em 2002, do sonho de duas irmãs, filhas de professora: Elienice e Evanisse. Começou numa casa adaptada no Parque Santa Maria, com quatro salas, "
+               "e hoje são duas unidades e mais de 23 anos de tradição em Fortaleza 💙")},
+        {"id": "seguranca", "chip": "Cuidado no dia a dia", "chaves": ["segur", "portao", "portão", "entrada", "saida", "saída", "adapta", "cuidado", "familia", "família", "comunica", "agenda"],
+         "r": ("A família caminha de mãos dadas com a escola: canal direto com a gestão pelo WhatsApp e equipe no portão todos os dias, na entrada e na saída. "
+               "A adaptação é afetiva e gradual, no tempo de cada criança.")},
+        {"id": "avaliacoes", "chip": "Avaliações", "chaves": ["avalia", "nota", "google", "opini", "recomenda", "boa escola"],
+         "r": "No Google, a unidade Messejana tem nota 5,0 ⭐ (12 avaliações) e a Parque Santa Maria tem 4,5 ⭐ (47 avaliações). Os links estão lá embaixo na página!"},
+        {"id": "extras", "chip": "Atividades extras", "chaves": ["extra", "ballet", "balé", "futsal", "futebol", "jiu", "luta", "esporte", "dança", "interclass"],
+         "r": f"No Fundamental II tem projetos e interclasses. Sobre atividades extras como ballet, futsal e jiu-jitsu, a coordenação confirma as turmas de 2027 pelo WhatsApp {z} 😊"},
+    ]
+
+
+def gerar_geral():
+    u = dict(UNIDADES["messejana"])
+    u.update({"zap": "5585994071372", "zap_txt": "(85) 99407-1372", "foto": "../img/messejana-por-dentro.jpg"})
+    gerar("_tmp", u)
+    p = os.path.join("_tmp", "index.html")
+    html = open(p, encoding="utf-8").read()
+    os.remove(p); os.rmdir("_tmp")
+    import re
+    html = html.replace("../img/", "img/").replace('href="../messejana/"', 'href="messejana/"').replace('href="../santa-maria/"', 'href="santa-maria/"')
+    html = html.replace("<title>Espaço Criativo · Unidade Messejana · Matrículas 2027</title>", "<title>Escola Espaço Criativo · Matrículas 2027</title>")
+    html = re.sub(r'<meta property="og:title" content="[^"]*">', '<meta property="og:title" content="Escola Espaço Criativo · Matrículas 2027">', html)
+    html = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="Escola Espaço Criativo em Messejana e no Parque Santa Maria, Fortaleza: do Berçário ao 9º ano, com Programa Bilíngue e Educação Socioemocional. Matrículas 2027.">', html)
+    html = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{BASE_URL}">', html)
+    html = html.replace(f'{BASE_URL}img/logo-messejana.png', f'{BASE_URL}img/logo.png').replace('<link rel="icon" href="img/logo-messejana.png">', '<link rel="icon" href="img/logo.png">')
+    html = html.replace('<div class="capa-topo"><img src="img/logo-messejana.png" alt="Logo Espaço Criativo" width="64" height="64"><span>Matrículas 2027</span></div>',
+                        '<div class="capa-topo"><img src="img/logo.png" alt="Logo Espaço Criativo Parque Santa Maria" width="64" height="64"><img src="img/logo-messejana.png" alt="Logo Espaço Criativo Messejana" width="64" height="64"><span>Matrículas 2027</span></div>')
+    html = html.replace('alt="Fachada da Unidade Messejana"', 'alt="Fachada da Escola Espaço Criativo, unidade Messejana"')
+    html = html.replace("Vim pelo catálogo e quero conhecer a Unidade Messejana.", "Vim pelo catálogo e quero conhecer a escola.").replace("quero%20conhecer%20a%20Unidade%20Messejana.", "quero%20conhecer%20a%20escola.")
+    html = html.replace("<small>Assistente virtual · Unidade Messejana</small>", "<small>Assistente virtual · Espaço Criativo</small>")
+    U = {"nome": "", "zap": "5585994071372", "zap_txt": "(85) 99407-1372", "nome_longo": "Escola Espaço Criativo", "mapa": "#unidades", "outra_link": "#unidades", "outra_nome": ""}
+    html = re.sub(r"var U=\{.*?\}, BASE=", "var U=" + json.dumps(U, ensure_ascii=False) + ", BASE=", html, count=1, flags=re.S)
+    html = re.sub(r"BASE=\[.*?\];\n", "BASE=" + json.dumps(eli_geral(), ensure_ascii=False) + ";\n", html, count=1, flags=re.S)
+    html = html.replace("'Oi! Eu sou a Eli, a assistente virtual da Escola Espaço Criativo, '+U.nome_longo+' 😊", "'Oi! Eu sou a Eli, a assistente virtual da Escola Espaço Criativo 😊")
+    html = html.replace("'Olá! Vim pelo catálogo da '+U.nome_longo+' e gostaria de saber os valores para 2027.'", "'Olá! Vim pelo catálogo da Escola Espaço Criativo e gostaria de saber os valores para 2027.'")
+    html = html.replace('<section>\n  <div class="wrap">\n    <span class="eyebrow" style="--c:var(--vermelho)">Unidades</span>', '<section id="unidades">\n  <div class="wrap">\n    <span class="eyebrow" style="--c:var(--vermelho)">Unidades</span>')
+    html = html.replace("  document.getElementById('f-unid').value=U.nome;\n", "")
+    # rodapé igual ao modelo, com Facebook só se houver link
+    with open("index.html", "w", encoding="utf-8") as fh:
+        fh.write(html)
+    print("ok index (geral)", len(html))
+
+
+if __name__ == "__main__" and os.environ.get("GERAL", "1") == "1":
+    gerar_geral()
