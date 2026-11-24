@@ -814,5 +814,5 @@ def gerar_geral():
     print("ok index (geral)", len(html))
 
 
-if __name__ == "__main__" and os.environ.get("GERAL", "1") == "1":
+if __name__ == "__main__" and os.environ.get("GERAL", "0") == "1":
     gerar_geral()
