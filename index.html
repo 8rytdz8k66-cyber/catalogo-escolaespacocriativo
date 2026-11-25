@@ -526,7 +526,6 @@ h1,h2,h3{text-wrap:balance}
   var f=document.getElementById('form-visita'), z=document.getElementById('f-zap'), er=document.getElementById('f-erro');
   z.addEventListener('input',function(){this.value=masc(this.value);});
   f.querySelectorAll('input,select').forEach(function(el){el.addEventListener('input',function(){el.classList.remove('err');});el.addEventListener('change',function(){el.classList.remove('err');});});
-  document.querySelectorAll('[data-unid]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('f-unid').value=b.dataset.unid;});});
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var nome=document.getElementById('f-nome'), unid=document.getElementById('f-unid'), etapa=document.getElementById('f-etapa'),
@@ -535,11 +534,11 @@ h1,h2,h3{text-wrap:balance}
     function marca(el,txt){el.classList.add('err');falta.push(txt);if(!prim)prim=el;}
     if(nome.value.trim().length<2)marca(nome,'seu nome');
     if(!telOk(z.value))marca(z,'um WhatsApp com DDD');
-    if(!unid.value)marca(unid,'a unidade');
+    if(unid&&!unid.value)marca(unid,'a unidade');
     if(!etapa.value)marca(etapa,'a etapa');
     if(falta.length){er.textContent='Falta preencher: '+falta.join(', ')+'.';prim.focus();return;}
     er.textContent='';
-    var m=['Olá! Vim pelo catálogo e quero agendar uma visita.','','*Nome:* '+nome.value.trim(),'*WhatsApp:* '+z.value,'*Unidade:* '+unid.value,'*Etapa:* '+etapa.value];
+    var m=['Olá! Vim pelo catálogo e quero agendar uma visita.','','*Nome:* '+nome.value.trim(),'*WhatsApp:* '+z.value,'*Unidade:* '+(unid?unid.value:f.dataset.unidade),'*Etapa:* '+etapa.value];
     if(idade.value.trim())m.push('*Idade da criança:* '+idade.value.trim());
     m.push('*Melhor período para visitar:* '+per.value);
     var url=zap(m.join('\n'));

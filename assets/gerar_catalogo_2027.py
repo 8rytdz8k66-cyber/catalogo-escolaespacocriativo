@@ -738,7 +738,8 @@ def gerar(chave, u):
     print("ok", chave, len(html))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and os.environ.get("ANTIGO", "0") == "1":
+    # Versão antiga das páginas das unidades. As atuais saem de assets/gerar_unidades_2027.py
     for k, u in UNIDADES.items():
         gerar(k, u)
 
